@@ -1,0 +1,12 @@
+To list features of:
+- mentors page (gamma)
+- experts page (gamma)
+- project calendar (delta)
+
+To design:
+- tutorial
+- 401, 403, 404
+- landing page (delta)
+
+To make:
+- skill page

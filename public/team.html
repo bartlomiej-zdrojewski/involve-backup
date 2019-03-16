@@ -1,0 +1,340 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<html lang="en">
+
+    <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" />
+        
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/scrollbar.css" />
+        <link rel="stylesheet" href="styles/involve.css" />
+        <link rel="stylesheet" href="styles/animations.css" />
+        <link rel="stylesheet" href="styles/team.css" />
+
+        <title>Involve - Zespół</title>
+
+    </head>
+
+    <body ng-app="Involve">
+
+        <div ng-controller="TeamController" ng-init="Setup()" class="involve-primary lighten-4">
+
+            <div id="Tutorial" ng-class="{ 'animation' : ( TutorialState == 1 ) }" ng-show="TutorialState && TutorialState <= TutorialLength" ng-cloak>
+
+                <div class="content z-depth-1" ng-style="{ 'width' : Tutorial.width, 'height' : Tutorial.height, 'top' : Tutorial.top, 'left' : Tutorial.left }">
+
+                    <div class="title">{{Tutorial.title}}</div>
+                    <div class="text" ng-bind-html="Tutorial.text"></div>
+                    <div class="line"></div>
+
+                    <div class="actions" layout="column">
+
+                        <md-button class="md-raised md-primary" aria-label="Następny krok" ng-click="ContinueTutorial()">
+                            {{ TutorialState < TutorialLength && 'Następny krok' || 'Ukryj samouczek' }}
+                        </md-button>
+
+                        <md-button class="md-raised md-primary" aria-label="Następny krok" ng-click="LeaveTutorial()">
+                            Zakończ samouczek
+                        </md-button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="Navigation" class="involve-primary z-depth-1" ng-cloak>
+
+                <a ng-href="{{local}}cockpit.html" target="_self"><img ng-src="{{local}}images/about/logo-monochrome.svg" /></a>
+
+                <div class="tools" style="margin-left:25%;">
+
+                    <a ng-href="project.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" style="animation-duration:0.8s;" aria-label="Pokaż projekt">
+                            <md-tooltip md-direction="bottom">Strona projektu</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-public.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                    <a ng-href="recruitment.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" style="animation-duration:1.0s;" aria-label="Pokaż rekrutację" ng-show="Leader">
+                            <md-tooltip md-direction="bottom">Rekrutacja</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-recruitment.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                    <a ng-href="chat.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" ng-style="{ 'animation-duration' : Leader && '1.2s' || '1.0s' }" aria-label="Pokaż czat">
+                            <md-tooltip md-direction="bottom">Czat</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-chat.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                    <a ng-href="reports.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" ng-style="{ 'animation-duration' : Leader && '1.4s' || '1.2s' }" aria-label="Pokaż raporty">
+                            <md-tooltip md-direction="bottom">Raporty</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-reports.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                    <a ng-href="calendar.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" ng-style="{ 'animation-duration' : Leader && '1.6s' || '1.4s' }" aria-label="Pokaż kalendarz" ng-show="false">
+                            <md-tooltip md-direction="bottom">Kalendarz</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-calendar.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                </div>
+
+                <a ng-href="logout.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Wylogowywanie" aria-label="Wyloguj się">
+                        <md-icon md-svg-src="{{local}}images/navigation-logout.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <md-button class="md-fab md-mini md-primary" title="Samouczek" aria-label="Otwórz samouczek" ng-click="EnterTutorial()">
+                    <md-icon md-svg-src="{{local}}images/navigation-tutorial.svg"></md-icon>
+                </md-button>
+
+                <a ng-href="expertise.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Kompetencje" aria-label="Pokaż kompetencje">
+                        <md-icon md-svg-src="{{local}}images/navigation-expertise.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <a ng-href="cockpit.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Kokpit" aria-label="Pokaż kokpit">
+                        <md-icon md-svg-src="{{local}}images/navigation-cockpit.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <a ng-href="profile.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Profil użytkownika" aria-label="Pokaż profil użytkownika">
+                        <md-icon md-svg-src="{{local}}images/navigation-profile.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <md-button ng-class="[ 'md-fab', 'md-mini', 'md-primary', { 'md-hue-3' : ( NotificationsState == 4 ) } ]" ng-style="{ 'transition-duration' : ( NotificationsState == 3 || NotificationsState == 4 ) && '1.75s' || '0.3' }" title="Powiadomienia" aria-label="Pokaż powiadomienia" ng-click="ToggleNotifications()">
+                    <md-icon md-svg-src="{{local}}images/navigation-notifications.svg"></md-icon>
+                </md-button>
+
+            </div>
+
+            <div id="Content" class="involve-primary lighten-4" ng-cloak>
+
+                <div id="Notifications" class="involve-primary lighten-5 z-depth-1" ng-style="{ 'width' : ( ( NotificationsState == 1 || NotificationsState == 2 ) && '300px' || '0px' ), 'height' : ( ( NotificationsState == 1 || NotificationsState == 2 ) && '350px' || '0px' ) }">
+
+                    <div class="content" ng-style="{ 'opacity' : ( ( NotificationsState == 2 ) && '1.00' || '0.00' ) }">
+
+                        <div style="height:72px;">
+
+                            <md-list>
+
+                                <md-list-item md-ink-ripple class="md-2-line" ng-style="{ 'opacity' : !notification.seen && '1.00' || '0.60' }" ng-repeat="notification in notifications" ng-click="LaunchNotification(notification)">
+                                    <img ng-src="{{local}}images/{{notification.icon}}" class="md-avatar" />
+                                    <div class="md-list-item-text">
+                                        <h3 style="margin-top:10px;margin-bottom:5px;white-space:normal;">{{notification.title}}</h3>
+                                        <p style="margin-bottom:10px;">{{notification.description}}</p>
+                                    </div>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+
+                            </md-list>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="NotificationsBackground" ng-style="{ 'display' : ( ( NotificationsState == 2 ) && 'initial' || 'none' ) }" ng-click="NotificationsState=0;"></div>
+
+                <div id="Members" class="involve-primary lighten-5 z-depth-1">
+
+                    <div class="title involve-primary darken-2 z-depth-1">
+
+                        <p class="md-title">Zespół</p>
+
+                    </div>
+
+                    <div class="content" ng-style="{ 'height' : ( ( Leader && Recruitment ) && 'calc( 50% - 54px )' || 'calc( 100% - 54px )' ) }">
+
+                        <md-list>
+                            <md-list-item md-ink-ripple class="md-2-line" ng-repeat="member in members" ng-click="ShowMember(member)">
+                                <img ng-src="{{member.avatar}}" class="md-avatar" />
+                                <div class="md-list-item-text">
+                                    <h3 style="height:24px;line-height:24px;font-weight:300;letter-spacing:0.08em;">{{member.name}}</h3>
+                                    <h3 style="height:24px;line-height:24px;font-weight:300;letter-spacing:0.08em;">{{member.surname}}</h3>
+                                </div>
+                                <md-fab-speed-dial class="md-scale md-secondary" md-open="MemberActionsActive[$index]" md-direction="left" ng-hide="Leader && member.leader">
+                                    <md-fab-trigger>
+                                        <md-button  class="md-icon-button" aria-label="Pokaż akcje">
+                                            <md-tooltip md-direction="bottom">Akcje</md-tooltip>
+                                            <md-icon md-svg-src="{{local}}images/team-member-more.svg"></md-icon>
+                                        </md-button>
+                                    </md-fab-trigger>
+                                    <md-fab-actions>
+                                        <md-button  class="md-icon-button" aria-label="Zgłoś użytkownika" ng-click="ReportMember(member)">
+                                            <md-tooltip md-direction="bottom">Zgłoś użytkownika</md-tooltip>
+                                            <md-icon md-svg-src="{{local}}images/team-member-report.svg"></md-icon>
+                                        </md-button>
+                                        <md-button class="md-icon-button" aria-label="Usuń użytkownika" ng-show="Leader && !member.leader" ng-click="DeleteMember(member)">
+                                            <md-tooltip md-direction="bottom">Usuń użytkownika</md-tooltip>
+                                            <md-icon md-svg-src="{{local}}images/team-member-delete.svg"></md-icon>
+                                        </md-button>
+                                    </md-fab-actions>
+                                </md-fab-speed-dial>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                            <md-list-item md-ink-ripple class="md-1-line" ng-show="Leader && Recruitment" ng-href="recruitment.html?project={{ProjectHash}}" target="_self">
+                                <img ng-src="{{local}}images/team-member-add.svg" class="md-avatar" />
+                                <div class="md-list-item-text">
+                                    <p style="font-size:16px;">Dodaj użytkownika</p>
+                                </div>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+
+                    </div>
+
+                    <div class="title involve-primary darken-2 z-depth-1" ng-show="Leader && Recruitment">
+
+                        <p class="md-title">Zaproszenia</p>
+
+                    </div>
+
+                    <div class="content" ng-show="Leader && Recruitment">
+
+                        <md-list>
+                            <md-list-item class="md-2-line" ng-repeat="invitation in invitations">
+                                <img ng-src="{{invitation.image}}" class="md-avatar" />
+                                <div class="md-list-item-text">
+                                    <h3>{{invitation.name}} {{invitation.surname}}</h3>
+                                    <h4>Zaproszenie wysłano {{invitation.date}}</h4>
+                                </div>
+                                <md-icon md-svg-icon="{{local}}images/team-invitation-cancel.svg" class="md-secondary md-hue-3" aria-label="Anuluj zaproszenie" ng-click="CancelInvitation(invitation)">
+                                    <md-tooltip md-direction="bottom">Anuluj zaproszenie</md-tooltip>
+                                </md-icon>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                            <md-list-item md-ink-ripple class="md-1-line" ng-show="Recruitment" ng-click="SendInvitation($event)">
+                                <img ng-src="{{local}}images/team-member-add.svg" class="md-avatar" />
+                                <div class="md-list-item-text">
+                                    <p style="font-size:16px;">Zaproś osobę</p>
+                                </div>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+
+                    </div>
+
+                </div>
+
+                <div id="Details" class="involve-primary lighten-4 z-depth-1" ng-show="MemberID">
+
+                    <div class="presentation">
+
+                        <div class="icon involve-primary lighten-5">
+
+                            <img ng-src="{{MemberImage}}" />
+
+                        </div>
+
+                        <div class="title" name="title" >
+
+                            {{MemberName}} {{MemberSurname}}
+
+                        </div>
+
+                        <div class="title-test" name="title-test"></div>
+
+                    </div>
+
+                    <div class="roles involve-primary lighten-5 z-depth-1">
+
+                        <div class="title involve-primary darken-1 z-depth-1">
+
+                            <p class="md-title">Role</p>
+
+                        </div>
+
+                        <div class="content">
+
+                            <div class="role" ng-repeat="role in MemberRoles">
+
+                                <div layout="row">
+
+                                    <div class="icon involve-secondary">
+                                        <img ng-src="{{local}}images/nodes/default.svg" /> <!-- TODO: 'images/nodes/{{role.image}}' -->
+                                    </div>
+
+                                    <div class="title" ng-style="{ 'width' : ( Mentor && 'calc( 100% - 2.5vw - 70px )' || 'calc( 100% - 2.5vw - 24px )' ) }">{{role.title}}</div>
+
+                                    <div class="appreciated" ng-if="Mentor">
+                                        <img ng-src="{{local}}images/team-appreciated.svg" ng-if="!role.appreciated" ng-click="Appreciate(MemberID,role,$event)">
+                                        <img ng-src="{{local}}images/team-appreciated-filled.svg" ng-if="role.appreciated">
+                                        <md-tooltip md-direction="bottom" ng-if="!role.appreciated">Wyróżnij członka zespołu</md-tooltip>
+                                    </div>
+
+                                </div>
+
+                                <div layout="row">
+
+                                    <div class="description involve-primary lighten-2">
+
+                                        <div class="text">{{role.description}}</div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="description involve-primary lighten-5 z-depth-1">
+
+                        <div class="title involve-primary darken-1 z-depth-1">
+
+                            <p class="md-title">O mnie</p>
+
+                        </div>
+
+                        <div class="content">
+
+                            <div class="text">{{MemberDescription}}</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+        <script src="scripts/involve.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/team.js"></script>
+
+    </body>
+
+</html>

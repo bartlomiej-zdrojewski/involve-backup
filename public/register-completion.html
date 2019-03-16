@@ -1,0 +1,264 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<html lang="en">
+
+    <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" />
+
+        <link rel="stylesheet" href="libraries/datetimepicker.css" />
+
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/scrollbar.css" />
+        <link rel="stylesheet" href="styles/involve.css" />
+        <link rel="stylesheet" href="styles/animations.css" />
+        <link rel="stylesheet" href="styles/register-completion.css" />
+
+        <title>Involve - Kończenie rejestracji</title>
+
+    </head>
+
+    <body ng-app="Involve">
+
+        <div ng-controller="RegisterCompletionController" class="involve-primary lighten-3">
+
+            <div id="Navigation" class="involve-primary z-depth-1" ng-cloak>
+
+                <a ng-href="{{local}}cockpit.html" target="_self"><img ng-src="{{local}}images/about/logo-monochrome.svg" /></a>
+
+                <a ng-href="{{local}}logout.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Wylogowywanie" aria-label="Wyloguj się">
+                        <md-icon md-svg-src="{{local}}images/navigation-logout.svg"></md-icon>
+                    </md-button>
+                </a>
+
+            </div>
+
+            <div id="Content" class="involve-primary lighten-3" ng-cloak>
+
+                <div id="Center" class="involve-primary lighten-5">
+
+                    <form name="RegisterCompletionForm" style="margin:0;" ng-cloak>
+                    
+                    <md-tabs md-dynamic-height md-no-bar>
+
+                        <md-tab md-active="ActiveTab==1" label="AccountData">
+
+                            <p class="md-headline" style="margin-top:100px;font-size:20px;text-align:center;">Wprowadź swój adres email</p>
+
+                            <div layout="row">
+
+                                <span flex="10"></span>
+
+                                <md-input-container style="margin-top:60px;margin-bottom:42px;" flex="80">
+                                    <label>Adres e-mail</label>
+                                    <input ng-model="Account.email" name="email" type="email" maxlength="1024" required>
+                                    <div ng-messages="RegisterCompletionForm.email.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">Twój adres e-mail jest konieczny do ukończenia rejestracji.</div>
+                                        <div ng-message="email" class="my-message">Ten wpis nie przypomina adresu e-mail.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <span flex="10"></span>
+
+                            </div>
+
+                            <div layout="row">
+
+                                <span flex></span>
+
+                                <md-input-container style="margin-top:0px;">
+                                    <md-button class="md-primary md-raised" ng-disabled="RegisterCompletionForm.email.$invalid" ng-click="ActiveTab=2">&nbsp&nbsp&nbspKontynuuj&nbsp&nbsp&nbsp</md-button>
+                                </md-input-container>
+
+                                <span flex></span>
+
+                            </div>
+
+                        </md-tab>
+
+                        <md-tab md-active="ActiveTab==2" label="Age">
+
+                            <p class="md-headline" style="margin-bottom:25px;font-size:20px;text-align:center;">Wprowadź swoją datę urodzenia</p>
+
+                            <div layout="row" style="height:240px;margin-bottom:25px;">
+
+                                <span flex></span>
+
+                                <datetimepicker class="involve-primary lighten-4" ng-model="Account.birthdate" ng-change="VerifyAge()" datetimepicker-config="{ startView:'year', minView:'day' }" data-before-render="FilterDates($dates)" name="birthdate" required></datetimepicker>
+
+                                <span flex></span>
+
+                            </div>
+
+                            <div layout="row">
+
+                                <span flex="5"></span>
+
+                                <md-input-container flex="90" style="margin-top:0px;margin-bottom:0px;text-align:center;">
+                                    <md-checkbox ng-model="AcceptUnderage" class="md-primary" style="margin-bottom:0px;" aria-label="Potwierdź posiadanie zgody prawnego opiekuna na użytkowanie platformy" ng-disabled="!Underage || !Legal">
+                                        Posiadam zgodę prawnego opiekuna na użytkowanie platformy
+                                    </md-checkbox>
+                                </md-input-container>
+
+                                <span flex="5"></span>
+
+                            </div>
+
+                            <div layout="row">
+
+                                <span flex></span>
+
+                                <md-input-container style="margin-top:10px;">
+                                    <md-button class="md-primary md-raised" ng-disabled="RegisterCompletionForm.$invalid || !AcceptUnderage || !Legal" ng-click="ActiveTab=3">&nbsp&nbsp&nbspKontynuuj&nbsp&nbsp&nbsp</md-button>
+                                </md-input-container>
+
+                                <span flex></span>
+
+                            </div>
+
+                        </md-tab>
+
+                        <md-tab md-active="ActiveTab==3" label="PersonalData">
+
+                            <p class="md-headline" style="font-size:20px;text-align:center;">Uzupełnij dane osobowe</p>
+
+                            <div layout="row">
+
+                                <span flex="5"></span>
+
+                                <md-input-container flex="40">
+                                    <label>Nazwa szkoły / uczelni</label>
+                                    <input ng-model="Account.schoolname">
+                                </md-input-container>
+
+                                <span flex="10"></span>
+
+                                <md-input-container flex="40">
+                                    <label>Wykształcenie</label>
+                                    <md-select ng-model="Account.education">
+                                        <md-option value="Uczeń gimnazjum">Uczeń gimnazjum</md-option>
+                                        <md-option value="Uczeń liceum">Uczeń liceum</md-option>
+                                        <md-option value="Ukończone liceum">Ukończone liceum</md-option>
+                                        <md-option value="Uczeń technikum">Uczeń technikum</md-option>
+                                        <md-option value="Ukończone technikum">Ukończone technikum</md-option>
+                                        <md-option value="Uczeń zawodówki">Uczeń zawodówki</md-option>
+                                        <md-option value="Ukończona zawodówka">Ukończona zawodówka</md-option>
+                                        <md-option value="Student">Student</md-option>
+                                        <md-option value="Ukończone studia">Ukończone studia</md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <span flex="5"></span>
+
+                            </div>
+
+                            <div layout="row">
+
+                                <span flex="5"></span>
+
+                                <md-input-container style="margin-top:0px;margin-bottom:11px;" flex="40">
+                                    <label>Miejscowość</label>
+                                    <input ng-model="Account.city">
+                                </md-input-container>
+
+                                <span flex="10"></span>
+
+                                <md-input-container style="margin-top:0px;margin-bottom:11px;" flex="40">
+                                    <label>Płeć</label>
+                                    <md-select ng-model="Account.sex">
+                                        <md-option value="Mężczyzna">Mężczyzna</md-option>
+                                        <md-option value="Kobieta">Kobieta</md-option>
+                                        <md-option value="Inna">Inna</md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <span flex="5"></span>
+
+                            </div>
+
+                            <div layout="row">
+
+                                <span flex></span>
+
+                                <md-input-container style="margin-top:5px;">
+                                    <div layout="row" style="width:400px;">
+
+                                        <div class="involve-secondary" style="width:50px;height:50px;border-radius:50%;display:flex;">
+                                            <md-icon md-svg-src="{{local}}images/register-disclaimer.svg" style="width:36px;height:36px;"></md-icon>
+                                        </div>
+
+                                        <div style="margin-left:15px;" flex>
+                                            <span style="font-size:18px;">Dlaczego zbieramy dane osobowe?</span>
+                                            <p style="margin-top:10px;margin-bottom:10px;">
+
+                                                W oparciu o twoje dane wybieramy projekty, które mogą cię zainteresować. Uwzględniamy przy tym twoją lokalizację.
+                                                <a class="md-accent" href="{{local}}policy.html" target="_blank">Czytaj więcej</a>
+
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </md-input-container>
+
+                                <span flex></span>
+
+                            </div>
+
+                            <div layout="row">
+
+                                <span flex></span>
+
+                                <md-input-container style="margin-top:0px;">
+
+                                    <md-button class="md-primary md-raised" ng-click="Account.personaldata=false;Complete();">&nbsp&nbsp&nbsp&nbspNie teraz&nbsp&nbsp&nbsp&nbsp</md-button>
+
+                                </md-input-container>
+
+                                <span style="width:50px;"></span>
+
+                                <md-input-container style="margin-top:0px;">
+
+                                    <md-button class="md-primary md-raised" ng-click="Account.personaldata=true;Complete();">&nbsp&nbsp&nbspUzupełnij&nbsp&nbsp&nbsp</md-button>
+
+                                </md-input-container>
+
+                                <span flex></span>
+
+                            </div>
+
+                        </md-tab>
+
+                    </md-tabs>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+        <script src="libraries/moment-with-locales.js"></script>
+        <script src="libraries/datetimepicker.js"></script>
+        <script src="libraries/datetimepicker.templates.js"></script>
+
+        <script src="scripts/involve.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/register-completion.js"></script>
+
+    </body>
+
+</html>

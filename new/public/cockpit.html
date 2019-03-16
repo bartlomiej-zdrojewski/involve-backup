@@ -1,0 +1,407 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <[EMAIL]>, July 2017
+ -->
+
+<!DOCTYPE html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="author" content="Bartłomiej Zdrojewski">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="images/commons/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" />
+
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/animations.css" />
+        <link rel="stylesheet" href="styles/scrollbar.css" />
+        <link rel="stylesheet" href="styles/navigation.css" />
+        <link rel="stylesheet" href="styles/controls.css" />
+        <link rel="stylesheet" href="styles/tutorial.css" />
+        <link rel="stylesheet" href="styles/cockpit.css" />
+
+        <title>Invity - Kokpit</title>
+
+    </head>
+
+    <body ng-app="Invity">
+
+        <div ng-controller="CockpitController" ng-init="Setup()" layout="column" layout-fill>
+
+            <div ng-include="'commons.html'"></div>
+
+            <div layout="row" flex ng-cloak>
+
+                <md-content layout="column" flex>
+
+                    <md-toolbar class="md-accent" md-whiteframe="1">
+
+                        <div class="md-toolbar-tools" flex>
+
+                            <img ng-src="images/navigation/logo.svg" class="navigation-logo" ng-click="Redirect('cockpit.html')">
+
+                            <h2 style="white-space:nowrap;text-overflow:ellipsis;overflow:hidden;" flex>
+
+                                | student
+
+                            </h2>
+
+                            <button class="navigation-button" ng-class="{ 'active' : NavItem.active, 'inactive' : !NavItem.active }" ng-repeat="NavItem in Navigation" ng-show="$mdMedia('gt-sm')" ng-click="Redirect(NavItem.link)">
+                                <span>{{NavItem.text}}</span>
+                            </button>
+
+                            <md-button class="md-icon-button" aria-label="Nawigacja" ng-hide="$mdMedia('gt-sm')" ng-click="OpenNavigation()">
+                                <md-icon md-svg-icon="images/navigation/navigation.svg"></md-icon>
+                            </md-button>
+
+                        </div>
+
+                    </md-toolbar>
+
+                    <md-content style="height:100%;max-width:1800px;" layout="column">
+
+                        <div layout="row" flex="none">
+
+                            <div layout="column" flex>
+
+                                <div id="FirstFrame" layout="column" flex="50" md-whiteframe="4">
+
+                                    <div class="frame-header theme-frame-header" layout="row" flex="none" md-whiteframe="2">
+
+                                        Projekty
+
+                                        <span flex></span>
+
+                                        <button class="controls-text-button right" ng-class="{ 'active' : ActiveTab.FirstFrame == 'assigned', 'inactive' : ActiveTab.FirstFrame != 'assigned' }" ng-click="ActiveTab.FirstFrame='assigned'">
+                                            <span>Moje projekty</span>
+                                        </button>
+
+                                        <button class="controls-text-button right" ng-class="{ 'active' : ActiveTab.FirstFrame == 'suggested', 'inactive' : ActiveTab.FirstFrame != 'suggested' }" ng-click="ActiveTab.FirstFrame='suggested'">
+                                            <span>Proponowane</span>
+                                        </button>
+
+                                        <button class="controls-icon-button" ng-click="Redirect('browser.html?domain=projects')">
+                                            <img src="images/cockpit/search.svg">
+                                            <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="left" md-delay="500">Wyszukaj projekt</md-tooltip>
+                                        </button>
+
+                                    </div>
+
+                                    <div class="projects theme-cards" ng-show="ActiveTab.FirstFrame=='assigned'" flex>
+
+                                        <div class="controls-cards">
+
+                                            <div class="controls-card" md-whiteframe="1" ng-repeat="project in Projects.assigned" ng-click="Redirect('project.html?hash='+project.hash)">
+
+                                                <div class="image">
+
+                                                    <img ng-src="{{project.image}}">
+
+                                                </div>
+
+                                                <div class="state" layout="row">
+
+                                                    {{ project.finished ? ( project.success ? 'Zakończony sukcesem' : 'Zakończony porażką' ) : 'W trakcie realizacji' }}
+
+                                                    <span flex></span>
+
+                                                    <button class="controls-icon-button" ng-click="$event.stopPropagation();">
+                                                        <img src="images/cockpit/add-to-cv.svg">
+                                                        <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="bottom" md-delay="500">Dodaj pojekt do CV</md-tooltip>
+                                                    </button>
+
+                                                </div>
+
+                                                <div class="title-bar" md-whiteframe="1">
+
+                                                    {{ project.title }}
+
+                                                </div>
+
+                                                <div class="depiction">
+
+                                                    {{ project.depiction }}
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="margin"></div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="projects theme-cards" ng-show="ActiveTab.FirstFrame=='suggested'" flex>
+
+                                        <div class="controls-cards">
+
+                                            <div class="controls-card" md-whiteframe="1" ng-repeat="project in Projects.suggested" ng-click="Redirect('project.html?hash='+project.hash)">
+
+                                                <div class="image">
+
+                                                    <img ng-src="{{project.image}}">
+
+                                                </div>
+
+                                                <div class="state" style="opacity:0;">
+
+                                                    <!-- NOTHING -->
+
+                                                </div>
+
+                                                <div class="title-bar" md-whiteframe="1">
+
+                                                    {{ project.title }}
+
+                                                </div>
+
+                                                <div class="depiction">
+
+                                                    {{ project.depiction }}
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="margin"></div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div id="SecondFrame" layout="column" flex="50" md-whiteframe="4">
+
+                                    <div class="frame-header theme-frame-header" layout="row" flex="none" md-whiteframe="2">
+
+                                        Zadania
+
+                                        <span flex></span>
+
+                                        <button class="controls-text-button right" ng-class="{ 'active' : ActiveTab.SecondFrame == 'assigned', 'inactive' : ActiveTab.SecondFrame != 'assigned' }" ng-click="ActiveTab.SecondFrame='assigned'">
+                                            <span>Moje zadania</span>
+                                        </button>
+
+                                        <button class="controls-text-button right" ng-class="{ 'active' : ActiveTab.SecondFrame == 'suggested', 'inactive' : ActiveTab.SecondFrame != 'suggested' }" ng-click="ActiveTab.SecondFrame='suggested'">
+                                            <span>Proponowane</span>
+                                        </button>
+
+                                        <button class="controls-icon-button" ng-click="Redirect('browser.html?domain=cases')">
+                                            <img src="images/cockpit/search.svg">
+                                            <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="left" md-delay="500">Wyszukaj zadanie</md-tooltip>
+                                        </button>
+
+                                    </div>
+
+                                    <div class="cases theme-cards" ng-show="ActiveTab.SecondFrame=='assigned'" flex>
+
+                                        <div class="controls-cards">
+
+                                            <div class="controls-card" md-whiteframe="1" ng-repeat="case in Cases.assigned" ng-click="Redirect('case.html?hash='+case.hash)">
+
+                                                <div class="image">
+
+                                                    <img ng-src="{{case.image}}">
+
+                                                </div>
+
+                                                <div class="state" layout="row">
+
+                                                    <span flex></span>
+
+                                                    <button class="controls-icon-button" ng-click="$event.stopPropagation();">
+                                                        <img src="images/cockpit/add-to-cv.svg">
+                                                        <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="bottom" md-delay="500">Dodaj zadanie do CV</md-tooltip>
+                                                    </button>
+
+                                                </div>
+
+                                                <div class="title-bar" md-whiteframe="1">
+
+                                                    {{ case.title }}
+
+                                                </div>
+
+                                                <div class="depiction">
+
+                                                    {{ case.depiction }}
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="margin"></div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="cases theme-cards" ng-show="ActiveTab.SecondFrame=='suggested'" flex>
+
+                                        <div class="controls-cards">
+
+                                            <div class="controls-card" md-whiteframe="1" ng-repeat="case in Cases.suggested" ng-click="Redirect('case.html?hash='+case.hash)">
+
+                                                <div class="image">
+
+                                                    <img ng-src="{{case.image}}">
+
+                                                </div>
+
+                                                <div class="state">
+
+                                                    <!-- NOTHING -->
+
+                                                </div>
+
+                                                <div class="title-bar" md-whiteframe="1">
+
+                                                    {{ case.title }}
+
+                                                </div>
+
+                                                <div class="depiction">
+
+                                                    {{ case.depiction }}
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="margin"></div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div id="ThirdFrame" layout="column" flex="none" md-whiteframe="4">
+
+                                <div class="frame-header theme-frame-header" flex="none" md-whiteframe="2">
+
+                                    Powiadomienia
+
+                                </div>
+
+                                <div class="notifications" flex>
+
+                                    <md-list style="padding:0;">
+
+                                        <md-list-item md-no-ink class="md-3-line" ng-repeat="notification in LatestNotifications" ng-click="LaunchNotification(notification)">
+                                            <img ng-src="images/notifications/{{notification.icon}}" ng-style="{ 'opacity' : ( notification.seen ? '0.56' : '1.00' ) }" class="md-avatar" />
+                                            <div class="md-list-item-text">
+                                                <h3 style="margin-top:4px;margin-bottom:4px;line-height:16px;white-space:normal;">{{ notification.title }}</h3>
+                                                <p style="margin-bottom:8px;line-height:16px;">{{ notification.description }}</p>
+                                            </div>
+                                            <md-divider></md-divider>
+                                        </md-list-item>
+
+                                    </md-list>
+
+                                </div>
+
+                                <div class="expand-bar theme-expand-bar" flex="none">
+
+                                    <button class="controls-text-button" ng-click="">
+                                        <span>Wszystkie powiadomienia</span>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div layout="column" flex="none">
+
+                            <div id="FourthFrame" layout="column" flex="25" md-whiteframe="4">
+
+                                <div class="frame-header theme-frame-header" layout="row" flex="none" md-whiteframe="2">
+
+                                    Oferty partnerów
+
+                                    <span flex></span>
+
+                                    <button class="controls-text-button right" ng-class="{ 'active' : ActiveTab.ThirdFrame == 'assigned', 'inactive' : ActiveTab.ThirdFrame != 'assigned' }" ng-click="ActiveTab.ThirdFrame='assigned'">
+                                        <span>Wszystkie</span>
+                                    </button>
+
+                                    <button class="controls-text-button right" ng-class="{ 'active' : ActiveTab.ThirdFrame == 'suggested', 'inactive' : ActiveTab.ThirdFrame != 'suggested' }" ng-click="ActiveTab.ThirdFrame='suggested'">
+                                        <span>Proponowane</span>
+                                    </button>
+
+                                    <button class="controls-icon-button" ng-click="Redirect('browser.html?domain=partners')">
+                                        <img src="images/cockpit/search.svg">
+                                        <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="left" md-delay="500">Wyszukaj ofertę partnera</md-tooltip>
+                                    </button>
+
+                                </div>
+
+                                <div class="" flex>
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <span flex></span>
+
+                    </md-content>
+
+                </md-content>
+
+                <md-sidenav class="md-sidenav-right" md-component-id="navigation" layout="column" md-whiteframe="5">
+
+                    <md-toolbar class="md-accent">
+
+                        <div class="md-toolbar-tools">
+
+                            <h2 style="white-space:nowrap;text-overflow:ellipsis;overflow:hidden;" flex>Nawigacja</h2>
+
+                        </div>
+
+                    </md-toolbar>
+
+                    <md-menu-content width="4" flex="100">
+
+                        <md-menu-item ng-repeat="NavItem in Navigation">
+                            <md-button aria-label="{{NavItem.text}}" ng-href="{{NavItem.link}}" target="_self">
+                                <md-icon md-svg-icon="images/navigation/{{NavItem.icon}}"></md-icon>
+                                {{ NavItem.text }}
+                            </md-button>
+                        </md-menu-item>
+
+                    </md-menu-content>
+
+                </md-sidenav>
+
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+
+        <script src="scripts/invity.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/cockpit.js"></script>
+
+    </body>
+
+</html>

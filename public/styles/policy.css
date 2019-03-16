@@ -1,0 +1,25 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+#Content {
+
+    overflow-y: auto;
+
+    }
+
+#Policy {
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 20%;
+    margin-right: 20%;
+
+    font-size: 15px;
+    font-weight: 300;
+
+    text-align: justify;
+
+    }

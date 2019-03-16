@@ -1,0 +1,88 @@
+Programowanie			PRO	
+Języki skryptowe	nie dotyczy	nie dotyczy	SKR	PRO
+Języki kompilowane	nie dotyczy	nie dotyczy	KOM	PRO
+Języki znaczników i arkusze stylów	nie dotyczy	nie dotyczy	ZNA	PRO
+Niezależne od języka	nie dotyczy	nie dotyczy	NIE	PRO
+PHP			PHP	PROSKR
+Python			PYT	PROSKR
+Ruby			RUB	PROSKR
+JS			JS_	PROSKR
+SQL			SQL	PROSKR
+Java			JAV	PROKOM
+C#			CSH	PROKOM
+C/C++			CPP	PROKOM
+Swift			SWI	PROKOM
+HTML			HTM	PROZNA
+CSS			CSS	PROZNA
+Regex			REG	PRONIE
+Formaty danych			FOR	PRONIE
+Podstawy sieci			SIE	PRONIE
+Podstawy systemów			ARC	PRONIE
+Organizacja kodu			ORG	PRONIE
+Algorytmy i struktury danych			ALG	PRONIE
+Bazy danych			DB_	PRONIE
+AngularJS			ANG	PROSKRJS_
+NodeJS			NOD	PROSKRJS_
+jQuery			JQU	PROSKRJS_
+D3			D3_	PROSKRJS_
+Electron			ELE	PROSKRJS_
+Ruby on Rails			ROR	PROSKRRUB
+Django			DJA	PROSKRPYT
+Keras			KER	PROSKRPYT
+SFML			SFM	PROKOMCPP
+QT			QT_	PROKOMCPP
+Arduino			ARD	PROKOMCPP
+.NET			NET	PROKOMCSH
+UNITY			UNI	PROKOMCSH
+Mechanika	nie dotyczy	nie dotyczy	MEC	
+Struktura			STR	MEC
+Obróbka materiałów			OBR	MEC
+Elementy wykonawcze			ELE	MEC
+Modelowanie komputerowe			MOD	MEC
+Analiza wytrzymałościowa			ANA	MECSTR
+Materiały			MAT	MECSTR
+Połączenia			POL	MECSTR
+Toczenie			TOC	MECOBR
+Skrawanie			SKR	MECOBR
+Spawanie			SPA	MECOBR
+Druk 3D			DRU	MECOBR
+Obróbka laserem			OBR	MECOBR
+CNC			CNC	MECOBR
+Silniki szczotkowe			SIS	MECELE
+Silniki bezszczotkowe			SIB	MECELE
+Hydraulika			HYD	MECELE
+Serwomechanizmy			SER	MECELE
+Przekładnie			PKL	MECELE
+Autodesk Inventor			AUT	MECMOD
+OpenCAD			CAD	MECMOD
+Solidworks			SOL	MECMOD
+3D Max			3DM	MECMOD
+Design	nie dotyczy	nie dotyczy	DES	
+Aplikacje i strony internetowe	Design stron internetowych stoi na pograniczu sztuki i rzemiosła. Rozumiejąc jego zasady można skutecznie oddziaływać na odbiorcę, wywoływać w nim określone emocje i zachowania.		APP	DES
+Layouting dokumentów			LAY	DES
+Infografiki, ikony, grafiki użytkowe			INF	DES
+Materiały promocyjne			MAT	DES
+Gry			GRY	DES
+Digital painting			DIG	DES
+Ilustracje			ILU	DES
+Logo design			LOG	DES
+Fundraising	nie dotyczy	nie dotyczy	FUN	
+Strategie fundraisingowe	Pozyskiwanie środków to umiejętność kluczowa dla powodzenia projektów o większej skali. Umiejętnie skonstruowana strategia fundraisingowa pozwala zapewnić stabilne warunki pracy dla zespołu, a także daje dostęp do wielu nowych możliwości.	Budowanie strategii fundraisingowych wymaga zrozumienia kompleksowości relacji, w jaką angażuje się projekt wchodząc we współpracę z fundatorem. Na pewnym etapie nieodzowne staje się korzystanie ze środków zewnętrznych, a to oznacza dużą odpowiedzialność i wiąże się z koniecznością prezentowania efektów pracy projektu. Podstawowa znajomość fundraisingu to przede wszystkim wiedza na temat kształtowania wartości dla fundatora, merytorycznie skonstruowana oferta produktowa i ciągłe dostosowywanie strategii rozwoju do zmieniającego się dynamicznie otoczenia. Szczególne znaczenie mają tutaj terminowość i dobre zrozumienie wizji projektu, a także biegłość w prowadzeniu korespondencji formalnej. Zaawansowany fundraiser to osoba umiejąca się poruszać w obrębie bogatego wachlarza dostępnych opcji pozyskiwania środków, ze szczególnym uwzględnieniem dofinansowań unijnych, rządowych projektów grantowych, a także rynkowych programów inkubacyjnych. Wysoki poziom kompetencji w tej dziedzinie to także konieczność kreowania określonego wizerunku projektu, który pomoże utrzymywać świadomą relację z inwestorami i sponsorami.	STR	FUN
+Elementy formalne, rozliczenia finansowe	Rozwój projektu pociąga za sobą konieczność kształtowania jego struktury w oparciu o dostępne formy prawne i regulacje. Projekt staje wtedy przed niedostępnymi dotychczas możliwościami, które pociągają za sobą także konieczną biurokratyzację. 	W pewnej chwili projekt staje przed wyzwaniem, które wymaga od niego podjęcia radykalnych kroków. Może to oznaczać zawiązanie stowarzyszenia albo powołanie do życia spółki prawa handlowego. Docelowo, wiele projektów poszukuje dla siebie sposobu zdobycia osobowości prawnej, dzięki czemu może ubiegać się o kolejne środku i startować w wielu konkursach. W wymiarze podstawowym użytkownik powinien rozumieć proces zakładania stowarzyszenia i umieć znaleźć pomoc, albo wypełnić samodzielnie formularze rejestracyjne. Wskazane jest rozumienie zasad rozliczania się rachunkowością uproszczoną, a także ogólna znajomość Ustawy o Rachunkowości. Rola związana z tą umiejętnością obliguje członka projektu do wzięcia odpowiedzialności za ewentualne uchybienia, które często obciążają cały zespół. Zaawansowane operowania stroną formalno-prawną projektu to obsługiwanie projektu od strony fiskalnej, a także, w uzasadnionej sytuacji, umiejętność założenia spółki prawa handlowego i tworzenie podstawy dla działu fundraisingu. Bardziej skomplikowane formy rozliczeń, włączając rachunkowość pełną, mogą okazać się kluczowe dla finansowej stabilizacji prac nad projektem, a odpowiedzialne sterowanie operacjami prawnymi w projekcie może niejednokrotnie wyróżnić wyjątkowy projekt pośród wielu innych, nierozróżnialnych.	FIN	FUN
+Copywriting	nie dotyczy		COP	
+Wnioski i podania			WNI	COP
+Teksty promocyjne			TEK	COP
+Instrukcje i teksty użytkowe			INS	COP
+Promocja	nie dotyczy		PRM	
+Media społecznościowe	W obecnej chwili media społecznościowe stanowią pierwszą i najprostszą formę kontaktu z odbiorcami naszych działań. Umiejętne korzystanie z dostępnych dzięki nim możliwości pozwala znacznie przyspieszyć działania promocyjne.		SOC	PRM
+Materiały promocyjne			MAT	PRM
+Strategie promocyjne			STR	PRM
+Pitching	Pitching to atrakcyjne prezentowanie pomysłów, mające przekonać odbiorców do naszego rozwiązania. W zwartej formie zawiera się komplet najważniejszych informacji, które powinny wzbudzić zainteresowanie widowni.   		PIT	PRM
+Istota projektów	nie dotyczy	nie dotyczy	IST	
+Narzędzia organizacyjne	Narzędzia organizacyjne są to wszystkie środki które prowadzą do usprawnienia produktywności. Zapewniają one większa kontrolę nad pracą oraz wpływają na zwiększenie efektywności.	Znajomość narzędzi organizacyjnych pozwala zoptymalizować pracę zespołu, jak i jednostki. Narzędzia te zapobiegają dublowaniu się zadań, pozwalają na lepsza koordynację pracy oraz wpływają na zwiększenie ogólnej efektywności. Użytkownik określający swoją biegłość na poziomie „zainteresowany” zna podstawy organizowania pracy. Potrafi on posługiwać się podstawowymi narzędziami organizacyjnymi w sposób który zwiększa produktywność pracy. Potrafi on zadbać o sprawiedliwy podział pracy i obowiązków oraz o odpowiedni przydział zadań.Użytkownik zaawansowany powinien być w stanie organizować pracę bardziej rozbudowanych struktur. Musi się on również wykazać umiejętnością użycia narzędzi organizacyjnych do optymalizacji pracy od strony finansowej. Szczególne osiągnięcie jest przyznawane po zakończeniu projektu, w którym użytkownik pełnił rolę związaną z tą umiejętnością, a jego zaangażowanie i profesjonalizm zostały dostrzeżone przez mentora. 	ORG	IST
+Zarządzanie zespołem			ZAR	IST
+Sztuka prezentacji			SZT	IST
+Praca w zespole	Umiejętność pracy zespołowej to zdolność do kooperacji z innymi ludźmi oraz dochodzenia do kompromisu. Znajomość technik pracy w zespole jest ważna nie tylko dla pracodawcy ale również dla pracowników. 	Zdolność do pracy zespołowej jest obecnie bardzo poszukiwana przez pracodawców. Sprawnie działające zespoły są dużo bardziej efektywne niż pojedynczy pracownicy. Znajomość metod pracy w zespole jest niezmiernie ważna zarówno dla pracodawcy jak i dla pracowników. Pozwala ona stworzyć bardzo produktywne środowisko pracy. Użytkownik określający swoją biegłość na poziomie „zainteresowany” zna pracę w zespole z perspektywy pracownika. Wie on jak ważne są umiejętności społeczne podczas pracy grupowej oraz zna metody współpracy w zespole.Użytkownik zaawansowany powinien znać metody jakimi posługują się pracodawcy podczas organizowania pracy zespołowej. Jest on w stanie zarządzać grupą oraz posiada wachlarz umiejętności umożliwiających sprawną koordynację i komunikację z zespołem.Szczególne osiągnięcie jest przyznawane po zakończeniu projektu, w którym użytkownik pełnił rolę związaną z tą umiejętnością, a jego zaangażowanie i profesjonalizm zostały dostrzeżone przez mentora. 	ZES	IST
+Planowanie pracy	Efektywne planowanie pracy to umiejętność niezwykle potrzebna przy realizacji projektu. Właściwe ustalanie priorytetów oraz wyznaczanie celów pozwala na uporządkowanie działań i zmniejsza ryzyko wystąpienia niejasności i konfliktów. 	Użytkownik określający znajomość jako zainteresowany powinien w sposób realny wyznaczać przyszłe cele i określać priorytety w pracy zespołu. Powinien być w stanie zaplanować schemat działania na przestrzeni projektu dla jednej bądź kilku osób. Użytkownik zaawansowany jest w stanie w sposób kompleksowy zaplanować pracę dla dużej grupy osób w oparciu o poznane strategie i techniki planowania pracy. Posiada umiejętność dostosowywania się do aktualnej sytuacji wewnątrz grupy i jeśli to potrzebne jest w stanie zmienić priorytety realizacji zadań przy jak najmniejszej ingerencji w dobro projektu. Jest w stanie krytycznie ocenić postęp prac i wyszczególnić aktywności istotne oraz takie, bez realizacji których, projekt w dalszym ciągu może zostać ukończony. Szczególne osiągnięcie jest przyznawane po zakończeniu projektu, w którym użytkownik pełnił rolę związaną z tą umiejętnością, a jego zaangażowanie i profesjonalizm zostały dostrzeżone przez mentora. 	PLA	IST
+Role w projekcie			ROL	IST
+Narzędzia technologiczne			TEC	IST

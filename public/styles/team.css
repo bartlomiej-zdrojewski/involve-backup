@@ -1,0 +1,389 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+#Members {
+
+    width: 25%;
+    height: 100%;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    animation-name: ShiftInLeft;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Members .title {
+
+    width: 100%;
+    height: 54px;
+
+    float: left;
+
+    }
+
+#Members .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Members .content {
+
+    width: 100%;
+    height: calc( 50% - 54px );
+
+    float: left;
+
+    overflow-y: auto;
+
+    }
+
+#Members .content md-list {
+
+    padding: 0px;
+
+    }
+
+#Members .content md-list button {
+
+    margin-left: 0px;
+    margin-right: 0px;
+
+    }
+
+#Members .content .md-list-item-inner {
+
+    overflow: hidden;
+
+    }
+
+#Details {
+
+    width: calc( 75% - 10vw );
+    height: calc( 100% - 10vw );
+
+    top: 5vw;
+    left: calc( 25% + 5vw );
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInDelayBottom;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Details .presentation {
+
+    width: 100%;
+    height: 15vw;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    border-radius: 2px;
+
+    }
+
+#Details .presentation .icon {
+
+    width: 10vw;
+    height: 10vw;
+
+    top: 2.5vw;
+    left: 2.5vw;
+    position: absolute;
+
+    border-radius: 50%;
+
+    }
+
+#Details .presentation .icon img {
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    }
+
+#Details .presentation .title {
+
+    width: calc( 100% - 17.5vw );
+    height: 10vw;
+
+    top: 2.5vw;
+    left: 15vw;
+    position: absolute;
+
+    font-size: 4vw;
+    line-height: 10vw;
+
+    color: #4BA3C7;
+    opacity: 0.87;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Details .presentation .title-test {
+
+    width: auto;
+    height: auto;
+    position: absolute;
+
+    font-size: 4vw;
+    
+    white-space: nowrap;
+    visibility: hidden;
+
+    }
+
+#Details .roles {
+
+    width: calc( 35% - 1.6vw );
+    height: calc( 100% - 16vw );
+
+    bottom: 1vw;
+    left: 1vw;
+    position: absolute;
+
+    border-radius: 2px;
+    overflow-y: auto;
+
+    animation-name: FadeInMiniBottom;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Details .roles .title {
+
+    width: 100%;
+    height: 54px;
+
+    float: left;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Details .roles .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Details .roles .content {
+
+    width: 100%;
+    height: calc( 100% - 54px );
+
+    float: left;
+
+    overflow-y: auto;
+
+    }
+
+#Details .roles .content .role {
+
+    width: 100%;
+    float: left;
+    
+    border-bottom: solid 1px;
+    border-color: rgba( 0, 0, 0, 0.12 );
+
+    }
+
+#Details .roles .content .role .icon {
+
+    width: 2.5vw;
+    height: 2.5vw;
+
+    float: left;
+
+    margin-top: 8px;
+    margin-left: 8px;
+
+    border-radius: 50%;
+
+    }
+
+#Details .roles .content .role .icon img {
+
+    width: 80%;
+    height: 80%;
+
+    margin-top: 10%;
+    margin-left: 10%;
+
+    border-radius: 50%;
+
+    }
+
+#Details .roles .content .role .title {
+
+    width: calc( 100% - 2.5vw - 24px );
+    height: 2.5vw;
+
+    margin-top: 8px;
+    margin-left: 8px;
+
+    opacity: 0.95;
+    font-size: 20px;
+    line-height: 2.5vw;
+    
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    }
+
+#Details .roles .content .role .appreciated {
+
+    width: 2.5vw;
+    height: 2.5vw;
+
+    margin-top: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
+
+    }
+
+#Details .roles .content .role .appreciated img {
+
+    width: 80%;
+    height: 80%;
+
+    margin-top: 10%;
+    margin-left: 10%;
+
+    outline: none;
+    border-radius: 50%;
+
+    }
+
+#Details .roles .content .role .description {
+
+    width: calc( 100% - 2.5vw - 24px );
+    height: 5vw;
+
+    margin-top: 4px;
+    margin-bottom: 8px;
+    margin-left: calc( 2.5vw + 16px );
+    margin-right: 8px;
+
+    float: left;
+    padding: 5px;
+
+    font-size: 14px;
+
+    position: static;
+    box-sizing: border-box;
+    border-radius: 2px;
+
+    overflow-y: auto;
+
+    animation: none;
+
+    }
+
+#Details .roles .content .role .description .text {
+
+    opacity: 0.85;
+
+    font-weight: 300;
+
+    }
+
+#Details .description {
+
+    width: calc( 65% - 1.6vw );
+    height: calc( 100% - 16vw );
+
+    bottom: 1vw;
+    right: 1vw;
+    position: absolute;
+
+    border-radius: 2px;
+    overflow-y: auto;
+
+    animation-name: FadeInMiniBottom;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Details .description .title {
+
+    width: 100%;
+    height: 54px;
+
+    float: left;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Details .description .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Details .description .content {
+
+    width: 100%;
+    height: calc( 100% - 54px );
+
+    float: left;
+    padding: 8px;
+    
+    font-size: 18px;
+    text-align: justify;
+    
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    }
+
+#Details .description .content .text {
+
+    opacity: 0.95;
+
+    }
+
+#public-profile-link {
+    position: absolute;
+    left: 15vw;
+    top: 10vw;
+    color: #26a69a;
+}

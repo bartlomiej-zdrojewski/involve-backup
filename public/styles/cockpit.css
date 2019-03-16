@@ -1,0 +1,309 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+#Projects {
+
+    /* IE, EDGE */
+    width: calc( 50% - 3vw );
+    height: calc( 100% - 4vw );
+    top: 2vw;
+    left: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 50% - 3vmax );
+    height: calc( 100% - 4vmax );
+
+    top: 2vmax;
+    left: 2vmax;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInLeft;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Projects .title {
+
+    width: 100%;
+    height: 50px;
+
+    top: 0px;
+    left: 0px;
+    
+    position: absolute;
+    z-index: 20;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Projects .title .md-headline {
+
+    margin: 9px;
+
+    color: #FFFFFF;
+
+    }
+
+#Projects .title .md-fab {
+
+    top: 14px;
+    right: 5px;
+
+    position: absolute;
+
+    }
+
+#Projects .content {
+
+    width: 100%;
+    height: calc( 100% - 50px );
+
+    top: 50px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    }
+
+#Projects .content .empty {
+
+    width: 70%;
+    height: calc( 100% - 16px );
+
+    margin-left: 15%;
+    margin-right: 15%;
+
+    display: flex;
+    justify-content: space-around;
+
+    animation-name: FadeInEmptyContent;
+    animation-duration: 1.4s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+@keyframes FadeInEmptyContent { /* 1.4s */
+
+    0% {
+
+        opacity: 0.00;
+        
+        }
+
+    70% {
+
+        opacity: 0.00;
+        
+        }
+
+    100% {
+        
+        opacity: 1.00;
+        
+        }
+    
+    }
+
+#Projects .content .empty img {
+
+    width: 100%;
+
+    opacity: 0.25;
+
+    }
+
+#Projects .content .pause {
+
+    width: 100%;
+    height: 8px;
+
+    }
+
+#Projects .content md-card {
+
+    margin-bottom: 16px;
+
+    outline: none;
+    
+    }
+
+#Projects .content md-card[md-ink-ripple] {
+
+    position: relative;
+
+    color: #000000;
+    
+    }
+
+#Projects .content md-card .card-media img {
+
+    width: 104%;
+    height: 104%;
+
+    margin-top: -2%;
+    margin-left: -2%;
+    
+    border-radius: 50%;
+
+    }
+
+#ProjectCreation {
+
+    /* IE, EDGE */
+    width: calc( 50% - 3vw );
+    top: 2vw;
+    right: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 50% - 3vmax );
+    height: 237px;
+
+    top: 2vmax;
+    right: 2vmax;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInDelayRight;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#ProjectCreation .title {
+
+    width: 100%;
+    height: 50px;
+
+    top: 0px;
+    left: 0px;
+
+    position: absolute;
+    z-index: 20;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#ProjectCreation .title .md-headline {
+
+    margin: 9px;
+
+    color: #FFFFFF;
+
+    }
+
+#ProjectCreation .title .md-fab {
+
+    top: 14px;
+    right: 10px;
+
+    position: absolute;
+
+    }
+
+#ProjectCreation .title .md-fab[disabled] {
+
+    background-color: rgb( 200, 200, 200 );
+
+    }
+
+#ProjectCreation .content {
+
+    width: 100%;
+    height: calc( 100% - 50px );
+
+    top: 50px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    }
+
+#ProjectCreation .content md-input-container {
+
+    margin-bottom: 5px;
+
+    }
+
+#NotificationsOverview {
+
+    /* IE, EDGE */
+    width: calc( 50% - 3vw );
+    height: calc( 100% - 237px - 6vw );
+    bottom: 2vw;
+    right: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 50% - 3vmax );
+    height: calc( 100% - 237px - 6vmax );
+
+    bottom: 2vmax;
+    right: 2vmax;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInDoubleDelayRight;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#NotificationsOverview .title {
+
+    width: 100%;
+    height: 50px;
+
+    top: 0px;
+    left: 0px;
+
+    position: absolute;
+    z-index: 20;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#NotificationsOverview .title .md-headline {
+
+    margin: 9px;
+
+    color: #FFFFFF;
+
+    }
+
+#NotificationsOverview .content {
+
+    width: 100%;
+    height: calc( 100% - 50px );
+
+    top: 50px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    }
+
+#NotificationsOverview .content md-list {
+
+    padding: 0px;
+
+    }

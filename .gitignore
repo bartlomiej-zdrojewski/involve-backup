@@ -1,0 +1,8 @@
+/.idea/
+.env
+*.log
+/node_modules/
+/public/temp/*
+/public/storage/*
+!/public/storage/demo/users/default.jpg
+!/public/storage/demo/projects/default.jpg

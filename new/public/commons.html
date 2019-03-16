@@ -1,0 +1,23 @@
+<div id="Tutorial" ng-class="{ 'animation' : ( Tutorial.step == 1 ) }" ng-show="Tutorial.step && Tutorial.step <= Tutorial.length" ng-cloak>
+
+    <div class="content" ng-style="{ 'width' : Tutorial.state.width, 'height' : Tutorial.state.height, 'top' : Tutorial.state.top, 'left' : Tutorial.state.left }">
+
+        <div class="title">{{Tutorial.state.title}}</div>
+        <div class="text" ng-bind-html="Tutorial.state.text"></div>
+        <div class="line"></div>
+
+        <div class="actions" layout="column">
+
+            <md-button class="md-raised md-primary" aria-label="Kontynuuj samouczek" ng-click="Tutorial.Continue()">
+                {{ Tutorial.step < Tutorial.length && 'Następny krok' || 'Ukryj samouczek' }}
+            </md-button>
+
+            <md-button class="md-raised md-primary" aria-label="Zakończ samouczek" ng-click="Tutorial.Leave()">
+                Zakończ samouczek
+            </md-button>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,612 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+#LeftPanel {
+
+    width: 30%;
+    height: 100%;
+
+    top: 0%;
+    left: 0%;
+
+    position: absolute;
+
+    }
+
+#RightPanel {
+
+    width: 70%;
+    height: 100%;
+
+    top: 0%;
+    left: 30%;
+    position: absolute;
+
+    }
+
+#Image {
+
+    /* IE, EDGE */
+    width: calc( 22vw - 2vw );
+    height: calc( 22vw - 2vw );
+    top: 2vw;
+    left: calc( 4vw + 2vw );
+    /* IE, EDGE */
+
+    width: calc( 22vw - 2vmax );
+    height: calc( 22vw - 2vmax );
+
+    top: 2vmax;
+    left: calc( 4vw + 2vmax );
+    position: absolute;
+
+    border-radius: 50%;
+
+    animation-name: FadeInDoubleDelayLeft;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Image img {
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    }
+
+#Image .fade {
+
+    width: 100%;
+    height: 100%;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    opacity: 0.00;
+    transition: opacity ease-out 0.5s;
+
+    border-radius: 50%;
+    background-color: rgba( 0, 0, 0, 0.5 );
+
+    }
+
+#Image .fade:hover {
+
+    opacity: 0.80;
+
+    }
+
+#Image .fade img {
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    }
+
+#Image .fade input {
+
+    width: 100%;
+    height: 100%;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    opacity: 0.00;
+    border-radius: 50%;
+
+    }
+
+#Closure {
+
+    /* IE, EDGE */
+    width: calc( 10vw - 2vw );
+    height: calc( 10vw - 2vw );
+    left: calc( 11vw + 2vw );
+    left: calc( 17vw + 2vw );
+    /* IE, EDGE */
+
+    width: calc( 10vw - 2vmax );
+    height: calc( 10vw - 2vmax );
+
+    top: calc( 11vw + 2vmax );
+    left: calc( 17vw + 2vmax );
+    position: absolute;
+
+    opacity: 0.95;
+    border-radius: 50%;
+
+    animation-name: FadeInClosure;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+@keyframes FadeInClosure { /* 1.20s */
+
+    0% {
+
+        opacity: 0.00;
+        transform: translateX( -30px );
+
+        }
+
+    40% {
+
+        opacity: 0.00;
+        transform: translateX( -30px );
+
+        }
+
+    70% {
+
+        opacity: 0.00;
+
+        }
+
+    100% {
+
+        opacity: 0.95;
+        transform: translateX( 0px );
+
+        }
+
+    }
+
+#Closure img {
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    }
+
+#Media {
+
+    /* IE, EDGE */
+    width: calc( 100% - 2vw );
+    height: calc( 100% - 22vw - 4vw );
+    top: calc( 22vw + 2vw );
+    left: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 2vmax );
+    height: calc( 100% - 22vw - 4vmax );
+
+    top: calc( 22vw + 2vmax );
+    left: 2vmax;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInDoubleDelayLeft;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Media .title {
+
+    width: 100%;
+    height: 54px;
+
+    top: 0px;
+    left: 0px;
+
+    z-index: 20;
+    position: absolute;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Media .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Media .title .md-fab {
+
+    top: 1px;
+    right: 0px;
+
+    position: absolute;
+
+    }
+
+#Media .content {
+
+    width: 100%;
+    height: calc( 100% - 54px );
+
+    top: 54px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    }
+
+#Media .content md-list {
+
+    padding: 0px;
+
+    }
+
+#Media .content md-list .md-avatar {
+
+    padding: 5px;
+
+    border-radius: 5px;
+    background-color: #FEFEFE;
+
+    }
+
+#Preview {
+
+    /* IE, EDGE */
+    width: calc( 100% - 4vw );
+    top: 2vw;
+    left: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 4vmax );
+    height: 130px;
+
+    top: 2vmax;
+    left: 2vmax;
+    position: absolute;
+
+    color: #FFFFFF;
+
+    border-radius: 2px;
+
+    animation-name: FadeInRight;
+    animation-duration: 0.55s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Preview .title {
+
+    width: calc( 100% - 20px );
+    height: 50px;
+
+    top: 10px;
+    left: 10px;
+    position: absolute;
+
+    line-height: 50px;
+    font-size: 40px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    }
+
+#Preview .depiction {
+
+    width: calc( 100% - 20px );
+    height: 50px;
+
+    top: 70px;
+    left: 10px;
+    position: absolute;
+
+    line-height: 25px;
+    font-size: 16px;
+    text-align: justify;
+
+    overflow-y: auto;
+
+    }
+
+#Details {
+
+    /* IE, EDGE */
+    width: calc( 100% - 4vw );
+    height: calc( 100% - 130px - 6vw );
+    top: calc( 4vw + 130px );
+    left: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 4vmax );
+    height: calc( 100% - 130px - 6vmax );
+
+    top: calc( 4vmax + 130px );
+    left: 2vmax;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInRight;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Description {
+
+    /* IE, EDGE */
+    width: calc( 100% - 2vw );
+    height: calc( 100% - 220px - 1.5vw );
+    top: 1vw;
+    left: 1vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 2vmax );
+    height: calc( 100% - 220px - 1.5vw );
+
+    top: 1vmax;
+    left: 1vmax;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInDescription;
+    animation-duration: 0.75s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+@keyframes FadeInDescription { /* 0.8s */
+
+    0% {
+
+        opacity: 0.00;
+        transform: translateX( +10px );
+        
+        }
+
+    25% {
+
+        opacity: 0.00;
+        transform: translateX( +10px );
+        
+        }
+
+    100% {
+        
+        opacity: 1.00;
+        transform: translateX( 0px );
+        
+        }
+    
+    }
+
+#Description .title {
+
+    width: 100%;
+    height: 54px;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Description .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Description .title .md-fab {
+
+    top: 1px;
+    right: 0px;
+
+    position: absolute;
+
+    }
+
+#Description .content {
+
+    width: 100%;
+    height: calc( 100% - 54px );
+
+    top: 54px;
+    left: 0px;
+    position: absolute;
+
+    font-size: 16px;
+    text-align: justify;
+
+    overflow-y: auto;
+
+    }
+
+#Description .content md-input-container {
+
+    height: calc( 100% - 4px );
+    margin: 0px;
+
+    }
+
+#Description .content md-input-container textarea {
+    
+    height: calc( 100% - 38px );
+    min-height: calc( 100% - 38px );
+    max-height: calc( 100% - 38px );
+    
+    margin: 0px;
+    text-align: justify;
+
+    transition: color 0.3s;
+    overflow-y: auto;
+
+    }
+
+#Description .content md-input-container textarea[disabled] {
+
+    color: rgba( 0, 0, 0, 0.54 );
+
+    }
+
+#Roles {
+
+    /* IE, EDGE */
+    width: calc( 100% - 2vw );
+    height: 200px;
+    bottom: 0.5vw;
+    left: 1vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 2vmax );
+    height: 220px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+
+    bottom: 0.5vmax;
+    left: 1vmax;
+    position: absolute;
+
+    box-sizing: border-box;
+    border-radius: 2px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    animation-name: FadeInRoles;
+    animation-duration: 0.85s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+@keyframes FadeInRoles { /* 0.8s */
+
+    0% {
+
+        opacity: 0.00;
+        transform: translateX( +10px );
+        
+        }
+
+    25% {
+
+        opacity: 0.00;
+        transform: translateX( +10px );
+        
+        }
+
+    100% {
+        
+        opacity: 1.00;
+        transform: translateX( 0px );
+        
+        }
+    
+    }
+
+#Roles .role {
+
+    height: 100%;
+    width: 400px;
+
+    float: left;
+    padding: 15px;
+    margin-right: 15px;
+    position: relative;
+
+    border-radius: 2px;
+    box-sizing: border-box;
+
+    }
+
+#Roles .role img {
+
+    width: 170px;
+    height: 170px;
+    
+    float: left;
+    margin-right: 15px;
+
+    border-radius: 2px;
+
+    }
+
+#Roles .role .details {
+
+    width: 185px;
+    height: 100%;
+
+    float: left;
+    padding: 5px;
+    line-height: 20px;
+
+    box-sizing: border-box;
+
+    overflow-x: auto;
+    overflow-y: auto;
+
+    }
+
+#Roles .role .details span {
+
+    margin-right: 5px;
+
+    font-size: 16px;
+    white-space: pre-wrap;
+
+    }
+
+#Roles .role .details p {
+
+    margin-bottom: 0px;
+
+    font-size: 14px;
+    white-space: pre-wrap;
+
+    }
+
+#Credits {
+
+    height: 10px;
+    line-height: 10px;
+
+    bottom: 2px;
+    right: 2px;
+    position: absolute;
+
+    color: #707070;
+    font-size: 10px;
+
+    opacity: 0.95;
+
+    }
+
+#Credits a {
+
+    color: #B0B0B0;
+
+    }

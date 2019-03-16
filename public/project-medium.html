@@ -1,0 +1,105 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog style="max-height:90%;" aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+
+                <h2>Dodawanie medium</h2>
+
+                <span flex></span>
+
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="{{local}}images/dialog-close.svg" aria-label="Zamknij okno dodawania medium"></md-icon>
+                </md-button>
+
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content style="width:calc(50px*10);overflow-y:auto;">
+
+            <div class="md-dialog-content" style="padding-bottom:0px;">
+
+                <p style="margin-top:0px;text-align:justify;">Prowadzenie stron informacyjnych oraz udostępnianie zdjęć, filmów i artykułów na portalach społecznościowych może znacząco podnieść popularność twojego projektu. Pomoże ci to również znaleźć patronów i sponsorów. Załóż fanpage, następnie wpisz poniżej jego adres lub identyfikator portalu społecznościowego, a my wypromujemy go poprzez platformę Involve oraz inne dostępne media.</p>
+
+                <div layout="row">
+
+                    <md-input-container class="md-block" flex>
+                        <label>Serwis</label>
+                        <md-select ng-model="medium.site" name="site" required>
+                            <md-option value="website">
+                                Strona internetowa
+                            </md-option>
+                            <md-option value="facebook">
+                                Facebook
+                            </md-option>
+                            <md-option value="google-plus">
+                                Google Plus
+                            </md-option>
+                            <md-option value="medium">
+                                Medium
+                            </md-option>
+                            <md-option value="instagram">
+                                Instagram
+                            </md-option>
+                            <md-option value="twitter">
+                                Twitter
+                            </md-option>
+                            <md-option value="youtube">
+                                Youtube
+                            </md-option>
+                            <md-option value="snapchat">
+                                Snapchat
+                            </md-option>
+                            <md-option value="periscope">
+                                Periscope
+                            </md-option>
+                            <md-option value="kickstarter">
+                                Kickstarter
+                            </md-option>
+                            <md-option value="paypal">
+                                Paypal
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="DialogForm.site.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">Wybór serwisu jest konieczny.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex>
+                        <label>Adres</label>
+                        <input ng-model="medium.path" name="path" ng-pattern="/^[\w\d,:;+=/&@$%#!*'()\.\-\?]+$/" ng-maxlength="256" required>
+                        <div ng-messages="DialogForm.path.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">Adres jest konieczny.</div>
+                            <div ng-message="pattern" class="my-message">Adres zawiera niedozwolone znaki.</div>
+                            <div ng-message="maxlength" class="my-message">Adres jest za długi.</div>
+                        </div>
+                    </md-input-container>
+
+                </div>
+
+            </div>
+
+        </md-dialog-content>
+
+        <md-dialog-actions>
+
+            <span flex></span>
+            <md-button ng-disabled="DialogForm.$invalid" ng-click="Respond(medium)">
+                Dodaj medium
+            </md-button>
+
+        </md-dialog-actions>
+
+    </form>
+
+</md-dialog>

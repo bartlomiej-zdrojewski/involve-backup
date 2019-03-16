@@ -1,0 +1,264 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<html lang="en">
+
+    <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" />
+
+        <link rel="stylesheet" href="libraries/materialize-min.css" />
+        <link rel="stylesheet" href="libraries/template-min.css" />
+        <link rel="stylesheet" href="libraries/datetimepicker.css" />
+
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/scrollbar.css" />
+        <link rel="stylesheet" href="styles/involve.css" />
+        <link rel="stylesheet" href="styles/about.css" />
+
+        <title>Involve</title>
+
+    </head>
+
+    <body style="min-width:0px;min-height:0px;overflow-y:auto;" ng-app="Involve" ng-controller="AboutController">
+    
+        <div id="Template">
+
+            <div id="top" class="scrollspy">
+
+                <div id="loader-wrapper">
+
+                    <div id="loader"></div>
+
+                    <div class="loader-section section-left"></div>
+                    <div class="loader-section section-right"></div>
+
+                </div>
+
+                <div class="navbar-fixed" style="z-index:70;">
+
+                    <nav id="nav_f" class="default_color" style="border-bottom: solid 1px #FFFFFF" role="navigation">
+
+                        <div class="container">
+
+                            <div class="nav-wrapper">
+
+                                <img ng-src="{{local}}images/about/logo-monochrome.svg" class="hide-on-med-and-down" style="height:80%;margin-top:6px;" />
+
+                                <ul class="right hide-on-small-only">
+                                    <li><a ng-href="#" ng-click="Login()">Logowanie</a></li>
+                                    <li><a ng-href="#" ng-click="Register()">Rejestracja</a></li>
+                                    <li><a ng-href="#contact" class="hide-on-med-and-down">Kontakt</a></li>
+                                </ul>
+
+                                <ul id="nav-mobile" class="side-nav">
+                                    <li><a ng-href="#contact">Kontakt</a></li>
+                                </ul>
+
+                                <a ng-href="#" data-activates="nav-mobile" class="button-collapse hide-on-med-and-up"><img ng-src="{{local}}images/about/icon-menu.svg" style="height:48px;margin-top:4px;margin-left:15px;" /></a>
+
+                            </div>
+
+                        </div>
+
+                    </nav>
+
+                </div>
+
+                <div id="index-banner" class="section no-pad-bot" style="overflow:hidden;">
+
+                    <div class="container">
+
+                        <h1 class="text_h center header cd-headline letters type">
+                            <span>Chciałbym</span>
+                            <span class="cd-words-wrapper waiting">
+                                <b class="is-visible">tworzyć</b>
+                                <b>projektować</b>
+                                <b>programować</b>
+                                <b>konstruować</b>
+                                <b>poznawać</b>
+                                <b>rozwijać</b>
+                                <b>promować</b>
+                                <b>organizować</b>
+                            </span>
+                        </h1>
+
+                    </div>
+
+                </div>
+
+                <div id="intro" class="section scrollspy">
+
+                    <div class="container">
+
+                        <div class="row">
+
+                            <div class="col s12">
+                                <h2 class="center header text_h2"> Zbierz <span class="span_h2">zespół</span>, stwórz <span class="span_h2">projekt</span>.  </h2>
+                            </div>
+
+                            <div class="col s12 m4 l4">
+                                <div class="center promo promo-example">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <h5 class="promo-caption">Jesteś uczniem lub studentem?</h5>
+                                    <p class="light center">Nasza edukacja powinna zostać dostosowana do potrzeb XXI wieku. Skompletuj zespół, zdobądź potrzebne umiejętności, skorzystaj z porad ekspertów z każdej dziedziny. Realizując własny projekt dołącz do społeczności uczniów zmieniających Polską rzeczywistość!</p>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m4 l4">
+                                <div class="center promo promo-example">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                    <h5 class="promo-caption">Jesteś nauczycielem lub wykładowcą?</h5>
+                                    <p class="light center">Uczniowie powinni mieć możliwość realizowania własnych pomysłów oraz zdobywania praktycznych umiejętności korzystając z najlepszych źródeł. Często nie angażują się w odgórne przedsięwzięcia i nie czują potrzeby zdobywania wiedzy. Realizacja własnego pomysłu wraz z rówieśnikami pomoże im dostrzec korzyści płynące z nauki i spojrzeć na przyszłe życie z nieco innej perspektywy. Pomóż swoim uczniom rozwijać się, by mogli pewnie wejść w swoje dorosłe życie.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m4 l4">
+                                <div class="center promo promo-example">
+                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                    <h5 class="promo-caption">Chcesz podjąć z nami współpracę?</h5>
+                                    <p class="light center">Rynek pracy nie potrzebuje suchej wiedzy, ale obywateli posiadających praktyczne umiejętności, potrafiących sprawnie pracować w zespole i znających powszechnie używane narzędzia. Spraw, aby Twój przyszły stażysta szybko się wdrożył i nie wymagał specjalnej opieki. Zainwestuj w młodych ludzi. Wesprzyj nas!</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--
+
+                <div class="section scrollspy" id="partners">
+
+                    <div class="container">
+
+                        <div style="height: 1000px;">
+
+                            [PARTNERZY]
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                -->
+
+                <footer id="contact" class="page-footer default_color scrollspy">
+                    
+                    <div class="container">
+
+                        <div class="row">
+
+                            <div class="col l6 s12">
+
+                                <div class="input-field col s6">
+                                    <input id="icon_prefix" name="name" type="text" class="validate white-text">
+                                    <label for="icon_prefix" class="white-text">Imię i nazwisko</label>
+                                </div>
+
+                                <div class="input-field col s6">
+                                    <input id="icon_email" name="email" type="email" class="validate white-text">
+                                    <label for="icon_email" class="white-text">E-mail</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <textarea id="icon_prefix2" name="message" class="materialize-textarea white-text" maxlength="10000"></textarea>
+                                    <label for="icon_prefix2" class="white-text">Wiadomość</label>
+                                </div>
+
+                                <div class="col offset-s8 s4" style="margin-bottom:25px;">
+                                    <button class="btn waves-effect waves-light white" style="color:#000000;" ng-click="Send()">
+                                        Wyślij
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <div class="col l3 s12">
+
+                                <h5 class="white-text">Skontaktuj się z nami w tradycyjny sposób</h5>
+
+                                <div class="white-text" style="font-size:16px;">
+
+                                    +48 731 705 159 <br />
+                                    contact@involve.space <br />
+                                    Sadowa 56, Toruń 87-100 <br />
+
+                                </div>
+
+                            </div>
+
+                            <div class="col l3 s12">
+
+                                <h5 class="white-text">Znajdź nas w mediach społecznościowych</h5>
+
+                                <ul>
+                                    <li style="margin-bottom:6px;line-height:48px;font-size:16px;">
+                                        <a class="white-text" href="https://facebook.com/involvefp" target="_blank">
+                                            <img ng-src="{{local}}images/about/image-facebook.png" style="width:48px;height:48px;margin-right:6px;float:left;border-radius:50%;" /> Facebook
+                                        </a>
+                                    </li>
+                                    <li style="margin-bottom: 6px; line-height: 48px; font-size: 16px;">
+                                        <a class="white-text" href="https://instagram.com/involvefp" target="_blank">
+                                            <img ng-src="{{local}}images/about/image-instagram.png" style="width:48px;height:48px;margin-right:6px;float:left;border-radius:50%;" /> Instagram
+                                        </a>
+                                    </li>
+                                    <li style="margin-bottom: 6px; line-height: 48px; font-size: 16px;">
+                                        <a class="white-text" href="https://medium.com/@involvefp" target="_blank">
+                                            <img ng-src="{{local}}images/about/image-medium.png" style="width:48px;height:48px;margin-right:6px;float:left;border-radius:50%;" /> Medium
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="footer-copyright">
+
+                        <div class="container">
+
+                            Stowarzyszenie Wspierania Rozwoju Involve
+
+                        </div>
+
+                    </div>
+
+                </footer>
+
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+        <script src="libraries/moment-with-locales.js"></script>
+        <script src="libraries/materialize-min.js"></script>
+        <script src="libraries/template-min.js"></script>
+        <script src="libraries/datetimepicker.js"></script>
+        <script src="libraries/datetimepicker.templates.js"></script>
+
+        <script src="scripts/involve.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/about.js"></script>
+        <script src="scripts/facebook-login.js"></script>
+
+    </body>
+
+</html>

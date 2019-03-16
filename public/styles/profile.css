@@ -1,0 +1,571 @@
+﻿﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+#LeftPanel {
+
+    width: 25%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    position: absolute;
+
+    }
+
+#CenterPanel {
+
+    width: 50%;
+    height: 100%;
+
+    top: 0;
+    left: 25%;
+
+    position: absolute;
+
+    }
+
+#RightPanel {
+
+    width: 25%;
+    height: 100%;
+
+    top: 0;
+    left: 75%;
+    position: absolute;
+
+    }
+
+#Avatar {
+
+    width: 250px;
+    height: 250px;
+
+    left: calc( 50% - 125px + 1vw );
+    left: calc( 50% - 125px + 1vmax );
+
+    top: 2vmax;
+    position: absolute;
+
+    border-radius: 50%;
+
+    animation-name: FadeInDoubleDelayLeft;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Avatar img {
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    }
+
+#Avatar .fade {
+
+    width: 100%;
+    height: 100%;
+
+    top: 0px;
+    left: 0;
+    position: absolute;
+
+    opacity: 0.00;
+    transition: opacity ease-out 0.5s;
+
+    border-radius: 50%;
+    background-color: rgba( 0, 0, 0, 0.5 );
+
+    }
+
+#Avatar .fade:hover {
+
+    opacity: 0.80;
+
+    }
+
+#Avatar .fade img {
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    }
+
+#Avatar .fade input {
+
+    width: 100%;
+    height: 100%;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    opacity: 0.00;
+
+    }
+
+#PersonalData {
+
+    /* IE, EDGE */
+    width: calc( 100% - 2vw );
+    height: calc( 100% - 250px - 6vw );
+    bottom: 2vw;
+    left: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 2vmax );
+    height: calc( 100% - 250px - 6vw );
+
+    bottom: 2vmax;
+    left: 2vmax;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInDoubleDelayLeft;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#PersonalData .title {
+
+    width: 100%;
+    height: 54px;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#PersonalData .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#PersonalData .title .md-fab {
+
+    top: 1px;
+    right: 0px;
+
+    position: absolute;
+
+    }
+
+#PersonalData .content {
+
+    width: 100%;
+    height: calc( 100% - 54px );
+
+    top: 54px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    }
+
+#PersonalData .content md-input-container {
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    }
+
+#PersonalData .content md-input-container input {
+
+    margin: 0px;
+
+    transition: color 0.3s;
+
+    }
+
+#PersonalData .content md-input-container md-select {
+
+    margin: 0px;
+    margin-bottom: 25px;
+
+    }
+
+#PersonalData .content md-input-container md-select .md-select-value {
+
+    margin: 0px;
+
+    transition: color 0.3s;
+
+    }
+
+#PersonalData .content md-input-container input[disabled] {
+
+    color: rgba( 0, 0, 0, 0.54 );
+
+    }
+
+#PersonalData .content md-input-container md-select[disabled] .md-select-value {
+
+    color: rgba( 0, 0, 0, 0.54 ); /* ??? */
+
+    background-position: bottom -1px left 0px;
+
+    }
+
+#PersonalData .pause {
+
+    width: 100%;
+    height: 20px;
+
+    }
+
+#Description {
+
+    /* IE, EDGE */
+    width: calc( 100% - 4vw );
+    height: calc( 100% - 304px - 6vw );
+    top: 2vw;
+    left: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 4vmax );
+    height: calc( 100% - 304px - 6vw );
+
+    top: 2vmax;
+    left: 2vmax;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInTop;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Description .title {
+
+    width: 100%;
+    height: 54px;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Description .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Description .title .md-fab {
+
+    top: 1px;
+    right: 0px;
+
+    position: absolute;
+
+    }
+
+#Description .content {
+
+    width: 100%;
+    height: calc( 100% - 54px );
+
+    top: 54px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    }
+
+#Description .content md-input-container {
+
+    height: calc( 100% - 4px );
+    margin: 0px;
+
+    }
+
+#Description .content md-input-container textarea {
+
+    height: calc( 100% - 38px );
+    min-height: calc( 100% - 38px );
+    max-height: calc( 100% - 38px );
+    
+    margin: 0px;
+    text-align: justify;
+
+    transition: color 0.3s;
+    overflow-y: auto;
+
+    }
+
+#Description .content md-input-container textarea[disabled] {
+
+    color: rgba( 0, 0, 0, 0.54 );
+
+    }
+
+#Projects {
+
+    /* IE, EDGE */
+    width: calc( 100% - 4vw );
+    height: 304px;
+    bottom: 2vmax;
+    left: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 4vmax );
+    height: 304px;
+
+    bottom: 2vmax;
+    left: 2vmax;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInDelayTop;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Projects .title {
+
+    width: 100%;
+    height: 54px;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Projects .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Projects .content {
+
+    width: 100%;
+    height: calc( 100% - 54px );
+
+    top: 54px;
+    left: 0px;
+    position: absolute;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    }
+
+#Projects .content .project {
+
+    width: 220px;
+    height: 220px;
+
+    margin-top: 10px;
+    margin-left: 10px;
+
+    float: left;
+    position: relative;
+
+    cursor: pointer;
+    outline: none;
+    border-radius: 3px;
+
+    overflow: hidden;
+
+    opacity: 0.80;
+    transition: opacity 0.3s ease-out;
+
+    }
+
+#Projects .content .project:hover {
+
+    opacity: 1.00;
+    transition: opacity 0.3s ease-out;
+
+    }
+
+#Projects .content .project .image {
+
+    width: 100%;
+    height: 160px;
+
+    top: 0;
+    left: 0;
+
+    position: absolute;
+
+    overflow: hidden;
+
+    }
+
+#Projects .content .project .image img {
+
+    width: 100%;
+
+    top: -30px;
+    position: absolute;
+
+    }
+
+#Projects .content .project .title {
+
+    width: 100%;
+    height: 30px;
+
+    top: 160px;
+    left: 0;
+
+    line-height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    position: absolute;
+
+    font-size: 15px;
+    font-weight: 300;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    color: #FFFFFF;
+    background-color: #4BA3C7;
+    3588AA
+    }
+
+#Projects .content .project .status {
+
+    width: 100%;
+    height: 30px;
+
+    top: 190px;
+    left: 0;
+
+    line-height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    position: absolute;
+
+    font-size: 12px;
+    font-weight: 300;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    color: #FFFFFF;
+    background-color: #3588AA;
+
+}
+
+#Notifications2 {
+
+    /* IE, EDGE */
+    width: calc( 100% - 2vw );
+    height: calc( 100% - 4vw );
+    top: 2vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 2vmax );
+    height: calc( 100% - 4vmax );
+
+    top: 2vmax;
+    left: 0px;
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInDoubleDelayRight;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-duration: 1.0s;
+
+    }
+
+#Notifications2 .title {
+
+    width: 100%;
+    height: 54px;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Notifications2 .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Notifications2 .title .md-fab {
+
+    top: 1px;
+    right: 0px;
+
+    position: absolute;
+
+    }
+
+#Notifications2 .content {
+
+    width: 100%;
+    height: calc( 100% - 54px );
+
+    top: 54px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    }
+
+#Notifications2 .content md-list {
+
+    padding: 0px;
+
+    }

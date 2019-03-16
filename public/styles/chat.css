@@ -1,0 +1,214 @@
+/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+#Messages {
+
+    width: 60%;
+    height: 100%;
+
+    top: 0px;
+    left: 20%;
+    position: absolute;
+
+    }
+
+#Messages .list {
+
+    width: 100%;
+    height: calc( 100% - 50px );
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    }
+
+#Messages .list .message {
+    
+    width: calc( 100% - 40px );
+    min-height: 67px;
+    
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    float: left;
+
+    border-radius: 2px;
+        
+    }
+
+#Messages .list .message .title {
+
+    width: calc( 100% - 10px );
+
+    margin-top: 5px;
+    margin-left: 5px;
+
+    float: left;
+
+    font-size: 18px;
+    border-bottom: solid 1px rgba( 0, 0, 0, 0.1 );
+
+    animation-name: FadeInMessageTitle;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+@keyframes FadeInMessageTitle { /* 0.6s */
+
+    0% {
+
+        opacity: 0.00;
+        transform: translateY( +5px );
+        
+        }
+
+    100% {
+        
+        opacity: 1.00;
+        transform: translateY( 0px );
+        
+        }
+    
+    }
+
+#Messages .list .message .content {
+
+    width: calc( 100% - 10px );
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+
+    float: left;
+
+    overflow-wrap: break-word;
+
+    animation-name: FadeInMessageContent;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+@keyframes FadeInMessageContent { /* 0.8s */
+
+    0% {
+
+        opacity: 0.00;
+        transform: translateY( +5px );
+        
+        }
+
+    25% {
+
+        opacity: 0.00;
+        transform: translateY( +5px );
+        
+        }
+
+    100% {
+        
+        opacity: 1.00;
+        transform: translateY( 0px );
+        
+        }
+    
+    }
+
+#Messages .input {
+
+    width: 100%;
+    height: 50px;
+
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+
+    border-top: solid 1px rgba( 0, 0, 0, 0.1 );
+
+    }
+
+#Messages .input input {
+
+    width: calc( 100% - 53px );
+    height: calc( 100% - 10px );
+
+    top: 5px;
+    left: 10px;
+    position: absolute;
+
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    }
+
+#Messages .input img {
+
+    width: 24px;
+    height: 24px;
+
+    top: 13px;
+    right: 10px;
+    position: absolute;
+
+    opacity: 0.54;
+    outline: none;
+
+    transition: opacity ease-out 0.3s;
+
+    }
+
+#Messages .input img:hover {
+
+    opacity: 0.87;
+
+    }
+
+#Members {
+
+    width: 20%;
+    height: 100%;
+
+    top: 0px;
+    left: 80%;
+    position: absolute;
+
+    overflow-y: auto;
+
+    animation-name: FadeInRight;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#members .member {
+
+    width: 60px;
+    height: 60px;
+
+    margin-top: 10px;
+    margin-left: 15px;
+
+    border-radius: 50%;
+
+    }
+
+#members .member img {
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    }

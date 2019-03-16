@@ -1,0 +1,108 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+#Center {
+
+    width: 70%;
+    height: 100%;
+
+    top: 0px;
+    left: 15%;
+
+    position: absolute;
+
+    }
+
+#SearchBar {
+
+    width: 100%;
+    height: 66px;
+
+    top: 25px;
+    left: 0px;
+
+    position: absolute;
+
+
+    }
+
+#SearchBar md-icon {
+
+    width: 36px;
+    height: 36px;
+    
+    margin-left: 7px;
+    margin-right: 7px;
+
+    opacity: 0.4;
+
+    }
+
+#FilterBar {
+
+    width: 100%;
+    height: 68px;
+
+    top: 116px;
+    left: 0px;
+    position: absolute;
+
+    text-align: center;
+
+    }
+
+#Projects {
+
+    width: 100%;
+    /* height: calc( 100% - 211px ); */
+    height: calc( 100% - 121px );
+
+    /* top: 211px; */
+    top: 121px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    }
+
+#Fade {
+
+    width: calc( 100% - 10px );
+    height: 8px;
+
+    /* top: 203px; */
+    top: 113px;
+    left: 0px;
+    position: absolute;
+    z-index: 20;
+
+    box-shadow: 0 4px 4px -2px rgb(250,250,250);
+
+    }
+
+#Projects md-card {
+
+    margin-bottom: 16px;
+    
+    }
+
+#Projects md-card[md-ink-ripple] {
+
+    position: relative;
+
+    color: #000000;
+
+    }
+
+#Projects md-card .card-media img {
+
+    width: 100%;
+    height: 100%;
+    
+    border-radius: 50%;
+
+    }

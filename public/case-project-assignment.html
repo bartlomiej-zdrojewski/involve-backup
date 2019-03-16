@@ -1,0 +1,41 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+                <h2>Wiązanie projektu z zadaniem</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="{{local}}images/dialog-close.svg" aria-label="Zamknij okno wiązania projektu z zadaniem"></md-icon>
+                </md-button>
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content style="width:500px;height:600px;overflow-y:auto;">
+
+            <md-list style="padding:0px;">
+                <md-list-item md-ink-ripple class="md-2-line" ng-repeat="project in Projects" ng-disabled="!project.leader || project.assigned" ng-click="Respond(project)">
+                    <img ng-src="{{project.image}}" class="md-avatar" />
+                    <div class="md-list-item-text">
+                        <h3>{{project.title}}</h3>
+                        <h4>{{project.status}}</h4>
+                    </div>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

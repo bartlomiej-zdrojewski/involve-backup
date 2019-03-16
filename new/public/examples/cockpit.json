@@ -1,0 +1,141 @@
+{
+
+  "projects": {
+
+    "assigned": [
+
+      {
+        "title": "Invity",
+        "depiction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a.",
+        "image": "storage/demo/projects/default.jpg",
+
+        "leader": false,
+        "finished": false,
+        "success": false,
+
+        "hash": "6c3"
+      },
+
+      {
+        "title": "CanSat",
+        "depiction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a.",
+        "image": "storage/demo/projects/default.jpg",
+
+        "leader": false,
+        "finished": true,
+        "success": false,
+
+        "hash": "5dc"
+      }
+
+      ],
+
+    "suggested": [
+
+      {
+        "title": "Google Science Fair",
+        "depiction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a.",
+        "image": "storage/demo/projects/default.jpg",
+
+        "hash": "8d4"
+      },
+
+      {
+        "title": "Olimpiada Informatyczna",
+        "depiction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a.",
+        "image": "storage/demo/projects/default.jpg",
+
+        "hash": "1cf"
+      }
+
+      ]
+
+    },
+
+  "cases": {
+
+    "assigned": [
+
+      {
+        "title": "Milony z Invity",
+        "depiction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a.",
+        "image": "storage/demo/projects/default.jpg",
+
+        "hash": "4a3"
+      }
+
+      ],
+
+    "suggested": [
+
+      {
+        "title": "#1 miejsce w Google Science Fair",
+        "depiction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a.",
+        "image": "storage/demo/projects/default.jpg",
+
+        "hash": "6c3"
+      },
+
+      {
+        "title": "Laureat Olimpiady Informatycznej",
+        "depiction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a.",
+        "image": "storage/demo/projects/default.jpg",
+
+        "hash": "2f5"
+      }
+
+      ]
+
+    },
+
+  "partners": {
+
+    "all": [
+
+      {
+
+      }
+
+      ],
+
+    "suggested": [
+
+      {
+
+      }
+
+      ]
+
+    },
+
+  "notifications": [
+
+    {
+      "title": "Zostałeś przyjęty do projektu 'Invity'!",
+      "description": "Twoja aplikacja została rozpatrzona pozytywnie i zostałeś przydzielony do roli 'Programista Front-End'.",
+      "icon": "default.svg",
+      "seen": true,
+
+      "date": 1500465600000,
+      "link": "http://www.google.com/",
+
+      "hash": "b5f"
+    },
+
+    {
+      "title": "Mentor opowiedział na raport",
+      "description": "Mentor projektu 'Invity' odpowiedział na wasz ostatni raport.",
+      "icon": "default.svg",
+      "seen": false,
+
+      "date": 1500984000000,
+      "link": "http://www.google.com/",
+
+      "hash": "ac3"
+    }
+
+    ],
+
+  "tutorial": false
+
+}

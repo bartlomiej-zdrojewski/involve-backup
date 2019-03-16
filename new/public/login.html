@@ -1,0 +1,132 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+                <h2>Logowanie</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="images/dialog-close.svg" aria-label="Zamknij okno logowania"></md-icon>
+                </md-button>
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content>
+
+            <md-tabs md-dynamic-height md-no-bar>
+
+                <md-tab md-active="ActiveTab==1" label="ExternalRegister">
+
+                    <div style="width:calc(50px*10);"></div>
+
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-input-container style="margin-bottom:5px;">
+
+                            <md-button class="md-primary md-raised" style="background-color:#4267b2;" ng-href="{{api}}/facebook" target="_self">&nbsp&nbsp&nbspZaloguj się za pomocą facebooka&nbsp&nbsp&nbsp</md-button>
+
+                        </md-input-container>
+
+                        <span flex></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-input-container style="margin-top:5px;">
+                            <md-button class="md-primary md-raised" ng-click="ActiveTab=2">&nbsp&nbsp&nbspZaloguj się za pomocą e-mail&nbsp&nbsp&nbsp</md-button>
+                        </md-input-container>
+
+                        <span flex></span>
+
+                    </div>
+
+                </md-tab>
+
+                <md-tab md-active="ActiveTab==2" label="InternalRegister">
+
+                    <div style="width:calc(50px*10);"></div>
+
+                    <p class="md-headline" style="font-size:20px;text-align:center;">Wprowadź dane do logowania</p>
+
+                    <div layout="row">
+
+                        <span flex="10"></span>
+
+                        <md-input-container flex="80">
+                            <label>Adres e-mail</label>
+                            <input ng-model="user.email" name="email" type="email" maxlength="256" on-enter="ValidateAndRespond(user)" required>
+                            <div ng-messages="DialogForm.email.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">Twój adres e-mail jest konieczny do zalogowania.</div>
+                                <div ng-message="email" class="my-message">Ten wpis nie przypomina adresu e-mail.</div>
+                            </div>
+                        </md-input-container>
+
+                        <span flex="10"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex="10"></span>
+
+                        <md-input-container flex="80">
+                            <label>Hasło</label>
+                            <input ng-model="user.password" name="password" type="password" maxlength="1024" on-enter="ValidateAndRespond(user)" required>
+                            <div ng-messages="DialogForm.password.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">Twoje hasło jest konieczne do zalogowania.</div>
+                            </div>
+                        </md-input-container>
+
+                        <span flex="10"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex="5"></span>
+
+                        <md-input-container flex="90" style="text-align:center;">
+                            Zapomniałem hasła,
+                            <a class="md-accent" href="recovery.html" target="_blank">co teraz?</a>
+                        </md-input-container>
+
+                        <span flex="5"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-input-container style="margin-top:0px;">
+                            <md-button class="md-primary md-raised" ng-disabled="DialogForm.$invalid" ng-click="Respond(user)">&nbsp&nbsp&nbspZaloguj&nbsp&nbsp&nbsp</md-button>
+                        </md-input-container>
+
+                        <span flex></span>
+
+                    </div>
+
+                </md-tab>
+
+            </md-tabs>
+
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

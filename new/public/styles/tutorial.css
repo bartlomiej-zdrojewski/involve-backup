@@ -1,0 +1,130 @@
+/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <[EMAIL]>, July 2017
+ */
+
+#Tutorial {
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    z-index: 60;
+    position: absolute;
+
+    background-color: rgba( 0, 0, 0, 0.8 );
+
+    }
+
+#Tutorial.animation {
+
+    animation-name: FadeInTutorial;
+    animation-duration: 2.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+
+    }
+
+#Tutorial .content {
+
+    min-width: 250px;
+    min-height: 230px;
+
+    position: absolute;
+
+    border-radius: 2px;
+    background-color: #FFFFFF;
+
+    }
+
+#Tutorial .content .title {
+
+    width: calc( 100% - 10px );
+    height: 50px;
+
+    margin-left: 5px;
+    margin-right: 5px;
+
+    float: left;
+    position: relative;
+
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+
+    border-bottom: solid 1px #DDDDDD;
+    overflow: hidden;
+
+    }
+
+#Tutorial .content .text {
+
+    width: calc( 100% - 10px );
+    height: calc( 100% - 12px - 50px - 120px );
+    min-height: 50px;
+
+    margin: 5px;
+
+    float: left;
+    position: relative;
+
+    font-size: 15px;
+
+    overflow-y: scroll;
+
+    }
+
+#Tutorial .content .line {
+
+    width: calc( 100% - 10px );
+    height: 0;
+
+    float: left;
+    position: relative;
+
+    border-bottom: solid 1px #DDDDDD;
+
+    }
+
+#Tutorial .content .actions {
+
+    width: calc( 100% - 24px );
+    height: 96px;
+
+    margin: 12px;
+
+    float: left;
+    position: relative;
+
+    }
+
+.tutorial-focus {
+
+    z-index: 70;
+
+    }
+
+@keyframes FadeInTutorial { /* 2.0s */
+
+    0% {
+
+        opacity: 0.00;
+
+        }
+
+    50% {
+
+        opacity: 0.00;
+
+        }
+
+    100% {
+
+        opacity: 1.00;
+
+        }
+
+    }

@@ -1,0 +1,200 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+#Reports {
+
+    width: 25%;
+    height: 100%;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    overflow-y: auto;
+
+    animation-name: ShiftInLeft;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Reports .title {
+
+    width: 100%;
+    height: 54px;
+
+    float: left;
+
+    }
+
+#Reports .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Reports .content {
+
+    width: 100%;
+    height: calc( 50% - 54px );
+
+    float: left;
+
+    overflow-y: auto;
+
+    }
+
+#Reports .content md-list {
+
+    padding: 0px;
+
+    }
+
+#Details {
+
+    width: calc( 75% - 10vw );
+    height: calc( 100% - 10vw );
+
+    top: 5vw;
+    left: calc( 25% + 5vw );
+    position: absolute;
+
+    border-radius: 2px;
+
+    animation-name: FadeInDelayBottom;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Details .title {
+
+    width: 100%;
+    height: 54px;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    }
+
+#Details .title .md-title {
+
+    margin: 12px;
+
+    color: #FFFFFF;
+
+    }
+
+#Details .content {
+
+    width: 100%;
+    height: calc( 100% - 54px - 48px );
+
+    top: 54px;
+    left: 0px;
+    position: absolute;
+
+    }
+
+#Details .content .question {
+
+    width: calc( 50% - 1.5vw );
+    height: calc( 50% - 1.5vw );
+
+    float: left;
+
+    margin-top: 1vw;
+    margin-left: 1vw;
+
+    animation-name: FadeInMiniBottom;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Details .content .question .title {
+
+    width: 100%;
+    height: 40px;
+
+    float: left;
+    position: relative;
+
+    line-height: 40px;
+
+    }
+
+#Details .content .question .content {
+
+    width: 100%;
+    height: calc( 100% - 40px );
+
+    float: left;
+
+    top: 0px;
+    left: 0px;
+    position: relative;
+
+    overflow-y: auto;
+
+    }
+
+#Details .content .question .content md-input-container {
+
+    height: calc( 100% - 4px );
+    margin: 0px;
+
+    }
+
+#Details .content .question .content md-input-container textarea {
+    
+    height: calc( 100% - 38px );
+    min-height: calc( 100% - 38px );
+    max-height: calc( 100% - 38px );
+    
+    margin: 0px;
+    text-align: justify;
+
+    transition: color 0.3s;
+    overflow-y: auto;
+
+    }
+
+#Details .content .question .content md-input-container textarea[disabled] {
+
+    color: rgba( 0, 0, 0, 0.54 );
+
+    }
+
+#Details .content .question .title .md-title {
+    
+    margin: 0px;
+    margin-left: 10px;
+
+    color: #FFFFFF;
+    font-size: 16px;
+
+    }
+
+#Details .actions {
+
+    width: 100%;
+    height: 48px;
+
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+
+    }

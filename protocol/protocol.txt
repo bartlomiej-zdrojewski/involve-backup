@@ -1,0 +1,1375 @@
+// ------------------------------------------------------------
+// PATH:     EVERY SETUP
+// PROTOCOL: GET (MOST PROBABLY)
+//
+// INPUT:
+{
+    [ ... ]
+}
+// OUTPUT:
+{
+    [ ... ]
+
+    tutorial: BOOLEAN, // SHOULD TUTORIAL BE PLAYED
+
+    notifications : [ // NO MORE THAN 100
+
+        {
+            title: STRING,
+            description: STRING,
+
+            icon: PATH, // 'images/PATH'
+            type: STRING, // NOTIFICATION TYPE [important|default|update]
+
+            seen: BOOLEAN, // WAS NOTIFICATION CLICKED
+            hash: HASH, // NOTIFICATION HASH
+            link: URL // WHERE TO REDIRECT OR EMPTY
+
+            date: DATE // WHEN NOTIFICATION WAS CREATED
+
+        },
+
+        ...
+
+        ],
+}
+// ------------------------------------------------------------
+// PATH:     /browser
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    projects: [ // ALL PROJECTS
+
+        {
+            title: STRING;
+            depiction: STRING, // AKA SHORT DESCRIPTION
+            description: STRING;
+
+            roles: [
+
+                {
+                    title: STRING,
+                    description: STRING,
+                    image: PATH // '/images/nodes/PATH'
+                },
+
+                ...
+
+                ],
+
+            favourite: BOOLEAN, // IS USER'S FAVOURITE PROJECT
+            recruitment: BOOLEAN, // IS RECRUITMENT FOR PROJECT OPEN
+
+            image: PATH, // '/images/projects/PATH'
+            hash: HASH // PROJECT HASH
+        },
+
+        ...
+
+        ]
+}
+// ------------------------------------------------------------
+// PATH:     /case?hash=HASH
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    case: {
+
+        title: STRING,
+        brief: STRING
+
+        },
+
+    skills: [ // SKILLS REQUIRED FOR CASE
+
+        {
+            title: STRING, // SKILL TITLE
+            part: NUMBER, // PART OF THE CHART, IN PERCENTS
+            hash: STRING // SKILL HASH
+        },
+
+        ...
+
+        ],
+
+    projects: [ // ALL PROJECTS RELATED TO CASE
+
+        {
+            title: STRING,
+            member: BOOLEAN, // IS USER A MEMBER OF THE PROJECT (IF USER IS LEADER, HE IS ALSO A MEMBER OF THE PROJECT)
+
+            image: PATH, // 'images/projects/PATH'
+            hash: HASH // PROJECT HASH
+        },
+
+        ...
+
+        ],
+
+    available: [ // PROJECTS IN WHICH USER PARTICIPATES
+
+        {
+            title: STRING,
+            status: STRING, // PASS 'Mentor zespołu' IF USER IS PROJECT MENTOR OR 'Lider zespołu' IF USER IS PROJECT LEADER OR 'Członek zespołu' OTHERWISE
+
+            leader: BOOLEAN, // IS USER A LEADER OF THE PROJECT
+            assigned: BOOLEAN, // IS PROJECT ALREADY ASSIGNED TO ANY CASE
+
+            image: PATH, // 'images/projects/PATH'
+            hash: HASH // PROJECT HASH
+        },
+
+        ...
+
+        ]
+}
+// ------------------------------------------------------------
+// PATH:     /case/assign_project
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    case: HASH, // CASE HASH
+    project: HASH // PROJECT HASH
+}
+// OUTPUT:
+{
+    // NULL
+
+    // ASSIGN PROJECT TO CASE
+}
+// ------------------------------------------------------------
+// PATH:     /cases
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    cases: [ // ALL CASES
+
+        {
+            title: STRING,
+            depiction: STRING, // AKA SHORT DESCRIPTION
+            description: STRING,
+            requirements: STRING,
+
+            chart: [
+
+                {
+                    title: STRING, // SKILLS CATEGORY TITLE
+                    part: NUMBER, // PART OF THE CHART, IN PERCENTS
+                    hash: STRING // SKILLS CATEGORY HASH
+                },
+
+                ...
+
+                ],
+
+            text: BOOLEAN, // SHOULD THE TITLE BE DISPLAYED OVER THE IMAGE
+            image: PATH, // 'images/cases/PATH'
+            link: URL, // LINK TO PARTNER'S HOME PAGE, FOR CASES CREATED BY INVOLVE USE INVOLVE'S HOME PAGE
+
+            priority: NUMBER, // CASE PRIORITY, USED DURING SORTING
+            hash: STRING // CASE HASH
+        },
+
+        ...
+
+        ]
+}
+// ------------------------------------------------------------
+// PATH:     /chat?hash=HASH
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    leader: BOOLEAN, // IS MEMBER A LEADER OF THE PROJECT
+
+    members: [ // MEMBERS OF PROJECT
+
+        id: ID, // MEMBER ID
+        name: STRING,
+        surname: STRING,
+        avatar: PATH // FACEBOOK PATH OR '/images/users/...'
+
+        available: BOOLEAN, // IS MEMBER CURRENTLY USING CHAT
+
+        ],
+
+    chat: [ // FULL CHAT HISTORY, SORTED BY DATE
+
+        id: ID, // MEMBER ID
+        name: STRING,
+        surname: STRING,
+        date: DATE, // DATE OF SENDING A FIRST MESSAGE
+
+        messages: [
+
+            {
+                text: STRING
+            },
+
+            ...
+
+            ]
+
+        ]
+}
+// ------------------------------------------------------------
+// PATH:     /chat/emit:join
+// PROTOCOL: SocketIO
+//
+// INPUT:
+{
+    hash: HASH // PROJECT HASH
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET USER AS AVAILABLE
+    // SEND 'JOINED' EVENT TO ALL AVAILABLE PROJECT MEMBERS
+}
+// ------------------------------------------------------------
+// PATH:     /chat/emit:leave
+// PROTOCOL: SocketIO
+//
+// INPUT:
+{
+    hash: HASH // PROJECT HASH
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET USER AS UNAVAILABLE
+    // SEND 'LEFT' EVENT TO ALL AVAILABLE PROJECT MEMBERS
+}
+// ------------------------------------------------------------
+// PATH:     /chat/emit:message
+// PROTOCOL: SocketIO
+//
+// INPUT:
+{
+    hash: HASH, // PROJECT HASH
+    msg: STRING // ACTUAL MESSAGE
+}
+// OUTPUT:
+{
+    NULL
+
+    // SAVE MESSAGE IN CHAT HISTORY
+    // SEND 'MESSAGE' EVENT TO ALL AVAILABLE PROJECT MEMBERS
+}
+// ------------------------------------------------------------
+// PATH:     /chat/on:joined
+// PROTOCOL: SocketIO
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    id: ID // ID OF MEMBER WHO JOINED
+}
+// ------------------------------------------------------------
+// PATH:     /chat/on:left
+// PROTOCOL: SocketIO
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    id: ID // ID OF MEMBER WHO LEFT
+}
+// ------------------------------------------------------------
+// PATH:     /chat/on:message
+// PROTOCOL: SocketIO
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    from: { // DATA OF MEMBER WHO SENT THE MESSAGE
+
+        id: ID,
+        name: STRING,
+        surname: STRING
+
+        },
+
+    msg: STRING // ACTUAL MESSAGE
+}
+// ------------------------------------------------------------
+// PATH:     /change_password
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    token: TOKEN // TOKEN OF ACCOUNT TO RECOVER
+    password: STRING // NEW PASSWORD
+}
+// OUTPUT:
+{
+    NULL
+
+    // CHANGE PASSWORD TO GIVEN ACCOUNT
+}
+// ------------------------------------------------------------
+// PATH:     /cockpit
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    projects: [ // RECOMMENDED PROJECTS
+
+        {
+            title: STRING;
+            depiction: STRING, // AKA SHORT DESCRIPTION
+            description: STRING;
+
+            roles: [
+
+                {
+                    title: STRING,
+                    description: STRING,
+                    image: PATH // '/images/nodes/PATH'
+                },
+
+                ...
+
+                ],
+
+            favourite: BOOLEAN, // IS USER'S FAVOURITE PROJECT
+            recruitment: BOOLEAN, // IS RECRUITMENT FOR PROJECT OPEN
+            applied: BOOLEAN,
+            member: BOOLEAN,
+
+
+            image: PATH, // '/images/projects/PATH'
+            hash: HASH // PROJECT HASH
+        },
+
+        ...
+
+        ],
+
+    notifications: [
+
+        {
+            title: STRING,
+            description: STRING,
+            image: PATH, // '/images/PATH'
+
+            seen: BOOLEAN, // WAS NOTIFICATION CLICKED
+            hash: HASH // NOTIFICATION HASH
+        },
+
+        ...
+
+        ],
+
+    newuser: BOOLEAN // IS A NEW USER, AKA IS IT FIRST LOGIN
+}
+// ------------------------------------------------------------
+// PATH:     /contact
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    name: STRING,
+    email: STRING,
+    message: STRING
+}
+// OUTPUT:
+{
+    NULL
+
+    // SEND MESSAGE TO INVOLVE MAILBOX
+}
+// ------------------------------------------------------------
+// PATH:     /create_project
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    title: STRING,
+    depiction: STRING
+}
+// OUTPUT:
+{
+    hash: HASH // CREATED PROJECT HASH
+}
+// ------------------------------------------------------------
+// PATH:     /expertise
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    NULL
+}
+// ------------------------------------------------------------
+// PATH:     /favourite?hash=HASH&value=BOOLEAN
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET PROJECT AS FAVOURITE IF VALUE IS TRUE
+    // UNDO SETTING PROJECT AS FAVOURITE IF VALUE IS FALSE
+}
+// ------------------------------------------------------------
+// PATH:     /login
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    email: STRING,
+    password: STRING
+}
+// OUTPUT:
+{
+    NULL
+
+    // LOG IN THE USER
+}
+// ------------------------------------------------------------
+// PATH:     /logout
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    NULL
+
+    // LOG OUT THE USER
+}
+// ------------------------------------------------------------
+// PATH:     /notification?hash=HASH
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET NOTIFICATION AS SEEN
+}
+// ------------------------------------------------------------
+// PATH:     /profile
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    user: { // USER PERSONAL DATA
+
+            name: STRING,
+            surname: STRING,
+            sex: STRING, // YES, PLEASE
+
+            schoolname: STRING,
+            education: STRING,
+            city: STRING,
+
+            avatar: PATH, // FACEBOOK PATH OR '/images/users/...'
+            description: STRING // AKA BIO
+
+        },
+
+    skills: [ // USER SKILLS
+
+        {
+            title: STRING,
+            image: PATH // 'images/nodes/PATH'
+        },
+
+        ...
+
+        ],
+
+    projects: [ // PROJECTS IN WHICH USER PARTICIPATES
+
+        {
+            title: STRING,
+            status: STRING, // // PASS 'Mentor zespołu' IF USER IS PROJECT MENTOR OR 'Lider zespołu' IF USER IS PROJECT LEADER OR 'Członek zespołu' OTHERWISE
+
+            image: PATH, // 'images/projects/PATH'
+            hash: HASH // PROJECT HASH
+        },
+
+        ...
+
+        ]
+}
+// ------------------------------------------------------------
+// PATH:     /profile/personal_data
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    sex: STRING // YES, PLEASE
+    schoolname: STRING,
+    education: STRING,
+    city: STRING
+}
+// OUTPUT:
+{
+    NULL
+
+    // UPDATE USER PERSONAL DATA
+}
+// ------------------------------------------------------------
+// PATH:     /profile/description
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    description: STRING
+}
+// OUTPUT:
+{
+    NULL
+
+    // UPDATE USER DESCRIPTION
+}
+// ------------------------------------------------------------
+// PATH:     /project?hash=HASH
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    mentor: BOOLEAN, // IS USER A MENTOR OF THE PROJECT
+    leader: BOOLEAN, // IS USER A LEADER OF THE PROJECT
+    member: BOOLEAN, // IS USER A MEMBER OF THE PROJECT (IF USER IS LEADER, HE IS ALSO A MEMBER OF THE PROJECT)
+
+    favourite: BOOLEAN, // IS USER'S FAVOURITE PROJECT
+    recruitment: BOOLEAN, // IS RECRUITMENT FOR PROJECT OPEN
+    invited: BOOLEAN, // HAS USER BEEN INVITED TO THE PROJECT
+    applied: BOOLEAN, // HAS USER APPLIED TO THE PROJECT
+
+    project: {
+
+        title: STRING,
+        depiction: STRING, // AKA SHORT DESCRIPTION
+        description: STRING,
+        image: PATH, // '/images/projects/PATH'
+
+        }
+
+    roles: [
+
+        {
+            title: STRING,
+            description: STRING,
+            skill: STRING, // TITLE OF SKILL CONNTECTED WITH ROLE
+
+            members: [ // ALL PROJECT MEMBERS INVOLVED IN ROLE
+
+                name: STRING, // NAME AND SURNAME OF MEMBER
+                avatar: PATH // FACEBOOK PATH OR '/images/users/...'
+
+                ],
+
+            image: PATH // '/images/nodes/PATH'
+        },
+
+        ...
+
+        ],
+
+    media: [
+
+        {
+            title: STRING,
+            icon: PATH,
+            link: URL
+        },
+
+        ...
+
+        ],
+
+    closure: {
+
+        closed: BOOLEAN // IS PROJECT CLOSED
+        state: BOOLEAN, // WAS CLOUSURE REQUEST SENT BY LEADER
+        explanation: STRING // THE REASON WHY LEADER WANT TO CLOSE THE PROJECT
+
+        }
+
+    response: { // MESSAGE THAT WILL BE SHOWN WHEN USER OPENS A PROJECT PAGE, OFTEN REFERRED AS 'SEND MESSAGE'
+
+        title: STRING,
+        text: STRING
+
+        }
+}
+// OUTPUT:
+{
+    NULL
+
+    // REMOVE LAST RESPONSE
+}
+// ------------------------------------------------------------
+// PATH:     /project/close?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    agreement: BOOLEAN,
+    success: BOOLEAN,
+    summary: STRING
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET UP A PROPER NOTIFICATION
+    // CLOSE PROJECT
+}
+// ------------------------------------------------------------
+// PATH:     /project/closure_request?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    explanation: STRING
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET UP A PROPER NOTIFICATION
+    // SEND CLOSING REQUEST TO THE MENTOR
+}
+// ------------------------------------------------------------
+// PATH:     /project/report?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    explanation: STRING // THE REASON WHY PROJECT WAS REPORTED
+}
+// OUTPUT:
+{
+    NULL
+
+    // REPORT PROJECT
+}
+// ------------------------------------------------------------
+// PATH:     /project/picture?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    [FORM]
+    filename: STRING,
+    filesize: NUMBER,
+    filetype: STRING,
+    filedata: DATA
+    [/FORM]
+}
+// OUTPUT:
+{
+    image: PATH // A PATH OF THE NEW IMAGE, '/images/projects/PATH'
+
+    // UPDATE PROJECT IMAGE
+}
+// ------------------------------------------------------------
+// PATH:     /project/description?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    description: STRING
+}
+// OUTPUT:
+{
+    NULL
+
+    // UPDATE PROJECT DESCRIPTION
+}
+// ------------------------------------------------------------
+// PATH:     /project/media?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    media: [ ... ]
+}
+// OUTPUT:
+{
+    NULL
+
+    // UPDATE PROJECT MEDIA
+}
+// ------------------------------------------------------------
+// PATH:     /recovery?email=EMAIL
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    NULL
+
+    // SEND RECOVERY LINK TO GIVEN EMAIL ADDRESS
+}
+// ------------------------------------------------------------
+// PATH:     /recruitment?hash=HASH
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    roles: [ // ALL PROJECT ROLES
+
+        {
+            title: STRING,
+            description: STRING,
+            skill: HASH, // HASH OF SKILL REQUIRED FOR THE ROLE
+            
+            recruitment: BOOLEAN, // IS RECRUITMENT FOR ROLE OPEN
+            recommended: NUMBER, // HOW MANY USERS HAVE SEEN THIS ROLE IN THEIR RECOMMENDATIONS
+
+            icon: PATH // '/images/nodes/PATH'
+        },
+
+        ...
+
+        ],
+
+    applications: [ // ALL APPLICATIONS FOR PROJECT
+
+        {
+            name: STRING, // NAME OF USER APPLYING FOR THE PROJECT
+            surname: STRING, // SURNAME OF USER APPLYING FOR THE PROJECT
+
+            id: ID, // ID OF USER APPLYING FOR THE PROJECT
+            member: BOOLEAN, // IS USER A MEMBER OF THE PROJECT
+
+            roles: [ STRING ] // TITLES OF ROLES USER APPLIED FOR
+            accepted: [ BOOLEAN ], // WAS USER ACCEPTED FOR THE ROLE, INDEX BY ROLES ARRAY
+        },
+
+        ...
+
+        ],
+
+    skills: [ // ALL AVAILABLE SKILLS
+
+        {
+            title: STRING,
+
+            role_title: STRING, // DEFAULT TITLE OF ROLE BASED ON SKILL
+            role_description: STRING, // DEFAULT DESCRIPTION OF ROLE BASED ON SKILL
+
+            icon: PATH // '/images/nodes/PATH'
+            hash: HASH // SKILL HASH
+        },
+
+        ...
+
+        ]
+}
+// OUTPUT:
+
+// ------------------------------------------------------------
+// PATH:     /recruitment/change?hash=HASH&role=STRING&value=BOOLEAN
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    NULL
+
+    // OPEN RECRUITMENT FOR GIVEN ROLE IF VALUE IS TRUE
+    // CLOSE RECRUITMENT FOR GIVEN ROLE IF VALUE IF FALSE
+    // IF RECRUITMENT FOR ANY ROLE IS OPEN THEN RECRUITMENT FOR PROJECT IS OPEN, OTHERWISE IT IS CLOSED
+}
+// ------------------------------------------------------------
+// PATH:     /recruitment/create_role?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    title: STRING,
+    description: STRING,
+    skill: HASH // HASH OF SKILL REQUIRED FOR THE ROLE
+}
+// OUTPUT:
+{
+    NULL
+
+    // CREATE ROLE
+    // CHECK IF ROLE TITLE IS UNIQUE, IT MUST BE
+}
+// ------------------------------------------------------------
+// PATH:     /recruitment/edit_role?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    title: STRING,
+    description: STRING,
+}
+// OUTPUT:
+{
+    NULL
+
+    // EDIT ROLE
+    // CHECK IF ROLE TITLE IS UNIQUE, IT MUST BE
+}
+// ------------------------------------------------------------
+// PATH:     /recruitment/delete_role?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    role: STRING // ROLE TITLE
+}
+// OUTPUT:
+{
+    NULL
+
+    // DELETE ROLE
+    // CHECK IF NOBODY IS APPLYING FOR THE ROLE, ALL APPLICATIONS MUST BE DISMISSED BEFORE DELETING THE ROLE
+}
+// ------------------------------------------------------------
+// PATH:     /recruitment/accept_role?hash=HASH
+// PROTOCOL:
+//
+// INPUT:
+{
+    id: ID, // USER ID
+    role: STRING, // ROLE TITLE
+
+    response: { // OPTIONAL, WELCOME MESSAGE
+
+        title: STRING,
+        text: STRING
+
+        }
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET UP A PROPER NOTIFICATION
+    // ADD ROLE TO USER ROLES
+    // SET ROLE IN USER APPLICATION AS ACCEPTED
+    // IF USER IS NOT A PROJECT MEMBER, MAKE HIM A MEMBER AND SEND HIM A WELCOME MESSAGE
+}
+// ------------------------------------------------------------
+// PATH:     /recruitment/dismiss_role?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    id: ID, // USER ID
+    role: STRING // ROLE TITLE
+}
+// OUTPUT:
+{
+    NULL
+
+    // REMOVE ROLE FROM USER APPLICATION
+}
+// ------------------------------------------------------------
+// PATH:     /recruitment/dismiss_application
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    id: ID, // USER ID
+
+    response: { // REJECTION MESSAGE
+
+        title: STRING,
+        text: STRING
+
+        }
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET UP A PROPER NOTIFICATION
+    // REMOVE WHOLE APPLICATION AND SEND USER A REJECTION MESSAGE
+}
+// ------------------------------------------------------------
+// PATH:     /recruitment/involve_member?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    id: ID, // MEMBER ID
+    role: STRING // ROLE TITLE
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET UP A PROPER NOTIFICATION
+    // ADD ROLE TO MEMBER ROLES
+    // ADD ROLE TO MEMBER APPLICATION
+    // SET ROLE IN MEMBER APPLICATION AS ACCEPTED
+}
+// ------------------------------------------------------------
+// PATH:     /recruitment/exempt_role?hash=HASH
+// PROTOCOL: POST
+//hhh
+// INPUT:
+{
+    id: ID, // MEMBER ID
+    role: STRING // ROLE TITLE
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET UP A PROPER NOTIFICATION
+    // UNDO SETTING MEMBER ROLE AS ACCEPTED
+}
+// ------------------------------------------------------------
+// PATH:     /register
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    email: STRING,
+    password: STRING,
+
+    name: STRING,
+    surname: STRING,
+    sex: STRING, // 'Mężczyzna' OR 'Kobieta' OR 'Inna' OR EMPTY
+    birthdate: DATE,
+
+    schoolname: STRING, // MAY BE EMPTY
+    education: STRING, // MAY BE EMPTY
+    city: STRING // MAY BE EMPTY
+}
+// OUTPUT:
+{
+    NULL
+
+    // CREATE AN ACCOUNT FROM GIVEN DATA
+    // LOG IN USER BUT DO NOT REDIRECT HIM
+}
+// ------------------------------------------------------------
+// PATH:     /register/complete
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    email: STRING,
+
+    sex: STRING, // 'Mężczyzna' OR 'Kobieta' OR 'Inna' OR EMPTY
+    birthdate: DATE,
+
+    schoolname: STRING, // MAY BE EMPTY
+    education: STRING, // MAY BE EMPTY
+    city: STRING // MAY BE EMPTY
+}
+// OUTPUT:
+{
+    NULL
+
+    // COMPLETE REGISTRATION AND FILL THE MISSING ACCOUNT DATA
+}
+// ------------------------------------------------------------
+// PATH:     /register/status
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    registered: BOOLEAN // IS USER REGISTRATION COMPLETED
+}
+// ------------------------------------------------------------
+// PATH:     /reports?hash=HASH
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    mentor: BOOLEAN, // IS USER A MENTOR OF THE PROJECT
+    leader: BOOLEAN, // IS MEMBER A LEADER OF THE PROJECT
+    closed: BOOLEAN, // IS PROJECT CLOSED TODO
+
+    reports: [ // PROJECT REPORTS
+
+        {
+            date: DATE, // DATE OF SENDING THE REPORT
+            answers: [ STRING ] // ANSWERS TO 4 QUESTIONS IN REPORT FORM
+        },
+
+        ...
+
+        ],
+
+    responses: [ // RESPONSES FROM MENTOR
+
+        {
+            date: DATE, // DATE OF SENDING THE RESPONSE
+            text: STRING // ACTUAL RESPONSE
+        },
+
+        ...
+
+        ]
+}
+// OUTPUT:
+{
+    NULL
+}
+// ------------------------------------------------------------
+// PATH:     /reports/document?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    [FORM]
+    filename: STRING,
+    filesize: NUMBER,
+    filetype: STRING,
+    filedata: DATA
+    [/FORM]
+}
+// OUTPUT:
+{
+    NULL
+
+    // SEND DOCUMENT TO MENTOR'S EMAIL ADDRESS
+    // FILE SIZE MUST BE BELOW OR EQUAL 10 MB
+    // NOTE USER NAME (SECURITY PURPOSE)
+}
+// ------------------------------------------------------------
+// PATH:     /reports/link?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    link: URL // LINK TO FILE WHICH IS A REPLACEMENT OF THE DOCUMENT
+}
+// OUTPUT:
+{
+    NULL
+
+    // SEND LINK TO MENTOR'S EMAIL ADDRESS
+    // NOTE USER NAME (SECURITY PURPOSE)
+}
+// ------------------------------------------------------------
+// PATH:     /reports/send?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    date: DATE, // DATE OF SENDING THE REPORTS
+    answers: [ STRING ] // ANSWERS TO 4 QUESTIONS IN REPORT FORM
+}
+// OUTPUT:
+{
+    NULL
+
+    // SEND REPORT TO MENTOR
+}
+// ------------------------------------------------------------
+// PATH:     /reports/update?hash=HASH
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    reports: [ ... ]
+}
+// OUTPUT:
+{
+    NULL
+
+    // UPDATE PROJECT REPORTS
+}
+// ------------------------------------------------------------
+// PATH:     /node/level
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    level: NUMBER, // NEW LEVEL OF KNOWLEDGE, MUST BE A VALUE BETWEEN 0 AND 2
+    hash: HASH // SKILL HASH
+}
+// OUTPUT:
+{
+    NULL
+
+    // CHANGE USER'S LEVEL OF KNOWLEDGE
+}
+// ------------------------------------------------------------
+// PATH:     /nodes
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    skills: [ // ALL AVAILABLE SKILLS
+
+        {
+            title: STRING,
+            description: STRING, // SHORT DESCRIPTION
+            level: NUMBER, // USER'S LEVEL OF KNOWLEDGE, 0 MEANS 'NOT INTERESTED', 3 MEANS 'PROFESSIONAL', MUST BE INTEGER
+
+            role_title: STRING, // DEFAULT TITLE OF ROLE BASED ON SKILL
+            role_description: STRING, // DEFAULT DESCRIPTION OF ROLE BASED ON SKILL
+
+            icon: PATH, // 'images/nodes/PATH'
+            hash: HASH // SKILL HASH
+        },
+
+        ...
+
+        ],
+
+    projects: [ // PROJECTS IN WHICH USER PARTICIPATES
+
+        {
+            title: STRING,
+            status: STRING, // PASS 'Mentor zespołu' IF USER IS PROJECT MENTOR OR 'Lider zespołu' IF USER IS PROJECT LEADER OR 'Członek zespołu' OTHERWISE
+            leader: BOOLEAN, // IS USER A LEADER OF THE PROJECT
+
+            image: PATH, // 'images/projects/PATH'
+            hash: HASH // PROJECT HASH
+        },
+
+        ...
+
+        ]
+}
+// OUTPUT:
+{
+    NULL
+}
+// ------------------------------------------------------------
+// PATH:     /team?hash=HASH
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    mentor: BOOLEAN, // IS USER A MENTOR OF THE PROJECT TODO
+    leader: BOOLEAN, // IS MEMBER A LEADER OF THE PROJECT
+    recruitment: BOOLEAN, // IS RECRUITMENT FOR PROJECT OPEN
+
+    members: [ // ALL PROJECT MEMBERS
+
+        {
+            name: STRING,
+            surname: STRING,
+            description: STRING, // AKA BIO
+
+            avatar: PATH, // FACEBOOK PATH OR '/images/users/...'
+            id: ID, // MEMBER ID
+
+            roles: [
+
+                {
+                    title: STRING,
+                    description: STRING,
+                    appreciated: BOOLEAN, // WAS MEMBER APPRECIATED (3-RD LEVEL OF ROLE SKILL) TODO
+
+                    image: PATH // '/images/nodes/PATH'
+                },
+
+                ...
+
+                ]
+        },
+
+        ...
+
+        ],
+
+    invitations: [ // INVITATIONS TO PROJECT
+
+        {
+            name: STRING, // USER NAME OR AN EMAIL ADDRESS
+            surname: STRING, // USER SURNAME OR EMPTY STRING
+
+            date: DATE, // DATE OF SENDING THE INVITATION
+            image: PATH // FACEBOOK PATH OR '/images/users/...' OR '/images/users/default.png' WHEN PERSON IS NOT AN INVOLVE USER
+        },
+
+        ...
+
+        ]
+}
+// OUTPUT:
+{
+    NULL
+}
+// ------------------------------------------------------------
+// PATH:     /team/appreciate
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    id: ID, // MEMBER ID
+    project: HASH, // PROJECT HASH
+
+    role: STRING, // ROLE TITLE
+    explanation: STRING // THE REASON WHY MEMBER WAS APPRECIATED
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET 3-RD LEVEL OF KNOWLEDGE FOR ROLE SKILL
+}
+// ------------------------------------------------------------
+// PATH:     /team/report
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    id: ID, // MEMBER ID
+    project: HASH, // PROJECT HASH
+
+    explanation: STRING // THE REASON WHY MEMBER WAS REPORTED
+}
+// OUTPUT:
+{
+    NULL
+
+    // REPORT MEMBER
+}
+// ------------------------------------------------------------
+// PATH:     /team/delete
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    id: ID, // MEMBER ID
+    project: HASH, // PROJECT HASH
+
+    explanation: STRING // THE REASON WHY MEMBER WAS REMOVED FROM PROJECT
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET UP A PROPER NOTIFICATION
+    // REMOVE MEMBER FROM PROJECT
+    // SEND USER A MESSAGE WITH EXPLANATION WHY HE WAS REMOVED FROM THE PROJECT
+}
+// ------------------------------------------------------------
+// PATH:     /team/invite
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    project: HASH, // PROJECT HASH
+    contact: STRING // EMAIL ADDRESS OF THE PERSON THAT IS BEING INVITED
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET UP A PROPER NOTIFICATION
+    // INVITE PERSON TO THE PROJECT, SEE PROJECT->INVITED
+    // IF PERSON IS NOT AN INVOLVE USER, SEND HIM AN INVITATION EMAIL
+    // LIMIT A MAXIMUM NUMBER OF INVITATIONS PER DAY FOR SECURITY REASONS
+}
+// ------------------------------------------------------------
+// PATH:     /team/uninvite
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    project: HASH, // PROJECT HASH
+    contact: STRING // EMAIL ADDRESS OF THE PERSON THAT WAS INVITED
+}
+// OUTPUT:
+{
+    NULL
+
+    // SET UP A PROPER NOTIFICATION
+    // UNDO INVITING A PERSON TO THE PROJECT, SEE PROJECT->INVITED
+    // IF PERSON IS NOT AN INVOLVE USER, DO NOTHING
+}
+// ------------------------------------------------------------
+// PATH:     /tutorial?value=BOOLEAN
+// PROTOCOL: GET
+//
+// INPUT:
+{
+    NULL
+}
+// OUTPUT:
+{
+    NULL
+
+    // ENTER TUTORIAL MODE IF VALUE IS TRUE
+    // LEAVE TUTORIAL MODE IF VALUE IS FALSE
+}
+// ------------------------------------------------------------
+// PATH:     /validate_token?token=TOKEN
+// PROTOCOL: POST
+//
+// INPUT:
+{
+    token: TOKEN // TOKEN TO VALIDATE
+}
+// OUTPUT:
+{
+    NULL
+
+    // CHECK IF TOKEN IS VALID, SEND ERROR STATUS IF NOT
+}
+// ------------------------------------------------------------

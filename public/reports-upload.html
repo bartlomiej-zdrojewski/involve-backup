@@ -1,0 +1,102 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog style="max-height:90%;" aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+
+                <h2>Wysyłanie dokumentu</h2>
+
+                <span flex></span>
+
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="{{local}}images/dialog-close.svg" aria-label="Zamknij okno dodawania medium"></md-icon>
+                </md-button>
+
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content style="width:600px;overflow-y:auto;">
+
+            <div style="padding-top:0px;padding-bottom:0px;" class="md-dialog-content">
+
+                <p style="text-align:justify;">Możesz wysłać raport do twojego mentora w postaci odrębnego dokumentu. W tym celu, podaj link do pliku, znajdującego się  na zewnętrznym serwerze, lub przekaż go nam tutaj, w formacie PDF.</p>
+
+                <md-divider></md-divider>
+
+                <div layout="row">
+
+                    <md-switch ng-model="LinkSwitch" class="md-primary" ng-change="FileSwitch=!LinkSwitch">
+                        Wyślij dokument w postaci linku do pliku
+                    </md-switch>
+
+                </div>
+
+                <div layout="row">
+
+                    <span flex="10"></span>
+
+                    <md-input-container class="md-block" flex="80">
+                        <label>Link</label>
+                        <input ng-model="Link" name="link" ng-pattern="/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/" ng-maxlength="1024" ng-disabled="!LinkSwitch" required>
+                        <div ng-messages="DialogForm.link.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">Link jest konieczny do wysłania dokumentu.</div>
+                            <div ng-message="pattern" class="my-message">Link nie przypomina adresu URL.</div>
+                            <div ng-message="maxlength" class="my-message">Link jest za długi.</div>
+                        </div>
+                    </md-input-container>
+
+                    <span flex="10"></span>
+
+                </div>
+
+                <md-divider></md-divider>
+
+                <div layout="row">
+
+                    <md-switch ng-model="FileSwitch" class="md-primary" ng-change="LinkSwitch=!FileSwitch">
+                        Wyślij dokument w postaci pliku PDF
+                    </md-switch>
+
+                </div>
+
+                <div style="margin-top:24px;margin-bottom:44px;" layout="row">
+
+                    <span flex="10"></span>
+
+                    <input type="file" name="file" style="border: solid 1px #dddddd;" accept="application/pdf" onchange="angular.element(this).scope().CheckFile()" ng-disabled="!FileSwitch" flex="80" />
+
+                    <span flex="10"></span>
+
+                </div>
+
+                <md-divider></md-divider>
+
+                <div style="margin-top:25px;" layout="row">
+
+                    <span flex></span>
+
+                    <md-button class="md-primary md-raised" ng-disabled="( LinkSwitch && DialogForm.link.$invalid ) || ( FileSwitch && !FileReady )" ng-click="LinkSwitch?UploadLink():UploadFile();" flex>&nbsp;Wyślij dokument&nbsp;</md-button>
+
+                    <span flex></span>
+
+                </div>
+
+                <p ng-style="{ 'color' : StatusColor, 'margin-bottom' : '25px', 'textAlign' : 'center' }">{{Status}}</p>
+
+            </div>
+
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

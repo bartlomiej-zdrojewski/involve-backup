@@ -1,0 +1,48 @@
+body {
+	min-width: unset;
+}
+.title .md-title {
+	padding: 12px;
+	color: #FFF;
+	margin: 0;
+}
+.main-block {
+	margin-bottom: 2vw;
+}
+#Content {
+	position: static;
+	margin-top: 54px;
+}
+#LeftPanel {
+	float: left;
+	width: 250px;
+	margin: 2vw;
+	text-align: center;
+}
+#Avatar {
+	width: calc(100% - 2vw);
+	height: auto;
+	border-radius: 50%;
+
+	animation-name: FadeInDoubleDelayLeft;
+	animation-duration: 1.0s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+}
+#PersonalData {
+	text-align: left;
+}
+#PersonalData .content,
+#Description .content {
+	padding: 12px;
+	color: #191919;
+}
+#PersonalData .content .label {
+	color: #888;
+	font-size: 12px;
+}
+#RightPanel {
+	float: left;
+	width: calc(100% - 250px - 8vw);
+	margin: 2vw;
+}

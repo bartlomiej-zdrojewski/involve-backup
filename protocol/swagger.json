@@ -1,0 +1,100 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "Zeniah",
+		"description": "Zeniah API.",
+		"version": "1.0"
+	},
+	"host": "test.involve.space",
+	"basePath": "/api",
+	"schemes": [
+		"https"
+	],
+	"consumes": [
+		"application/x-www-form-urlencoded",
+		"multipart/form-data"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/case/assign_project": {
+			"post": {
+				"summary": "Przypisanie projektu do kejsa",
+				"parameters": [
+					{
+						"name": "case",
+						"in": "formData",
+						"description": "Hash kejsa",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "project",
+						"in": "formData",
+						"description": "Hash projektu",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"response": {
+					"200": {
+						"description": "Zapytanie przetworzone prawidłowo"
+					},
+					"401": {
+						"description": "Brak uprawnień"
+					}
+				}
+			}
+		},
+		"/create_project": {
+			"post": {
+				"summary": "Utworzenie projektu",
+				"description": "Utworzenie projektu o zadanym tytule i z krótkim opisem. Zwraca hash utworzonego projektu.",
+				"parameters": [
+					{
+						"name": "title",
+						"in": "formData",
+						"description": "Tytuł projektu",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "depiction",
+						"in": "formData",
+						"description": "Krótki opis projektu",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Zapytanie przetworzone prawidłowo",
+						"schema": {
+							"$ref": "#/definitions/hash"
+						},
+						"examples": {
+							"application/json": {
+								"hash": "1234567890"
+							}
+						}
+					},
+					"401": {
+						"description": "Brak uprawnień"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"hash": {
+			"type": "object",
+			"properties": {
+				"hash": {
+					"description": "Hash obiektu",
+					"type": "string"
+				}
+			}
+		}
+	}
+}

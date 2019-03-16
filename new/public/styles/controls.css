@@ -1,0 +1,310 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <[EMAIL]>, July 2017
+ */
+
+md-tabs[md-no-bar] {
+
+    min-height: 0 !important;
+
+    }
+
+md-tabs[md-no-bar] md-tabs-wrapper {
+
+    display: none;
+
+    }
+
+md-tabs[md-no-bar] md-tabs-content-wrapper {
+
+    top: 0;
+
+    }
+
+md-tabs[md-no-bar] md-tab-content .ng-isolate-scope {
+
+    height: 100%;
+
+    }
+
+button.controls-icon-button {
+
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    background-color: rgba( 0, 0, 0, 0 );
+
+    opacity: 1.00;
+    transition: opacity 0.15s ease-out;
+
+    }
+
+button.controls-icon-button:hover {
+
+    opacity: 0.67;
+    transition: opacity 0.15s ease-out;
+
+    }
+
+button.controls-icon-button.light {
+
+    opacity: 0.51;
+
+    }
+
+button.controls-icon-button.light:hover {
+
+    opacity: 1.00;
+
+    }
+
+.theme-frame-header button.controls-icon-button {
+
+    margin-top: 1px;
+    margin-left: 12px;
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    opacity: 0.50;
+
+    }
+
+.theme-frame-header button.controls-icon-button:hover {
+
+    opacity: 1.00;
+
+    }
+
+.theme-frame-header button.controls-icon-button img {
+
+    height: 26px;
+
+    margin-top: 7px;
+    margin-bottom: 7px;
+
+    }
+
+.theme-options-bar button.controls-icon-button {
+
+    margin-left: 2px;
+    padding-left: 1px;
+    padding-right: 1px;
+
+    opacity: 0.50;
+
+    }
+
+.theme-options-bar button.controls-icon-button:hover {
+
+    opacity: 1.00;
+
+    }
+
+.theme-options-bar button.controls-icon-button img {
+
+    height: 19px;
+
+    margin-top: 4px;
+    margin-bottom: 2px;
+
+    }
+
+button.controls-text-button {
+
+    min-width: 80px;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    background-color: rgba( 0, 0, 0, 0 );
+
+    }
+
+button.controls-text-button span {
+
+    font-size: 14px;
+    font-weight: 400;
+
+    color: #FFFFFF;
+    text-transform: uppercase;
+
+    }
+
+.theme-frame-header button.controls-text-button {
+
+    margin-right: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    border-top: solid 4px rgba( 0, 0, 0, 0 );
+    border-bottom: solid 4px rgba( 0, 0, 0, 0 );
+
+    }
+
+.theme-frame-header button.controls-text-button.right {
+
+    margin-right: 0;
+    margin-left: 12px;
+
+    }
+
+.theme-frame-header button.controls-text-button:hover {
+
+    border-bottom: solid 4px #4BA3C7; /* Primary 500 */
+
+    }
+
+.theme-frame-header button.controls-text-button.active {
+
+    border-bottom: solid 4px #4BA3C7; /* Primary 500 */
+
+    }
+
+.theme-frame-header button.controls-text-button.inactive span {
+
+    color: rgba( 255, 255, 255, 0.50 );
+    transition: color 0.3s ease-out;
+
+    }
+
+.theme-frame-header button.controls-text-button.inactive:hover span {
+
+    color: rgb( 255, 255, 255 );
+    transition: color 0.3s ease-out;
+
+    }
+
+
+.theme-expand-bar button.controls-text-button {
+
+    width: 100%;
+    height: 100%;
+
+    }
+
+.theme-expand-bar button.controls-text-button span {
+
+    padding-left: 15px;
+    padding-right: 15px;
+
+    text-align: center;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    display: block;
+
+    }
+
+.controls-cards .controls-card {
+
+    margin: 10px 0 10px 10px;
+
+    outline: none;
+    overflow: hidden;
+
+    display: inline-block;
+
+    }
+
+.controls-cards .margin {
+
+    width: 10px;
+
+    display: inline-block;
+
+    }
+
+.theme-cards .controls-cards .controls-card .image {
+
+    display: flex;
+
+    }
+
+.theme-cards .controls-cards .controls-card .image img {
+
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    }
+
+.theme-cards .controls-cards .controls-card .title-bar {
+
+    width: 100%;
+    height: 20px;
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    z-index: 1;
+    position: relative;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    }
+
+.theme-cards .controls-cards .controls-card .depiction {
+
+    width: 100%;
+    height: 42px;
+
+    padding: 5px;
+    position: relative;
+
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 16px;
+
+    white-space: normal;
+    overflow: auto;
+
+    box-sizing: border-box;
+
+    }
+
+.theme-cards .controls-cards .controls-card .state {
+
+    width: 100%;
+    height: 20px;
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+    position: relative;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 1px 1px black;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    }

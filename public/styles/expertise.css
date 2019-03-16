@@ -1,0 +1,203 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+#Skills {
+
+    width: 50%;
+    height: 100%;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    opacity: 0.50;
+    transition: opacity 0.2s ease-out;
+
+    }
+
+#Skills:hover {
+
+    opacity: 1.00;
+
+    }
+
+#Skills .frame {
+
+    /* IE, EDGE */
+    width: calc( 100% - 3vw );
+    height: calc( 100% - 6vw );
+    top: 3vw;
+    left: 3vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 3vmax );
+    height: calc( 100% - 6vmax );
+
+    top: 3vmax;
+    left: 3vmax;
+    position: absolute;
+
+    color: #444444;
+    border-right: solid 1px #4BA3C7;
+
+    }
+
+#Skills .content {
+
+    width: 350px;
+    height: 400px;
+
+    top: calc( 50% - 200px );
+    left: calc( 50% - 175px );
+    position: absolute;
+
+    animation-name: FadeInRight;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Skills .content .image {
+
+    width: 250px;
+    height: 250px;
+
+    margin-left: 50px;
+
+    border-radius: 50%;
+    background-color: #f5f5f5;
+
+    }
+
+#Skills .content .image img {
+
+    width: 160px;
+    height: 160px;
+
+    margin-top: 45px;
+    margin-left: 45px;
+
+    }
+
+#Skills .content .text {
+
+    width: 350px;
+    height: 150px;
+
+    line-height: 25px;
+    text-align: center;
+
+    }
+
+#Skills .content .text .title {
+
+    width: 350px;
+    height: 70px;
+
+    font-size: 30px;
+    line-height: 80px;
+
+    }
+
+#Products {
+
+    width: 50%;
+    height: 100%;
+
+    top: 0px;
+    right: 0px;
+    position: absolute;
+
+    opacity: 0.50;
+    transition: opacity 0.2s ease-out;
+
+    }
+
+#Products:hover {
+
+    opacity: 1.00;
+
+    }
+
+#Products .frame {
+
+    /* IE, EDGE */
+    width: calc( 100% - 3vw );
+    height: calc( 100% - 6vw );
+    top: 3vw;
+    right: 3vw;
+    /* IE, EDGE */
+
+    width: calc( 100% - 3vmax );
+    height: calc( 100% - 6vmax );
+
+    top: 3vmax;
+    right: 3vmax;
+    position: absolute;
+
+    color: #000000;
+    border-left: solid 1px #4BA3C7;
+
+    }
+
+#Products .content {
+
+    width: 350px;
+    height: 400px;
+
+    top: calc( 50% - 200px );
+    left: calc( 50% - 175px );
+    position: absolute;
+
+    animation-name: FadeInLeft;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Products .content .image {
+
+    width: 250px;
+    height: 250px;
+
+    margin-left: 50px;
+
+    border-radius: 50%;
+    background-color: #f5f5f5;
+
+    }
+
+#Products .content .image img {
+
+    width: 210px;
+    height: 210px;
+
+    margin-top: 20px;
+    margin-left: 20px;
+
+    }
+
+#Products .content .text {
+
+    width: 350px;
+    height: 150px;
+
+    line-height: 25px;
+    text-align: center;
+
+    }
+
+#Products .content .text .title {
+
+    width: 350px;
+    height: 70px;
+
+    font-size: 30px;
+    line-height: 80px;
+
+    }

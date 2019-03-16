@@ -1,0 +1,109 @@
+<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog style="max-height:90%;" aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+                <h2>{{ Application.invited && 'Zaproszenie do projektu' || 'Aplikowanie do projektu' }}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="{{local}}images/dialog-close.svg" aria-label="Zamknij okno aplikacji"></md-icon>
+                </md-button>
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content style="width:750px;overflow-y:auto;">
+
+            <p style="margin:20px;;line-height:22px;text-align:justify;" ng-show="!Application.invited">Napisz dlaczego chciałbyś dołączyć do tego projektu i wybierz, których z dostępnych ról nie chcesz pełnić. Opierając się o tę aplikację oraz o twoje umiejętności i przebyte projekty, lider zadecyduje, czy powinieneś dołączyć do zespołu. Gdy to nastąpi, powiadomimy cię o tym.</p>
+
+            <div layout="row" ng-show="!Application.invited">
+
+                <span flex="10"></span>
+
+                <md-input-container class="md-block" style="margin-bottom:0px;" flex="80">
+                    <label>Dlaczego chcesz dołączyć do projektu?</label>
+                    <textarea ng-model="Application.explanation" name="explanation" md-maxlength="1000" md-select-on-focus required></textarea>
+                </md-input-container>
+
+                <span flex="10"></span>
+
+            </div>
+
+            <p style="margin:20px;line-height:40px;">Odznacz te role, których nie chcesz pełnić. Musisz pełnić co najmniej jedną rolę.</p>
+
+            <div layout="row" style="margin-bottom:10px;">
+
+                <div layout="row" style="width:295px;margin-left:70px;margin-right:10px;">
+
+                    <span flex></span>
+
+                    <div>
+
+                        <md-checkbox ng-model="Application.choice[$index]" style="margin-right:0px;display:block;" aria-label="Wybór roli" ng-repeat="role in Application.roles" ng-if="$even">{{role}}</md-checkbox>
+
+                    </div>
+
+                    <span flex></span>
+
+                </div>
+
+                <div layout="row" style="width:295px;margin-right:80px;">
+
+                    <span flex></span>
+
+                    <div>
+
+                        <md-checkbox ng-model="Application.choice[$index]" style="margin-right:0px;display:block;" aria-label="Wybór roli" ng-repeat="role in Application.roles" ng-if="$odd">{{role}}</md-checkbox>
+
+                    </div>
+
+                    <span flex></span>
+
+                </div>
+
+            </div>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" style="padding:0px;">
+
+            <div ng-show="!Application.invited">
+
+                <div layout="row" style="width:750px">
+                    <span flex></span>
+                    <md-button class="md-raised md-accent" ng-disabled="DialogForm.$invalid || !CheckChoice()" md-autofocus ng-click="Respond(Application)">&nbsp&nbsp&nbspWyślij aplikację&nbsp&nbsp&nbsp</md-button>
+                    <span flex></span>
+                </div>
+
+            </div>
+
+            <div layout="row" ng-show="Application.invited">
+
+                <div layout="row" style="width:295px;margin-left:70px;margin-right:10px;">
+                    <span flex></span>
+                    <md-button class="md-raised md-accent" ng-disabled="DialogForm.$invalid" ng-click="Respond(Application)">&nbsp&nbsp&nbspOdrzuć zaproszenie&nbsp&nbsp&nbsp</md-button>
+                    <span flex></span>
+                </div>
+
+                <div layout="row" style="width:295px;margin-right:80px;">
+                    <span flex></span>
+                    <md-button class="md-raised md-accent" ng-disabled="DialogForm.$invalid || !CheckChoice()" md-autofocus ng-click="Application.accepted=true;Respond(Application)">&nbsp&nbsp&nbspDołącz do projektu&nbsp&nbsp&nbsp</md-button>
+                    <span flex></span>
+                </div>
+
+            </div>
+
+        </md-dialog-actions>
+
+    </form>
+
+</md-dialog>

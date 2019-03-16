@@ -1,0 +1,31 @@
+To update:
+- update notifications ///birun - UPDEJTED, ZOSTALY TESTY
+- update project responses (see links in notifications) ///birun
+- '/cockpit/notification?hash=HASH' -> '/notification?hash=HASH' ///birun
+
+- remove object 'tree: NUMBER' from 'skills' in '/recruitment?hash=HASH' ///birun
+- add 'recommended: NUMBER' object in 'roles', in '/recruitment?hash=HASH' (more about that in protocol) ilu uzytkownikow zobaczylo zaproszenie ///birun
+- dodac zbieranie informacji o poleceniu uzytkownikowi projektu ///zuziacz
+- dostosowac zuzielkowy algorytm do dyskretnej struktury ///zuziacz
+- zmienić parser kursów ze starego na podlaczony do bazy danych ///zuziacz
+- dodać wysylanie plikow jako raporty ///birun
+- dodac baze danych kursow ///zuziacz
+- dodac baze produktow ///zuziacz
+- dalej testować rekrutacje
+- może jaieś miłe powiadomienie w urodziny?
+- dodać ścieżkę '/expertise', która nie będzie odsyłać nic poza powiadomieniami (it's kinda retarded) (no, it's ABSOLUTELY retarded but k.)
+- ograniczenie, że ani projekt, ani użytkownik nie nazywają się "default"
+- dodać ścieżkę '/nodes', więcej w protokole
+- dodać ścieżkę '/node/level', więcej w protokole
+- dodać ścieżkię '/register/status', więcej w protokole
+- dodać ścieżkię '/register/complete', więcej w protokole
+- jeżeli użytkownik zarejestrował się przez facebooka, należy przekierować go na 'register_completion.html', nie na 'cockpit.html';
+  istnieje możliwość wylogowania z 'register_completion.html' i zalogowania się ponownie, także nie wpuszczamy użytkownika do 'cockpit.html', dopóki nie dokończy rejestracji;
+  dobrze byłoby dawać błąd, gdy użytkownik, który nie ukończył rejestracji próbuje wywołać, którąkolwiek ścieżkę poza '/login', '/logout', '/register/status' i '/register/complete'
+- dodać ścieżkę '/reports/document', więcej w protokole
+- dodać ścieżkę '/reports/link', więcej w protokole
+- dodać ścieżkę '/reports/cases', więcej w protokole
+
+To create protocol for:npm //o co chodzi z npm? ~birun // dunno ~zdroid
+- cases page
+- trees (products and abilities)

@@ -1,0 +1,68 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog style="max-height:90%;" aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+
+                <h2>Angażowanie członka zespołu</h2>
+
+                <span flex></span>
+
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="{{local}}images/dialog-close.svg" aria-label="Zamknij okno angażowania członka zespołu"></md-icon>
+                </md-button>
+
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content style="width:calc(50px*10);overflow-y:auto;">
+
+            <div class="md-dialog-content">
+
+                <p style="margin-top:0;margin-bottom:12px;text-align:justify;">Możesz zaangażować dowolnego członka zespołu do pełnienia danej roli, nawet jeśli na nią nie aplikował. Nie musisz również dodatkowo otwierać rekrutacji na tę rolę.</p>
+
+                <div layout="row">
+
+                    <md-input-container class="md-block" flex>
+                        <label>Członek zespołu</label>
+                        <md-select ng-model="Member" name="member" required>
+                            <md-option value="{{member.id}}" ng-repeat="member in Members">
+                                {{member.name}} {{member.surname}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="DialogForm.member.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">Wybór członka zespołu jest konieczny do zaangażowania go.</div>
+                        </div>
+                    </md-input-container>
+
+                </div>
+
+                <div style="margin-top:8px;" layout="row">
+
+                    <span flex></span>
+
+                    <md-button class="md-raised md-primary" ng-disabled="DialogForm.$invalid" ng-click="Respond(Member)">
+                        &nbsp;&nbsp;&nbsp;Zaangażuj członka zespołu&nbsp;&nbsp;&nbsp;
+                    </md-button>
+
+                    <span flex></span>
+
+                </div>
+
+            </div>
+
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

@@ -1,0 +1,197 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <[EMAIL]>, July 2017
+ */
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 200;
+    
+    src: local( Roboto Thin ), url( "../fonts/roboto/Roboto-Thin.eot" );
+    src: url( "../fonts/roboto/Roboto-Thin.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Thin.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Thin.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Thin.ttf" ) format( "truetype" ); }
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 300;
+
+    src: local( Roboto Light ), url( "../fonts/roboto/Roboto-Light.eot" );
+    src: url( "../fonts/roboto/Roboto-Light.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Light.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Light.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Light.ttf" ) format( "truetype" ); }
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 400;
+
+    src: local( Roboto Regular ), url( "../fonts/roboto/Roboto-Regular.eot" );
+    src: url( "../fonts/roboto/Roboto-Regular.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Regular.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Regular.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Regular.ttf" ) format( "truetype" ); }
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 500;
+    
+    src: url( "../fonts/roboto/Roboto-Medium.eot" );
+    src: url( "../fonts/roboto/Roboto-Medium.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Medium.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Medium.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Medium.ttf" ) format( "truetype" ); }
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 700;
+    
+    src: url("../fonts/roboto/Roboto-Bold.eot");
+    src: url( "../fonts/roboto/Roboto-Bold.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Bold.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Bold.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Bold.ttf" ) format( "truetype" ); }
+
+html {
+    
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    line-height: 1.5;
+
+    color: rgba( 0, 0, 0, 0.87 );
+    text-decoration: none;
+
+    overflow-x: hidden;
+
+    }
+
+.theme-frame-header {
+
+    height: 40px;
+
+    padding-left: 12px;
+    padding-right: 12px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 40px;
+
+    color: #FFFFFF;
+    background-color: #707070; /* Accent A200 */
+
+    border-radius: 2px 2px 0 0;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+
+    overflow: hidden;
+    box-sizing: border-box;
+
+    }
+
+.theme-section-header {
+
+    height: 30px;
+
+    padding-left: 6px;
+    padding-right: 6px;
+
+    font-size: 14px;
+    line-height: 30px;
+
+    color: #FFFFFF;
+    background-color: #4BA3C7; /* Primary 500 */
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    box-sizing: border-box;
+    overflow: hidden;
+
+    }
+
+.theme-options-bar {
+
+    height: 25px;
+    padding-left: 4px;
+    padding-right: 4px;
+
+    color: #FFFFFF;
+    background-color: #3588AA; /* Primary 700 */
+
+    box-sizing: border-box;
+
+    }
+
+.theme-expand-bar {
+
+    height: 60px;
+
+    color: #FFFFFF;
+    background-color: #296983; /* Primary 500 */
+
+    border-radius: 0 0 2px 2px;
+
+    box-sizing: border-box;
+    overflow: hidden;
+
+    transition: background-color 0.3s ease-out;
+
+    }
+
+.theme-expand-bar:hover {
+
+    background-color: #5EADCD; /* Primary 400 */
+
+    transition: background-color 0.3s ease-out;
+
+    }
+
+.theme-cards {
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    }
+
+.projects.theme-cards .controls-cards .controls-card .title-bar {
+
+    color: #D4D4D4;
+    background-color: #7D7D7D; /* Accent 600 */
+
+    transition: color 0.3s ease-out;
+
+    }
+
+.projects.theme-cards .controls-cards .controls-card:hover .title-bar {
+
+    color: #FFFFFF;
+    transition: color 0.3s ease-out;
+
+    }
+
+.projects.theme-cards .controls-cards .controls-card .depiction {
+
+    color: #D4D4D4;
+    background-color: #A3A3A3; /* Accent 900 */
+
+    transition: color 0.3s ease-out;
+
+    }
+
+.projects.theme-cards .controls-cards .controls-card:hover .depiction {
+
+    color: #FFFFFF;
+    transition: color 0.3s ease-out;
+
+    }
+
+.projects.theme-cards .controls-cards .controls-card .rating {
+
+    color: #FFFFFF;
+
+    opacity: 0.67;
+    transition: opacity 0.3s ease-out;
+
+    }
+
+.projects.theme-cards .controls-cards .controls-card:hover .rating {
+
+    opacity: 1.0;
+    transition: opacity 0.3s ease-out;
+
+    }

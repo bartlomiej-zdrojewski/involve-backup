@@ -1,0 +1,29 @@
+----- TO DESIGN -----
+
+Protocols:
+- protocol for notifications
+- protocol fo emails
+
+Pages:
+- single skill page
+- user profile in recruitment
+- portfolio
+- mentors page
+- experts page
+- changing password
+- deleting the account
+- tutorial
+- landing page
+- 401, 404, 403
+- products
+- project calendar (delta)
+
+Minor:
+- more intuitive media
+- more fancy project apply animation
+
+----- TO DO -----
+
+Pages:
+- case browser page
+- "add product to my project" in skills/products - dialog with projects

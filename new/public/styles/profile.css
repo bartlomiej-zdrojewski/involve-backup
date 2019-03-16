@@ -1,0 +1,340 @@
+/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <[EMAIL]>, July 2017
+ */
+
+#FirstFrame {
+
+    min-height: 500px;
+    margin: 30px 40px;
+
+    z-index: 5;
+
+    border-radius: 2px;
+    overflow-y: auto;
+
+    }
+
+#FirstFrame .avatar {
+
+    z-index: 10;
+
+    border-radius: 2px 2px 0 0;
+
+    }
+
+#FirstFrame .avatar img {
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 2px 2px 0 0;
+    display: flex;
+
+    }
+
+#FirstFrame .options-bar {
+
+    z-index: 20;
+
+    }
+
+#FirstFrame .bio {
+
+    min-height: 75px;
+    padding: 5px;
+
+    z-index: 15;
+
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 22px;
+
+    color: #FFFFFF;
+    background-color: #4BA3C7; /* Primary 500 */
+
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    }
+
+#FirstFrame .bio .highlight {
+
+    font-weight: 400;
+    line-height: 26px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    }
+
+#FirstFrame .details {
+
+    height: 150px;
+    padding: 5px;
+
+    z-index: 10;
+
+    box-sizing: border-box;
+
+    }
+
+#FirstFrame .details .categories span {
+
+    padding-right: 5px;
+
+    font-size: 14px;
+    line-height: 28px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    display: block;
+
+    }
+
+#FirstFrame .details .values span {
+
+    line-height: 28px;
+    font-size: 14px;
+
+    color: rgba( 0, 0, 0, 0.56 );
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    display: block;
+
+    }
+
+#SecondFrame {
+
+    min-height: 500px;
+    margin: 30px 0;
+
+    z-index: 5;
+
+    border-radius: 2px;
+    overflow-y: hidden;
+
+    }
+
+#SecondFrame .frame-header {
+
+    z-index: 25;
+
+    }
+
+#SecondFrame .sections {
+
+    z-index: 10;
+
+    }
+
+#SecondFrame .section {
+
+    z-index: 10;
+
+    overflow: hidden;
+
+    }
+
+#SecondFrame .section .section-header {
+
+    z-index: 20;
+
+    }
+
+#SecondFrame .section .about {
+
+    padding: 8px;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 20px;
+    text-align: justify;
+
+    z-index: 15;
+
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    }
+
+#SecondFrame .section .skills {
+
+    padding-right: 10px;
+
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    }
+
+#SecondFrame .section .skills .skill {
+
+    height: 30px;
+    margin: 8px 0 8px 8px;
+
+    z-index: 15;
+
+    }
+
+#SecondFrame .section .skills .skill .title {
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    font-size: 15px;
+    line-height: 30px;
+    text-align: center;
+    color: #3588AA;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    }
+
+#SecondFrame .section .skills .skill .level {
+
+    width: 71px;
+    padding-right: 5px;
+
+    box-sizing: border-box;
+
+    }
+
+#SecondFrame .section .skills .skill .level img {
+
+    width: 20px;
+    height: 20px;
+
+    margin: 5px 1px;
+
+    }
+
+#SecondFrame .section .projects .controls-cards {
+
+    height: 200px;
+
+    }
+
+#SecondFrame .section .projects .controls-cards .controls-card {
+
+    width: 180px;
+    height: 180px;
+
+    }
+
+#SecondFrame .section .projects .controls-cards .controls-card .image img {
+
+    top: -30px;
+
+    }
+
+#SecondFrame .section .projects .controls-cards .controls-card .title-bar {
+
+    top: -80px;
+
+    }
+
+#SecondFrame .section .projects .controls-cards .controls-card .depiction {
+
+    top: -80px;
+
+    }
+
+#SecondFrame .section .projects .controls-cards .controls-card .rating {
+
+    top: -175px;
+
+    }
+
+#SecondFrame .section .attachments {
+
+    padding-right: 10px;
+
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    }
+
+#SecondFrame .section .attachments .attachment {
+
+    height: 40px;
+    margin: 10px 0 10px 10px;
+
+    z-index: 15;
+
+    }
+
+#SecondFrame .section .attachments .attachment .title {
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    font-size: 15px;
+    line-height: 40px;
+    color: #3588AA;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    }
+
+#SecondFrame .section .attachments .attachment .link {
+
+    width: 40px;
+
+    }
+
+#SecondFrame .section .attachments .attachment .link button img {
+
+    width: 26px;
+    height: 26px;
+
+    margin: 7px;
+
+    }
+
+#ThirdFrame {
+
+    min-height: 500px;
+    margin: 30px 40px;
+
+    z-index: 5;
+
+    border-radius: 2px;
+    overflow-y: hidden;
+
+    }
+
+#ThirdFrame .frame-header {
+
+    z-index: 15;
+
+    }
+
+#ThirdFrame .notifications {
+
+    z-index: 10;
+
+    overflow-y: auto;
+
+    }
+
+#ThirdFrame .expand-bar {
+
+    z-index: 15;
+
+    }

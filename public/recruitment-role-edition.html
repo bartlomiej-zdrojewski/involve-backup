@@ -1,0 +1,89 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog style="max-height:90%;" aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+
+                <h2>Edycja roli</h2>
+
+                <span flex></span>
+
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="{{local}}images/dialog-close.svg" aria-label="Zamknij okno edycji roli"></md-icon>
+                </md-button>
+
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content style="width:500px;overflow-y:auto;">
+
+            <div class="md-dialog-content">
+
+                <div layout="row">
+
+                    <md-input-container class="md-block" flex>
+                        <label>Poszukiwana umiejętność</label>
+                        <input ng-model="Role.skill" name="skill" disabled>
+                    </md-input-container>
+
+                </div>
+
+                <div layout="row">
+
+                    <md-input-container class="md-block" flex>
+                        <label>Tytuł</label>
+                        <input ng-model="Role.title" name="title" ng-change="ValidateRole()" ng-pattern="/^[\u00c0-\u017e a-zA-Z0-9\.,:;/#_\-\(\)\+]+$/" ng-minlength="3" ng-maxlength="256" required>
+                        <div ng-messages="DialogForm.title.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">Tytuł jest konieczny do zaktualizowania roli.</div>
+                            <div ng-message="unique" class="my-message">Tytuł nie jest unikalny.</div>
+                            <div ng-message="pattern" class="my-message">Tytuł zawiera niedozwolone znaki.</div>
+                            <div ng-message="minlength" class="my-message">Tytuł jest za krótki.</div>
+                            <div ng-message="maxlength" class="my-message">Tytuł jest za długi.</div>
+                        </div>
+                    </md-input-container>
+
+                </div>
+
+                <div layout="row">
+
+                    <md-input-container class="md-block" flex>
+                        <label>Szczegółowy opis</label>
+                        <textarea ng-model="Role.description" name="description" aria-label="Wprowadź szczegółowy opis roli" ng-minlength="3" md-maxlength="1000" required></textarea>
+                        <div ng-messages="DialogForm.description.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">Opis jest konieczny do zaktualizowania roli.</div>
+                            <div ng-message="minlength" class="my-message">Opis jest za krótki.</div>
+                            <div ng-message="maxlength" class="my-message">Opis jest za długi.</div>
+                        </div>
+                    </md-input-container>
+
+                </div>
+
+                <div layout="row">
+
+                    <span flex></span>
+
+                    <md-button class="md-raised md-primary" ng-disabled="DialogForm.$invalid" ng-click="Respond(Role)">
+                        &nbsp;&nbsp;&nbsp;Zaktualizuj rolę&nbsp;&nbsp;&nbsp;
+                    </md-button>
+
+                    <span flex></span>
+
+                </div>
+
+            </div>
+
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

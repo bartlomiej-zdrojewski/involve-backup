@@ -1,0 +1,289 @@
+----------------------------------------------------- O PROTOKOLE ------------------------------------------------------
+
+Protokół jest rezultatem próby spisania i sformalizowania zasad komunikacji między klientem a serwerem. Radzi się,
+aby w dalszej części protokołu, to jest po zakończeniu wstępu, korzystać jedynie z języka angielskiego, w celu
+utrzymania ścisłej terminologii i zgodności z kodem. Jednak nie jest to ściśle wymagane.
+
+W ścieżkach poszczególnych zapytań zostanie pominięty adres serwera i formuła "/api", w celu uzyskania większej
+przejrzystości protokołu.
+
+Jako zapytanie "setup" danej strony rozumiemy zapytanie oparte na protokole "GET" i wysłane na adres "/page",
+gdzie "page" to nazwa strony.
+
+W każdej odpowiedzi na zapytanie "setup", oprócz obiektów wylistowanych w protokole, musi znaleźć się obiekt
+o nazwie "tutorial" typu "boolean", informujący o tym, czy należy uruchomić samouczek dla danej strony.
+
+Przykładowe odpowiedzi na zapytanie "setup" poszczególnych stron znajdują się w folderze "public/examples".
+
+Słowo "avatar" stosowane jest jedynie w stosunku do grafik przedstawiających zdjęcia profilowe użytkowników.
+W stosunku do innych grafik należy stosować słowo "image" lub ewentualnie "icon", jeśli wskazane jest rozróżnienie.
+
+Słowo "id" stosowane jest jedynie w stosunku do obiektów identyfikującyh użytkowników. W stosunku do obiektów
+identyfikujących inne abstrakty należy stosować słowo "hash".
+
+------------------------------------------------------------------------------------------------------------------------
+
+PATH:     /default
+PROTOCOL: GET
+TYPE:     SETUP
+
+REQUEST:
+{
+    NULL
+}
+
+RESPONSE:
+{
+    NULL
+}
+
+------------------------------------------------------------------------------------------------------------------------
+
+PATH:     /profile
+PROTOCOL: GET
+TYPE:     SETUP
+
+REQUEST:
+{
+    NULL
+}
+
+RESPONSE:
+{
+    details: {
+
+        name: STRING,
+        surname: STRING,
+        sex: STRING // 'Mężczyzna', 'Kobieta' or 'Inna',
+        birthdate: DATE,
+
+        avatar: PATH,
+        bio: STRING
+
+        education: STRING,
+        school: STRING,
+        city: STRING
+
+        },
+
+    portfolio: {
+
+        about: STRING,
+
+        skills: [
+
+            {
+                title: STRING,
+                level: NUMBER // integer from 0 to 3
+            }
+
+            ],
+
+        projects: [
+
+            {
+                title: STRING,
+                depiction: STRING, // aka short description
+                image: PATH,
+                leader: BOOLEAN, // is user a leader of the project
+                finished: BOOLEAN, // is project finished
+                success: BOOLEAN, // was project finished successfully
+                hash: HASH
+            }
+
+            ],
+
+        attachments: [
+
+            {
+                title: STRING,
+                date: DATE, // date is given by client, not server
+                link: PATH // link to attachment
+            }
+
+            ]
+
+        },
+
+    cv: {
+
+        * NOT READY YET *
+
+        },
+
+    notifications: [
+
+        {
+            title: STRING,
+            description: STRING,
+            icon: PATH // 'images/notifications/PATH',
+            date: DATE,
+            seen: BOOLEAN,
+            link: PATH
+        }
+
+        ]
+}
+
+------------------------------------------------------------------------------------------------------------------------
+
+PATH:     /cockpit
+PROTOCOL: GET
+TYPE:     SETUP
+
+REQUEST:
+{
+    NULL
+}
+
+RESPONSE:
+{
+    projects: {
+
+        assigned: [ // user's projects
+
+            {
+                title: STRING,
+                depiction: STRING, // aka short description
+                image: PATH,
+                leader: BOOLEAN, // is user a leader of the project
+                finished: BOOLEAN, // is project finished
+                success: BOOLEAN, // was project finished successfully
+                hash: HASH
+            }
+
+            ],
+
+        suggested: [ // suggested projects must not belong to user nor be finished and their recruitment must be open
+
+            {
+                title: STRING,
+                depiction: STRING, // aka short description
+                image: PATH,
+                hash: HASH
+            }
+
+            ]
+
+        },
+
+    cases: {
+
+        assigned: [ // cases to which user's (not finished) project is assigned
+
+            {
+                title: STRING,
+                depiction: STRING, // aka short description
+                image: PATH,
+                hash: HASH
+            }
+
+            ],
+
+        suggested: [ // suggested cases must not be the ones to which user's (not finished) project is assigned
+
+            {
+                title: STRING,
+                depiction: STRING, // aka short description
+                image: PATH,
+                hash: HASH
+            }
+
+            ]
+
+        },
+
+    partners: [
+
+        all: [
+
+            {
+                image: PATH,
+                link: PATH
+            }
+
+            ],
+
+        suggested: [
+
+            {
+                image: PATH,
+                link: PATH
+            }
+
+            ]
+
+        ],
+
+    notifications: [
+
+        {
+            title: STRING,
+            description: STRING,
+            icon: PATH // 'images/notifications/PATH',
+            seen: BOOLEAN,
+            date: DATE,
+            link: PATH,
+            hash: HASH
+        }
+}
+
+------------------------------------------------------------------------------------------------------------------------
+
+PATH:     /portfolio
+PROTOCOL: GET
+TYPE:     SETUP
+
+REQUEST:
+{
+    NULL
+}
+
+RESPONSE:
+{
+    skills: [
+
+        {
+            title: STRING,
+            description: STRING,
+            level: NUMBER, // integer from 0 to 3
+            hash: HASH
+        }
+
+        ],
+
+    attachments: [
+
+        * NOT READY YET *
+
+        ],
+
+    projects: [ // user's projects
+
+        {
+            title: STRING,
+            depiction: STRING, // aka short description
+            image: PATH,
+            leader: BOOLEAN, // is user a leader of the project
+            finished: BOOLEAN, // is project finished
+            success: BOOLEAN, // was project finished successfully
+            hash: HASH
+        }
+
+        ],
+
+    cases: [ // cases to which user's (finished or not finished) project is assigned
+
+        {
+            title: STRING,
+            depiction: STRING, // aka short description
+            image: PATH,
+            finished: BOOLEAN, // is project assigned to case finished
+            success: BOOLEAN, // was project assigned to case finished successfully
+            hash: HASH // case's hash
+        }
+
+        ]
+}
+
+------------------------------------------------------------------------------------------------------------------------

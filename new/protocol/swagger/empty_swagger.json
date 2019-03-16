@@ -1,0 +1,246 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Invity",
+    "description": "Volvo API.",
+    "version": "0.1"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/x-www-form-urlencoded",
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/case/assign_project": {
+      "post": {
+        "summary": "assign project to case",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /case/assign_project",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "case": {
+                  "type": "string"
+                },
+                "project": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "case",
+          "example_path"
+        ]
+      }
+    },
+    "/project": {
+      "get": {
+        "summary": "remove last response",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mentor": {
+                  "type": "boolean",
+                  "description": "is user a mentor of the project"
+                },
+                "leader": {
+                  "type": "boolean",
+                  "description": "is user a leader of the project"
+                },
+                "member": {
+                  "type": "boolean",
+                  "description": "is user a member of the project"
+                },
+                "favourite": {
+                  "type": "boolean",
+                  "description": "is user's favourite project"
+                },
+                "recruitment": {
+                  "type": "boolean",
+                  "description": "is recruitment open"
+                },
+                "invited": {
+                  "type": "boolean",
+                  "description": "has been user invited to the project"
+                },
+                "applied": {
+                  "type": "boolean",
+                  "description": "has user applied to the project"
+                },
+                "project": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "depiction": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string",
+                      "format": "path"
+                    }
+                  }
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "skill": {
+                        "type": "string",
+                        "description": "title of skill connected with role"
+                      },
+                      "members": {
+                        "type": "array",
+                        "description": "all project members involved in role",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "avatar": {
+                              "type": "string",
+                              "format": "path"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "media": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "icon": {
+                        "type": "string",
+                        "format": "path"
+                      },
+                      "link": {
+                        "type": "string",
+                        "format": "url"
+                      }
+                    }
+                  }
+                },
+                "closure": {
+                  "type": "object",
+                  "properties": {
+                    "closed": {
+                      "type": "boolean",
+                      "description": "is project closed"
+                    },
+                    "state": {
+                      "type": "boolean",
+                      "description": "was closure request sent by the leader"
+                    },
+                    "explanation": {
+                      "type": "string",
+                      "description": "the reason why the leader want to close the project"
+                    }
+                  }
+                },
+                "response": {
+                  "type": "object",
+                  "description": "message thet will be shown when user opens a project page; often reffered as 'send message'",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "project",
+          "example_path"
+        ]
+      }
+    },
+    "/project/report": {
+      "post": {
+        "summary": "report project",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /project/report?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "explanation": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "example_path"
+        ]
+      }
+    }
+  },
+  "definitions": {}
+}

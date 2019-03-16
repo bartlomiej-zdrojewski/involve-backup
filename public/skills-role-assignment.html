@@ -1,0 +1,105 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+                <h2>Dodawanie roli do projektu</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="{{local}}images/dialog-close.svg" aria-label="Zamknij okno dodawania roli do projektu"></md-icon>
+                </md-button>
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content style="width:500px;height:600px;overflow-y:auto;">
+
+            <md-tabs md-dynamic-height md-no-bar>
+
+                <md-tab md-active="ActiveTab==1" label="Projects">
+
+                    <md-list style="padding:0px;">
+                        <md-list-item md-ink-ripple class="md-2-line" ng-repeat="project in Projects" ng-disabled="!project.leader" ng-click="SelectProject(project.hash)">
+                            <img ng-src="{{project.image}}" class="md-avatar" />
+                            <div class="md-list-item-text">
+                                <h3>{{project.title}}</h3>
+                                <h4>{{project.status}}</h4>
+                            </div>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </md-list>
+
+                </md-tab>
+
+                <md-tab md-active="ActiveTab==2" label="RoleDetails">
+
+                    <p style="margin:20px;line-height:22px;text-align:justify;">Dodaj rolę, aby móc zacząć rekrutować członków twojego zespołu. Aplikować na nią będą mogli jednocześnie wszyscy użytkownicy, jak i osoby zaproszone. My natomiast polecimy twój projekt osobom o odpowiednich kwalifikacjach i w miarę dogodnym położeniu geograficznym.</p>
+
+                    <div layout="row">
+
+                        <span flex="10"></span>
+
+                        <md-input-container class="md-block" flex="80">
+                            <label>Tytuł</label>
+                            <input ng-model="Assignment.title" name="title" ng-change="ValidateRole()" ng-pattern="/^[\u00c0-\u017e a-zA-Z0-9:#_\-]+$/" ng-minlength="3" ng-maxlength="256" required>
+                            <div ng-messages="DialogForm.title.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">Tytuł jest konieczny do dodania roli.</div>
+                                <div ng-message="unique" class="my-message">Tytuł nie jest unikalny.</div>
+                                <div ng-message="pattern" class="my-message">Tytuł zawiera niedozwolone znaki.</div>
+                                <div ng-message="minlength" class="my-message">Tytuł jest za krótki.</div>
+                                <div ng-message="maxlength" class="my-message">Tytuł jest za długi.</div>
+                            </div>
+                        </md-input-container>
+
+                        <span flex="10"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex="10"></span>
+
+                        <md-input-container class="md-block" flex="80">
+                            <label>Szczegółowy opis</label>
+                            <textarea ng-model="Assignment.description" name="description" style="height:129px;min-height:129px;max-height:129px;" aria-label="Wprowadź szczegółowy opis roli" ng-minlength="3" md-maxlength="1000" required></textarea>
+                            <div ng-messages="DialogForm.description.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">Opis jest konieczny do dodania roli.</div>
+                                <div ng-message="minlength" class="my-message">Opis jest za krótki.</div>
+                                <div ng-message="maxlength" class="my-message">Opis jest za długi.</div>
+                            </div>
+                        </md-input-container>
+
+                        <span flex="10"></span>
+
+                    </div>
+
+                    <div layout="row" style="margin-top:10px;margin-bottom:30px;">
+
+                        <span flex></span>
+
+                        <md-button class="md-raised md-primary" ng-disabled="DialogForm.$invalid" ng-click="Respond(Assignment)">
+                            &nbsp&nbsp&nbspDodaj do projektu&nbsp&nbsp&nbsp
+                        </md-button>
+
+                        <span flex></span>
+
+                    </div>
+
+                </md-tab>
+
+            </md-tabs>
+
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

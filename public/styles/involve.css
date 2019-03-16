@@ -1,0 +1,331 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+html {
+
+    margin: 0;
+
+    }
+
+html a {
+
+    text-decoration: none;
+
+    }
+
+body {
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 1320px;
+    min-height: 660px;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    overflow: auto;
+
+    }
+
+#Tutorial {
+
+    width: 100%;
+    height: 100%;
+
+    top: 0px;
+    left: 0px;
+
+    z-index: 60;
+    position: absolute;
+
+    background-color: rgba( 0, 0, 0, 0.8 );
+
+    }
+
+#Tutorial.animation {
+
+    animation-name: FadeInTutorial;
+    animation-duration: 2.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+
+    }
+
+#Tutorial .content {
+
+    min-width: 250px;
+    min-height: 230px;
+
+    position: absolute;
+
+    border-radius: 2px;
+    background-color: #FFFFFF;
+
+    }
+
+#Tutorial .content .title {
+
+    width: calc( 100% - 10px );
+    height: 50px;
+
+    margin-left: 5px;
+    margin-right: 5px;
+
+    float: left;
+    position: relative;
+
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+
+    border-bottom: solid 1px #DDDDDD;
+    overflow: hidden;
+
+    }
+
+#Tutorial .content .text {
+
+    width: calc( 100% - 10px );
+    height: calc( 100% - 12px - 50px - 120px );
+    min-height: 50px;
+
+    margin: 5px;
+
+    float: left;
+    position: relative;
+
+    font-size: 15px;
+
+    overflow-y: scroll;
+
+    }
+
+#Tutorial .content .line {
+
+    width: calc( 100% - 10px );
+    height: 0px;
+
+    float: left;
+    position: relative;
+
+    border-bottom: solid 1px #DDDDDD;
+
+    }
+
+#Tutorial .content .actions {
+
+    width: calc( 100% - 24px );
+    height: 96px;
+
+    margin: 12px;
+
+    float: left;
+    position: relative;
+
+    }
+
+.tutorial-focus {
+
+    z-index: 70;
+
+    }
+
+#Navigation {
+
+    width: 100%;
+    height: 52px;
+
+    padding-left: 4px;
+    padding-right: 2px;
+
+    top: 0px;
+    left: 0px;
+    
+    z-index: 50;
+    position: absolute;
+
+    box-sizing: border-box;
+
+    }
+
+#Navigation img {
+
+    height: 36px;
+
+    top: 9px;
+    left: 9px;
+    position: absolute;
+
+    }
+
+#Navigation .md-fab {
+
+    float: right;
+
+    margin-left: 4px;
+    margin-right: 4px;
+
+    }
+
+#Navigation .tools {
+
+    float: left;
+
+    }
+
+#Navigation .tools .md-fab {
+
+    float: left;
+
+    margin-top: 14px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    animation-name: FadeInTool;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Navigation .tools .md-fab[disabled] {
+
+    background-color: rgb( 200, 200, 200 );
+
+    }
+
+#Navigation .tools md-fab-speed-dial {
+
+    float: left;
+
+    }
+
+#Navigation .tools .md-fab-trigger .md-fab .md-fab {
+
+    float: left;
+
+    margin-top: 14px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    animation-name: FadeInTool;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    }
+
+#Notifications {
+
+    top: 10px;
+    right: 265px;
+
+    z-index: 40;
+    position: absolute;
+
+    border-radius: 2px;
+
+    transition: width cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s, height cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s;
+
+    }
+
+#Notifications .content {
+
+    width: 100%;
+    height: 100%;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    border-radius: 2px;
+    overflow-y: auto;
+
+    transition: opacity ease-out 0.10s;
+
+    }
+
+#Notifications .content md-list {
+
+    padding: 0px;
+
+    }
+
+#NotificationsBackground {
+
+    width: 100%;
+    height: calc( 100% - 52px );
+
+    top: 52px;
+    left: 0px;
+
+    z-index: 30;
+    position: fixed;
+
+    outline: none;
+
+    }
+
+#Content {
+
+    width: 100%;
+    height: calc( 100% - 52px );
+
+    top: 52px;
+    left: 0px;
+    position: absolute;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    }
+
+@keyframes FadeInTutorial { /* 2.0s */
+
+    0% {
+
+        opacity: 0.00;
+
+        }
+
+    50% {
+
+        opacity: 0.00;
+
+        }
+
+    100% {
+
+        opacity: 1.00;
+
+        }
+
+}
+
+@keyframes FadeInTool { /* 1.0s */
+
+    0% {
+
+        opacity: 0.00;
+        transform: translateY( -5px );
+        
+        }
+
+    50% {
+
+        opacity: 0.00;
+        transform: translateY( -5px );
+        
+        }
+
+    100% {
+        
+        opacity: 1.00;
+        transform: translateY( 0px );
+        
+        }
+    
+    }

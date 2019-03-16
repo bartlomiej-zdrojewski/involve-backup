@@ -1,0 +1,77 @@
+[
+  {
+    "title": "Płatki z mlekiem : Subskrybujesz",
+    "depiction": "Sprzedaż internetowa musi sprostać wymaganiom producentów testujących nowe modele sprzedaży. Coraz popularniejsze stają się usługi subskrypcyjne. W tym zadaniu chodzi o zaprogramowanie platformy internetowej dla producenta płatków śniadaniowych.",
+    "description": "To zadanie polega na napisaniu od podstaw sklepu internetowego wraz z kilkoma jego podstawowymi użytecznościami. Zakłada pełną autonomię wykonania,  ale nakłada na zespół zbiór celów, które muszą zostać zrealizowane, aby projekt mógł zostać sklasyfikowany jako wykonany. Jest to zadanie skomplikowane, wymagające w większości przypadków zespołu skupiającego różne funkcje. Wykonanie i praca nad projektem będzie nadzorowane przez mentora o kompetencjach programistycznych, do niego także należeć będzie ocena wykonania zadania. Czas przeznaczony na realizację zadania od momentu przyjęcia wynosi 2 miesiące, po tym czasie uzyskanie wyróżnienia od mentora będzie utrudnione.",
+    "requirements": "<ul><li>stworzenie stabilnej strony na publicznym serwerze</li><li>napisanie systemu obsługi danych użytkowników z takimi składowymi:<ul><li>dane osobowe użytkowników</li><li>historia transakcji i zamówień</li><li>status płatności za usługę</li><li>aktualne zamówienie</li></ul></li><li>przeglądarka produktów na stronę z możliwością dodania nowego produktu do aktualnie subskrybowanego koszyka</li><li>system płatności (preferowane skomunikowanie z serwisem PayU)</li><li>stworzenie przejrzystego inteface’u do kontaktów z klientem</li><li>produkt posiadający certyfikat bezpieczeństwa</li></ul>dodatkowe funkcje (mile widziane, nie wymagane):<ul><li>wbudowane narzędzia analityczne Google Analytics i HotJar</li><li>nota prawna dotycząca wykorzystywania danych osobowych</li></ul>",
+    "brief": "Kupowanie przez internet jest dziś codziennością dla większości konsumentów. Pewne produkty jednak, ze względu na swoją powszechność i stały udział w rynku na przestrzeni całego roku, pozwalają usprawnić dokonywanie zakupu dzięki metodom automatycznego składania zamówienia i rozliczeniom okresowym. Takie rozwiązanie powinno dawać możliwość nabycia towaru po niższej cenie oraz korzystniejszych warunkach, a dla producenta będzie to dobry sposób na gospodarowanie swoją bieżącą płynnością i generowanie stałego źródła dochodów.<br>Młoda firma CornHub zajmująca się sprzedażą śniadaniowych płatków kukurydzianych różnego rodzaju postanowiła wprowadzić do swojej oferty możliwość comiesięcznego zamawiania zapasu płatków, wraz z dowozem. W tym celu chce otworzyć platformę internetową dla swoich klientów, na której będą mogli śledzić swoje zamówienia, podwyższać lub obniżać zapotrzebowanie i regulować płatności. Nie bez znaczenia jest strona wizualna wykonanej platformy, a firma już wyznaczyła znaczne środki na promocję swojego innowacyjnego rozwiązania.<br>Zadaniem projektu jest w możliwie krótkim czasie stworzyć od podstaw sklep internetowy - platformę łączącą w sobie kilka podstawowych użyteczności. Kluczowa jest baza danych zarejestrowanych w systemie użytkowników, na podstawie której firma będzie mogła łatwo sterować dystrybucją z hurtowni. Baza musi obejmować dane personalne użytkownika, status wykonania i skład zamówienia, a także okres i wariant subskrypcji. Firma wyraziła życzenie, aby profil był skomunikowany ze stroną banku użytkownika, aby rozliczenia mogły odbywać się automatycznie, jeśli taka opcja zostanie wybrana przy rejestracji. Poza tym strona musi oferować możliwość przeglądania aktualnej oferty produktowej i swobodną edycję wybranego koszyka. Ostatecznie, projekt musi zadbać o przestrzeń do kontaktu z klientami, którzy mogą mieć wątpliwości na początkowych etapach korzystania z platformy. Z pozytywnym odbiorem spotka się także zaopatrzenie strony w narzędzia analityczne, pozwalające firmie wprowadzać poprawki do swojego rozwiązania, nie jest to jednak użyteczność wymagana do ukończenia projektu.<br>Zleceniodawca przyznaje, że nie ma doświadczenia w tworzeniu nowych rozwiązań internetowych, dlatego wyraża zgodę na wykorzystanie dobrowolnego języka programowania, jak również nie ma ściśle określonej szaty graficznej. W adnotacji została tylko wyrażona prośba, aby unikać czerni i odcieni pomarańczy. Firma spodziewa się realizacji zlecenia w okresie nie dłuższym niż 2 miesiące. Dotrzymanie tego terminu będzie odnotowane przez mentora i podwyższy wartość stworzonego rozwiązania.",
+    "relatedAbilityCodes": [
+      {
+        "code": "PRO",
+        "level": 75
+      },
+      {
+        "code": "DES",
+        "level": 25
+      }
+    ],
+    "image": "card_platki_z_mlekiem.jpg",
+    "preview": "images/cases/platki_z_mlekiem.jpg",
+    "link": "http://test.involve.space",
+    "hash": "317b37f42e00edb10d6ceca5494edab0"
+  },
+  {
+    "title": "Time for Meet-Up",
+    "depiction": "Organizacja dużego wydarzenia to skomplikowany proces, w którym nietrudno o niejasności i problemy logistyczne. Jednak poświęcony czas i profesjonalizm potrafią zaowocować niezapomnianymi wrażeniami i ogromną satysfakcją. W tym zleceniu macie za zadanie przygotować event, na który przyjdą widzowie znanego YouTuber’a.",
+    "description": "Wraz ze wzrostem popularności portalu YouTube na coraz większe ilości fanów mogą liczyć twórcy przesyłający autorskie filmy na tą stronę - YouTuberzy. W tym konkurencyjnym środowisku niezwykle istotne jest aby zainteresować swojego widza i nawiązać z nim długotrwałą relację. Swoją opinię użytkownicy YouTube mogą wyrazić poprzez ocenę obejrzanego materiału oraz umieszczenie komentarza pod filmem. Dlatego tak ważny dla YouTuberów jest dobry kontakt ze swoimi widzami, ponieważ tylko dzięki niemu mogą rozwijać swoje kanały. Firma reprezentująca twórcę zleca Wam zaplanowanie wydarzenia i przedstawienia kosztów oraz zysków jakie mogłoby ono przynieść.",
+    "requirements": "do ukończenia zadania:<ul><li>Wybór lokalizacji, terminu, godzin eventu wraz z uzasadnieniem</li><li>Organizacja<ul><li>dodatkowych pracowników fizycznych,</li><li>zaplecza gastronomicznego,</li><li>ochrony obiektu,</li><li>zaplecza medycznego,</li></ul></li><li>Stworzenie mapy wydarzenia</li><li>Dokumentacja:<ul><li>struktura podziału pracy,</li><li>ocena ryzyka projektu,</li><li>oś czasu projektu,</li><li>schemat blokowy,\n\t - krótkie podsumowania każdego ze spotkań,</li><li>raporty postępu prac z każdego tygodnia,</li><li>plan ruchu na przestrzeni wydarzenia</li></ul></li></ul>dodatkowo:<ul><li>skontaktowanie się z funkcjonującymi firmami eventowymi w celu poszerzenia wiedzy,</li><li>kontaktowanie się z potencjalnymi miejscami, w których wydarzenie miałoby się odbywać</li></ul>",
+    "brief": "Tak zwane „meet-upy\" z YouTuberami nie są już nowością. Wiele z nich jest jednak organizowanych w nieprzemyślany sposób. Zdarzało się nawet, że organizatorzy musieli odwołać event ze względu na zaniedbanie dokumentacji i niedotrzymywanie wyznaczonych terminów. Tego typu wydarzenia wymagają od organizatorów pokonania wielu logistycznych trudności. Zazwyczaj niedoświadczeni organizatorzy przez presję czasu i natłok informacji zmuszeni są zrezygnować z elementów, których nie są w stanie zrealizować. Ci doświadczeni natomiast uwzględniają różne przeciwności już w procesie planowania i przedstawiają swoim klientom kompleksowy i realny plan uwzględniający np. działania w przypadku awarii technicznej, opóźnionego przybycia gości czy też konfliktów między widzami w kolejce do wejścia.<br>Eventinio, jako firma z długoletnim doświadczeniem wymaga od Waszego zespołu profesjonalizmu i zaangażowania. Zadaniem projektu jest utworzenie kompletnego planu wydarzenia w możliwe najkrótszym czasie. Firma utworzyła wydarzenie na Facebooku, w którym zadeklarowało swoją obecność 800 osób obu płci w wieku od 12 do 21 lat. Spodziewa się jednak, że może na nie przyjść w najbardziej optymistycznym założeniu 1300 osób. Prawie połowa zadeklarowanych to osoby mieszkające w województwach mazowieckim i wielkopolskim, pozostali mieszkają na przestrzeni całej Polski. Firma daje dowolność przy wyborze lokacji, terminu oraz godziny wydarzenia jednak wymaga odpowiedniego uzasadnienia decyzji. Zaplecze techniczne jest zapewnione przez Eventinio, jednak nie posiada ona wystarczającej ilości pracowników, aby sprzęt rozstawić i złożyć po zakończonym evencie. W związku z tym niezbędne będzie skontaktowanie się z firmą, która zapewniłaby pracowników fizycznych na miejscu wydarzenia.<br>Elementy, które powinny zostać uwzględnione w dokumentacji to struktura podziału pracy, ocena ryzyka projektu, oś czasu projektu, schemat blokowy czynności projektu, zaplecze gastronomiczne, bezpieczeństwo, schemat poruszania się przez odwiedzających po obiekcie. Podczas eventu zaprezentować będą chciały się cztery firmy dlatego przy rozplanowywaniu przestrzeni w obiekcie należy przeznaczyć miejsce na ich stoiska. Trzy z nich nie mają określonych preferencji, ale jedna wymaga oddzielonej przestrzeni, w której będzie mogła ustawić dziesięć stanowisk z komputerami i monitorami, niewielkiej trybuny dla widowni oraz małego zaplecza technicznego z rezerwowym sprzętem. Sprzedaż biletów będzie prowadzona online przez zewnętrzną firmę oraz przy wejściu do obiektu przez pierwsze dwie godziny wydarzenia.<br>Zleceniodawca zakłada wykonanie tego zlecenia w przeciągu dwóch miesięcy. Dotrzymanie tego terminu będzie odnotowane przez mentora i podwyższy wartość stworzonego rozwiązania.",
+    "relatedAbilityCodes": [
+      {
+        "code": "FUN",
+        "level": 35
+      },
+      {
+        "code": "COP",
+        "level": 25
+      },
+      {
+        "code": "PRO",
+        "level": 25
+      },
+      {
+        "code": "DES",
+        "level": 15
+      }
+    ],
+    "image": "card_eventino.jpg",
+    "preview": "images/cases/eventino.jpg",
+    "link": "http://test.involve.space",
+    "hash": "317b37f42e00edb10d6ceca5494edab1"
+  },
+  {
+    "title": "Nie przewijaj tak szybko!",
+    "depiction": "Złote rybki potrafią skupić uwagę na jednym przedmiocie przez 9 sekund. Przeciętny użytkownik internetu gubi zainteresowanie po 8. Zadanie, które stanęło przed firmą GoldFish, dystrybutorem znanych marek odzieżowych takich jak na przykład Supreme, jest stworzyć reklamę, która będzie w stanie idealnie zagospodarować cenne 8 sekund uwagi potencjalnego konsumenta. Zaprojektuj taką reklamę.",
+    "description": "Złote rybki potrafią skupić uwagę na jednym przedmiocie przez 9 sekund. Przeciętny użytkownik internetu gubi zainteresowanie po 8. Zadanie, które stanęło przed firmą GoldFish, dystrybutorem znanych marek odzieżowych takich jak na przykład Supreme, jest stworzyć reklamę, która będzie w stanie idealnie zagospodarować cenne 8 sekund uwagi potencjalnego konsumenta. Zaprojektuj taką reklamę.",
+    "requirements": "<ul><li>Stwórz strategię promocji na następne 2 miesiące</li><li>Zaprojektuj i usystematyzuj język wizualny reklamy, tak by mógł być wykorzystany w kolejnych produkcjach</li><li>Wybierz jeden z wariantów:<ul><li>Wykonaj clip reklamowy (do 30 sekund długości), w którym będziesz promował nowy wizerunek sieci sprzedażowej GoldFish</li><li>Stwórz 7 banerów reklamowych o dowolnej tematyce, które będą mogły zostać wywieszone w kluczowych lokalizacjach miasta.</li></ul></li><li>Zaproponuj zaangażowanie kluczowych promotorów marki, którzy mogą  zostać zaangażowani w kampanię reklamową.</li><li>Stwórz spójny, świeży wizerunek, który będzie dobrym punktem wyjścia dla wzrostu wyników firmy GoldFish</li></ul>",
+    "brief": "Firma GoldFish istnieje na rynku od 2007 roku i od tamtego czasu prowadziła kilka mniej lub bardziej skutecznych kampani marketingowych. W ostatnim okresie jednak zainteresowanie ich produktami nie jest tak duże. Kierownictwo podejrzewa, że ma to związek z nowymi strategiami cenowymi firm, które do tej pory nie były ich bezpośrednimi konkurentami. Obecnie jednak oferowanie produktów o bardzo wysokiej jakości po cenach znacznie przewyższających spotykane w regularnych sieciówkach nie jest tak niezwykłe. Produkty firm takich jak Nike, New Balance czy Timberland cieszą się coraz większą popularnością, szczególnie ich kolekcje premium, co bardzo niekorzystnie rokuje na przyszłość firmy GildFish. Jest ona tylko dystrybutorem, jednak postanowiła zorganizować kampanię, która pomogłaby zwrócić uwagę na oferowane przez siebie produkty.<br>Zadanie można wykonać na kilka sposobów. Nowa kampania zakłada przygotowanie serii plakatów reklamowych, które będą wywieszane w popularnych przestrzeniach miasta. To jedno z wyzwań, które zespół projektowy może zrealizować. Wskazania, których udzielił zleceniodawca to przede wszystkim duża dbałość o jakość wykonania, z którą będą potem kojarzone oferowane produkty. Firma udzieliła pełnego przyzwolenia na zastosowanie dowolnego języka wizualnego, musi tylko w wyjątkowy sposób dopasowywać się do urbanistycznego krajobrazu miasta, przykuwając jednocześnie uwagę tych, którzy nie mieli jeszcze okazji dowiedzieć się o sieci GoldFish.<br>Drugim filarem reklamy, którego realizacją może zająć się zespół, jest nagranie spotu reklamowego. Ograniczenia narzucone przez firmę obejmują długość clipu i wiadomość, którą przekazuje. Musi ona wyrażać misję firmy, na którą składa się przywiązanie do jakości, szacunek do produktu, energia i spontaniczność, wreszcie wyprzedzanie kultury o jeden krok. Firma GoldFish zwraca uwagę na to, by w reklamie nie była promowana agresja ani nagość. O produkcie ma świadczyć kolor i dynamika reklamy.<br>Przed zespołem stoi trudne zadanie stworzenia reklamy, która na nowo zdefiniuje tożsamość zleceniodawcy. Wykonana praca będzie oceniana z perspektywy przekazu, jakości wykonania i ogólnego wrażenia, a najskuteczniejsi graficy i designerzy mogą spodziewać się rozmów kwalifikacyjnych w dziale reklamy i marketingu firmy GoldFish.",
+    "relatedAbilityCodes": [
+      {
+        "code": "COP",
+        "level": 25
+      },
+      {
+        "code": "PRO",
+        "level": 35
+      },
+      {
+        "code": "DES",
+        "level": 40
+      }
+    ],
+    "image": "card_goldFish.jpg",
+    "preview": "images/cases/goldFish.jpg",
+    "link": "http://test.involve.space",
+    "hash": "317b37f42e00edb10d6ceca5494edab2"
+  }
+]

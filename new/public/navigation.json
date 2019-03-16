@@ -1,0 +1,38 @@
+[
+
+  {
+    "page": "messages",
+    "text": "Wiadomości",
+    "icon": "messages.svg",
+    "link": "messages.html"
+  },
+
+  {
+    "page": "profile",
+    "text": "Profil",
+    "icon": "profile.svg",
+    "link": "profile.html"
+  },
+
+  {
+    "page": "cockpit",
+    "text": "Kokpit",
+    "icon": "cockpit.svg",
+    "link": "cockpit.html"
+  },
+
+  {
+    "page": "portfolio",
+    "text": "Portfolio",
+    "icon": "portfolio.svg",
+    "link": "portfolio.html"
+  },
+
+  {
+    "page": "logout",
+    "text": "Wyloguj",
+    "icon": "logout.svg",
+    "link": "logout.html"
+  }
+
+]

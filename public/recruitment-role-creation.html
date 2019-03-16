@@ -1,0 +1,115 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog style="max-height:90%;" aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+
+                <h2>Tworzenie roli</h2>
+
+                <span flex></span>
+
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="{{local}}images/dialog-close.svg" aria-label="Zamknij okno tworzenia roli"></md-icon>
+                </md-button>
+
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content style="width:750px;overflow-y:auto;">
+
+            <div class="md-dialog-content">
+
+                <p style="margin: 0 0 16px;text-align:justify;">Stwórz rolę, aby móc zacząć rekrutować członków twojego zespołu. Aplikować na nią będą mogli jednocześnie wszyscy użytkownicy, jak i osoby zaproszone. My natomiast polecimy twój projekt osobom o odpowiednich kwalifikacjach i w miarę dogodnym położeniu geograficznym.</p>
+
+                <div layout="row">
+
+                    <span flex="10"></span>
+
+                    <md-autocomplete md-input-name="skill" md-search-text="SearchPhrase" md-items="skill in GetFilteredSkills()" md-selected-item="Role.skill" md-item-text="skill.title" md-selected-item-change="ImportRole()" md-select-on-match="true" md-match-case-insensitive="true" md-min-length="0" md-floating-label="Poszukiwana umiejętność" flex="80" md-require-match required>
+
+                        <md-item-template>
+                            <span md-highlight-text="SearchPhrase" md-highlight-flags="^i">{{skill.title}}</span>
+                        </md-item-template>
+
+                        <md-not-found>
+                            Podana nazwa nie pasuje do żadnej z dostępnych umiejętności
+                        </md-not-found>
+
+                        <div ng-messages="DialogForm.skill.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">Wybranie poszukiwanej umiejętności jest konieczne do stworzenia roli.</div>
+                            <div ng-message="md-require-match" class="my-message">Wpisana umiejętność nie znajduje się na liście dostępnych umiejętności.</div>
+                        </div>
+
+                    </md-autocomplete>
+
+                    <span flex="10"></span>
+
+                </div>
+
+                <div layout="row">
+
+                    <span flex="10"></span>
+
+                    <md-input-container class="md-block" flex="80">
+                        <label>Tytuł</label>
+                        <input ng-model="Role.title" name="title" ng-change="ValidateRole()" ng-pattern="/^[\u00c0-\u017e a-zA-Z0-9\.,:;/#_\-\(\)\+]+$/" ng-minlength="3" ng-maxlength="256" required>
+                        <div ng-messages="DialogForm.title.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">Tytuł jest konieczny do stworzenia roli.</div>
+                            <div ng-message="unique" class="my-message">Tytuł nie jest unikalny.</div>
+                            <div ng-message="pattern" class="my-message">Tytuł zawiera niedozwolone znaki.</div>
+                            <div ng-message="minlength" class="my-message">Tytuł jest za krótki.</div>
+                            <div ng-message="maxlength" class="my-message">Tytuł jest za długi.</div>
+                        </div>
+                    </md-input-container>
+
+                    <span flex="10"></span>
+
+                </div>
+
+                <div layout="row">
+
+                    <span flex="10"></span>
+
+                    <md-input-container class="md-block" flex="80">
+                        <label>Szczegółowy opis</label>
+                        <textarea ng-model="Role.description" name="description" aria-label="Wprowadź szczegółowy opis roli" ng-minlength="3" md-maxlength="1000" required></textarea>
+                        <div ng-messages="DialogForm.description.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">Opis jest konieczny do stworzenia roli.</div>
+                            <div ng-message="minlength" class="my-message">Opis jest za krótki.</div>
+                            <div ng-message="maxlength" class="my-message">Opis jest za długi.</div>
+                        </div>
+                    </md-input-container>
+
+                    <span flex="10"></span>
+
+                </div>
+
+                <div layout="row">
+
+                    <span flex></span>
+
+                    <md-button class="md-raised md-primary" ng-disabled="DialogForm.$invalid" ng-click="Respond(Role)">
+                        &nbsp;&nbsp;&nbsp;Stwórz rolę&nbsp;&nbsp;&nbsp;
+                    </md-button>
+
+                    <span flex></span>
+
+                </div>
+
+            </div>
+
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

@@ -1,0 +1,597 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<html lang="en">
+
+    <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" />
+        
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/scrollbar.css" />
+        <link rel="stylesheet" href="styles/involve.css" />
+        <link rel="stylesheet" href="styles/animations.css" />
+        <link rel="stylesheet" href="styles/recruitment.css" />
+
+        <title>Involve - Rekrutacja</title>
+
+    </head>
+
+    <body ng-app="Involve">
+
+        <div ng-controller="RecruitmentController" ng-init="Setup()" class="involve-primary lighten-4">
+
+            <div id="Tutorial" ng-class="{ 'animation' : ( TutorialState == 1 ) }" ng-show="TutorialState && TutorialState <= TutorialLength" ng-cloak>
+
+                <div class="content z-depth-1" ng-style="{ 'width' : Tutorial.width, 'height' : Tutorial.height, 'top' : Tutorial.top, 'left' : Tutorial.left }">
+
+                    <div class="title">{{Tutorial.title}}</div>
+                    <div class="text" ng-bind-html="Tutorial.text"></div>
+                    <div class="line"></div>
+
+                    <div class="actions" layout="column">
+
+                        <md-button class="md-raised md-primary" aria-label="Następny krok" ng-click="ContinueTutorial()">
+                            {{ TutorialState < TutorialLength && 'Następny krok' || 'Ukryj samouczek' }}
+                        </md-button>
+
+                        <md-button class="md-raised md-primary" aria-label="Następny krok" ng-click="LeaveTutorial()">
+                            Zakończ samouczek
+                        </md-button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="Navigation" class="involve-primary z-depth-1" ng-cloak>
+
+                <a ng-href="{{local}}cockpit.html" target="_self"><img ng-src="{{local}}images/about/logo-monochrome.svg" /></a>
+
+                <div class="tools" style="margin-left:30%;">
+
+                    <a ng-href="{{local}}project.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" style="animation-duration:0.8s;" aria-label="Pokaż projekt">
+                            <md-tooltip md-direction="bottom">Strona projektu</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-public.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                    <a ng-href="{{local}}team.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" style="animation-duration:1.0s;" aria-label="Pokaż zespół">
+                            <md-tooltip md-direction="bottom">Zespół</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-team.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                    <a ng-href="{{local}}chat.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" style="animation-duration:1.2s;" aria-label="Pokaż czat">
+                            <md-tooltip md-direction="bottom">Czat</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-chat.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                    <a ng-href="{{local}}reports.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" style="animation-duration:1.4s;" aria-label="Pokaż raporty">
+                            <md-tooltip md-direction="bottom">Raporty</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-reports.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                    <a ng-href="{{local}}calendar.html?project={{ProjectHash}}" target="_self">
+                        <md-button class="md-fab md-primary" style="animation-duration:1.6s;" aria-label="Pokaż kalendarz" ng-show="false">
+                            <md-tooltip md-direction="bottom">Kalendarz</md-tooltip>
+                            <md-icon md-svg-src="{{local}}images/project-calendar.svg"></md-icon>
+                        </md-button>
+                    </a>
+
+                </div>
+
+                <a ng-href="{{local}}logout.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Wylogowywanie" aria-label="Wyloguj się">
+                        <md-icon md-svg-src="{{local}}images/navigation-logout.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <md-button class="md-fab md-mini md-primary" title="Samouczek" aria-label="Otwórz samouczek" ng-click="EnterTutorial()">
+                    <md-icon md-svg-src="{{local}}images/navigation-tutorial.svg"></md-icon>
+                </md-button>
+
+                <a ng-href="{{local}}expertise.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Kompetencje" aria-label="Pokaż kompetencje">
+                        <md-icon md-svg-src="{{local}}images/navigation-expertise.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <a ng-href="{{local}}cockpit.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Kokpit" aria-label="Pokaż kokpit">
+                        <md-icon md-svg-src="{{local}}images/navigation-cockpit.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <a ng-href="{{local}}profile.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Profil użytkownika" aria-label="Pokaż profil użytkownika">
+                        <md-icon md-svg-src="{{local}}images/navigation-profile.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <md-button ng-class="[ 'md-fab', 'md-mini', 'md-primary', { 'md-hue-3' : ( NotificationsState == 4 ) } ]" ng-style="{ 'transition-duration' : ( NotificationsState == 3 || NotificationsState == 4 ) && '1.75s' || '0.3' }" title="Powiadomienia" aria-label="Pokaż powiadomienia" ng-click="ToggleNotifications()">
+                    <md-icon md-svg-src="{{local}}images/navigation-notifications.svg"></md-icon>
+                </md-button>
+
+            </div>
+
+            <div id="Content" class="involve-primary lighten-4" ng-cloak>
+
+                <div id="Notifications" class="involve-primary lighten-5 z-depth-1" ng-style="{ 'width' : ( ( NotificationsState == 1 || NotificationsState == 2 ) && '300px' || '0px' ), 'height' : ( ( NotificationsState == 1 || NotificationsState == 2 ) && '350px' || '0px' ) }">
+
+                    <div class="content" ng-style="{ 'opacity' : ( ( NotificationsState == 2 ) && '1.00' || '0.00' ) }">
+
+                        <div style="height:72px;">
+
+                            <md-list>
+
+                                <md-list-item md-ink-ripple class="md-2-line" ng-style="{ 'opacity' : !notification.seen && '1.00' || '0.60' }" ng-repeat="notification in notifications" ng-click="LaunchNotification(notification)">
+                                    <img ng-src="{{local}}images/{{notification.icon}}" class="md-avatar" />
+                                    <div class="md-list-item-text">
+                                        <h3 style="margin-top:10px;margin-bottom:5px;white-space:normal;">{{notification.title}}</h3>
+                                        <p style="margin-bottom:10px;">{{notification.description}}</p>
+                                    </div>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+
+                            </md-list>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="NotificationsBackground" ng-style="{ 'display' : ( ( NotificationsState == 2 ) && 'initial' || 'none' ) }" ng-click="NotificationsState=0;"></div>
+
+                <div id="Roles" class="involve-primary lighten-4 z-depth-1">
+
+                    <div class="title involve-primary darken-2 z-depth-1">
+
+                        <p class="md-title">Role</p>
+
+                        <md-fab-speed-dial class="md-scale" md-open="CreateRoleMenuState" md-direction="left">
+
+                            <md-fab-trigger>
+                                <md-button  class="md-fab md-primary md-mini" aria-label="Stwórz rolę">
+                                    <md-tooltip md-direction="bottom">Stwórz rolę</md-tooltip>
+                                    <md-icon md-svg-src="{{local}}images/recruitment-add.svg"></md-icon>
+                                </md-button>
+                            </md-fab-trigger>
+
+                            <md-fab-actions>
+
+                                <a ng-href="{{local}}products.html" target="_self">
+                                    <md-button class="md-fab md-primary md-hue-2 md-raised md-mini" aria-label="Produkty">
+                                        <md-tooltip md-direction="bottom">Stwórz rolę poprzez produkty</md-tooltip>
+                                        <md-icon md-svg-src="{{local}}images/recruitment-add-by-product.svg"></md-icon>
+                                    </md-button>
+                                </a>
+
+                                <md-button class="md-fab md-primary md-hue-2 md-raised md-mini" aria-label="Umiejętności" ng-click="CreateRole()">
+                                    <md-tooltip md-direction="bottom">Stwórz rolę poprzez umiejętności</md-tooltip>
+                                    <md-icon md-svg-src="{{local}}images/recruitment-add-by-skill.svg"></md-icon>
+                                </md-button>
+
+                            </md-fab-actions>
+
+                        </md-fab-speed-dial>
+
+                    </div>
+
+                    <div class="content">
+
+                        <div class="role" ng-repeat="role in roles" ng-click="ShowRole(role)" ng-mouseenter="Hover(role.title)" ng-mouseleave="Hover('')">
+
+                            <div class="row">
+
+                                <div ng-class="{ 'icon' : true, 'involve-primary' : ( Role == role.title ), 'involve-secondary' : ( Role != role.title ), 'lighten-2' : ( Role != role.title && RoleHover == role.title ) }">
+
+                                    <img ng-src="{{local}}images/nodes/default.svg" /> <!-- TODO: 'images/nodes/{{role.icon}}' -->
+
+                                </div>
+
+                                <div class="title">
+
+                                    {{role.title}}
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="description involve-primary lighten-3">
+
+                                    {{role.description}}
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="recommendations involve-primary lighten-3">
+
+                                    <div ng-if="( role.recommended < 10 ) && role.recruitment">
+
+                                        Rozpoczęliśmy polecanie tej roli!
+
+                                    </div>
+
+                                    <div ng-if="( role.recommended < 10 ) && !role.recruitment">
+
+                                        Polecanie tej roli zostało wstrzymane.
+
+                                    </div>
+
+                                    <div ng-if="role.recommended >= 10">
+
+                                        Poleciliśmy tę rolę już {{role.recommended}} osobom!
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="tools">
+
+                                    <div style="width:50%;float:left;">
+
+                                        <md-switch ng-model="role.recruitment" ng-change="ChangeRecruitment(role)" aria-label="Przełącz rekrutację">
+                                            <md-tooltip md-direction="bottom">{{ role.recruitment && 'Zamknij rekrutację na tę rolę' || 'Otwórz rekrutację na tę rolę' }}</md-tooltip>
+                                            Rekrutacja
+                                        </md-switch>
+
+                                    </div>
+
+                                    <div style="width:50%;float:left;">
+
+                                        <md-button class="md-icon-button" style="float:right;margin-top:11px;" aria-label="Usuń rolę" ng-click="DeleteRole(role,$event)">
+                                            <md-tooltip md-direction="bottom">Usuń rolę</md-tooltip>
+                                            <md-icon md-svg-icon="{{local}}images/recruitment-delete.svg"></md-icon>
+                                        </md-button>
+
+                                        <md-button class="md-icon-button" style="float:right;margin-top:11px;" aria-label="Edytuj rolę" ng-click="EditRole(role,$event)">
+                                            <md-tooltip md-direction="bottom">Edytuj rolę</md-tooltip>
+                                            <md-icon md-svg-icon="{{local}}images/recruitment-edit.svg"></md-icon>
+                                        </md-button>
+
+                                        <md-button class="md-icon-button" style="float:right;margin-top:11px;" aria-label="Zaangażuj użytkownika" ng-click="InvolveMember(role,$event)">
+                                            <md-tooltip md-direction="bottom">Zaangażuj członka zespołu</md-tooltip>
+                                            <md-icon md-svg-icon="{{local}}images/recruitment-involve.svg"></md-icon>
+                                        </md-button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="Applications">
+
+                    <div style="margin-top:30px;margin-bottom:10px;margin-left:10px;margin-right:10px;" layout="row">
+
+                        <div flex="33">
+
+                            <div ng-repeat="application in Applications" ng-if="($index%3)==0">
+
+                                <div class="application involve-primary lighten-4 z-depth-1">
+
+                                    <div class="row">
+
+                                        <div class="icon involve-secondary">
+
+                                            <img ng-src="{{local}}images/nodes/default.svg" /> <!-- TODO: WTF? '{{application.avatar}}' -->
+
+                                        </div>
+
+                                        <div class="title">
+
+                                            {{application.name}} {{application.surname}}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="subtitle">
+
+                                            <div>Użytkownik napisał o sobie:</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="description involve-primary lighten-3">
+
+                                            <div style="white-space:pre-line">{{application.description}}</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="subtitle" style="margin-top:20px;">
+
+                                            <div>Użytkownik napisał w aplikacji:</div>
+
+                                        </div>
+
+                                        <div class="description involve-primary lighten-3">
+
+                                            <div style="white-space:pre-line">{{application.explanation}}</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="tools">
+
+                                            <div ng-show="application.accepted" layout="row">
+
+                                                <span flex></span>
+
+                                                <md-button class="md-raised md-accent" ng-click="ExemptFromRole(application)">Zwolnij z pełnienia roli</md-button>
+
+                                                <span flex></span>
+
+                                            </div>
+
+                                            <div ng-show="!application.accepted" layout="row">
+
+                                                <span flex></span>
+
+                                                <md-button class="md-raised md-warn" ng-click="DismissApplication(application, $event)">Odrzuć</md-button>
+                                                <md-button class="md-raised md-primary" ng-click="AcceptApplication(application, $event)">Przyjmij</md-button>
+
+                                                <span flex></span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div flex="33">
+
+                            <div ng-repeat="application in Applications" ng-if="($index%3)==1">
+
+                                <div class="application involve-primary lighten-4 z-depth-1">
+
+                                    <div class="row">
+
+                                        <div class="icon involve-secondary">
+
+                                            <img ng-src="{{local}}images/nodes/default.svg" /> <!-- TODO: WTF? '{{application.avatar}}' -->
+
+                                        </div>
+
+                                        <div class="title">
+
+                                            {{application.name}} {{application.surname}}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="subtitle">
+
+                                            <div>Użytkownik napisał o sobie:</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="description involve-primary lighten-3">
+
+                                            <div style="white-space:pre-line">{{application.description}}</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="subtitle" style="margin-top:20px;">
+
+                                            <div>Użytkownik napisał w aplikacji:</div>
+
+                                        </div>
+
+                                        <div class="description involve-primary lighten-3">
+
+                                            <div style="white-space:pre-line">{{application.explanation}}</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="tools">
+
+                                            <div ng-show="application.accepted" layout="row">
+
+                                                <span flex></span>
+
+                                                <md-button class="md-raised md-accent" ng-click="ExemptFromRole(application)">Zwolnij z pełnienia roli</md-button>
+
+                                                <span flex></span>
+
+                                            </div>
+
+                                            <div ng-show="!application.accepted" layout="row">
+
+                                                <span flex></span>
+
+                                                <md-button class="md-raised md-warn" ng-click="DismissApplication(application, $event)">Odrzuć</md-button>
+                                                <md-button class="md-raised md-primary" ng-click="AcceptApplication(application, $event)">Przyjmij</md-button>
+
+                                                <span flex></span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div flex="33">
+
+                            <div ng-repeat="application in Applications" ng-if="($index%3)==2">
+
+                                <div class="application involve-primary lighten-4 z-depth-1">
+
+                                    <div class="row">
+
+                                        <div class="icon involve-secondary">
+
+                                            <img ng-src="{{local}}images/nodes/default.svg" /> <!-- TODO: WTF? '{{application.avatar}}' -->
+
+                                        </div>
+
+                                        <div class="title">
+
+                                            {{application.name}} {{application.surname}}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="subtitle">
+
+                                            <div>Użytkownik napisał o sobie:</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="description involve-primary lighten-3">
+
+                                            <div style="white-space:pre-line">{{application.description}}</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="subtitle" style="margin-top:20px;">
+
+                                            <div>Użytkownik napisał w aplikacji:</div>
+
+                                        </div>
+
+                                        <div class="description involve-primary lighten-3">
+
+                                            <div style="white-space:pre-line">{{application.explanation}}</div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="tools">
+
+                                            <div ng-show="application.accepted" layout="row">
+
+                                                <span flex></span>
+
+                                                <md-button class="md-raised md-accent" ng-click="ExemptFromRole(application)">Zwolnij z pełnienia roli</md-button>
+
+                                                <span flex></span>
+
+                                            </div>
+
+                                            <div ng-show="!application.accepted" layout="row">
+
+                                                <span flex></span>
+
+                                                <md-button class="md-raised md-warn" ng-click="DismissApplication(application, $event)">Odrzuć</md-button>
+                                                <md-button class="md-raised md-primary" ng-click="AcceptApplication(application, $event)">Przyjmij</md-button>
+
+                                                <span flex></span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+        <script src="scripts/involve.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/recruitment.js"></script>
+
+    </body>
+
+</html>

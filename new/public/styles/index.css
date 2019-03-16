@@ -1,0 +1,23 @@
+﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <[EMAIL]>, July 2017
+ */
+
+md-tabs[md-no-bar] md-tabs-wrapper {
+
+    display: none;
+
+    }
+
+md-tabs[md-no-bar] md-tabs-content-wrapper {
+
+    top: 0;
+
+    }
+
+md-tabs[md-no-bar] md-tab-content .ng-isolate-scope {
+
+    height: 100%;
+
+    }

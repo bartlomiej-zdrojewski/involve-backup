@@ -1,0 +1,429 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <[EMAIL]>, July 2017
+ -->
+
+<!DOCTYPE html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="author" content="Bartłomiej Zdrojewski">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="images/commons/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" />
+
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/animations.css" />
+        <link rel="stylesheet" href="styles/scrollbar.css" />
+        <link rel="stylesheet" href="styles/navigation.css" />
+        <link rel="stylesheet" href="styles/tutorial.css" />
+        <link rel="stylesheet" href="styles/controls.css" />
+        <link rel="stylesheet" href="styles/profile.css" />
+
+        <title>Invity - Profil</title>
+
+    </head>
+
+    <body ng-app="Invity">
+
+        <div ng-controller="ProfileController" ng-init="Setup()" layout="column" layout-fill>
+
+            <div ng-include="'commons.html'"></div>
+
+            <div layout="row" flex ng-cloak>
+
+                <md-content layout="column" flex>
+
+                    <md-toolbar class="md-accent" md-whiteframe="1">
+
+                        <div class="md-toolbar-tools" flex>
+
+                            <img ng-src="images/navigation/logo.svg" class="navigation-logo" ng-click="Redirect('cockpit.html')">
+
+                            <h2 style="white-space:nowrap;text-overflow:ellipsis;overflow:hidden;" flex>
+                                | student
+                            </h2>
+
+                            <button class="navigation-button" ng-class="{ 'active' : NavItem.active, 'inactive' : !NavItem.active }" ng-repeat="NavItem in Navigation" ng-show="$mdMedia('gt-sm')" ng-click="Redirect(NavItem.link)">
+                                <span>{{NavItem.text}}</span>
+                            </button>
+
+                            <md-button class="md-icon-button" aria-label="Nawigacja" ng-hide="$mdMedia('gt-sm')" ng-click="OpenNavigation()">
+                                <md-icon md-svg-icon="images/navigation/navigation.svg"></md-icon>
+                            </md-button>
+
+                        </div>
+
+                    </md-toolbar>
+
+                    <md-content style="height:100%;" layout="row">
+
+                        <div id="FirstFrame" layout="column" flex="20" md-whiteframe="4">
+
+                            <div class="avatar">
+
+                                <img ng-src="{{Details.avatar}}">
+
+                            </div>
+
+                            <div class="options-bar theme-options-bar" layout="row" flex="none" md-whiteframe="1">
+
+                                <span flex></span>
+
+                                <button class="controls-icon-button" ng-click="">
+                                    <img src="images/profile/settings.svg">
+                                    <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="bottom" md-delay="500">Edycja danych</md-tooltip>
+                                </button>
+
+                            </div>
+
+                            <div class="bio" flex md-whiteframe="2">
+
+                                <div class="highlight"> {{ Details.name }} {{ Details.surname }} </div>
+
+                                {{ Details.bio }}
+
+                            </div>
+
+                            <div class="details" layout="row" flex="none">
+
+                                <div class="categories" flex="40">
+
+                                    <span>Wykształcenie</span>
+                                    <span>{{ Details.education.substr( 0, 5 ) == 'Uczeń' ? 'Szkoła' : 'Uczelnia' }}</span>
+                                    <span>Miejscowość</span>
+                                    <span>Data urodzenia</span>
+                                    <span>Płeć</span>
+
+                                </div>
+
+                                <div class="values" flex="60">
+
+                                    <span> {{ Details.education }} </span>
+                                    <span> {{ Details.school }} </span>
+                                    <span> {{ Details.city }} </span>
+                                    <span> {{ DateToLongText(Details.birthdate) }} </span>
+                                    <span> {{ Details.sex }} </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div id="SecondFrame" layout="column" flex md-whiteframe="4">
+
+                            <div class="frame-header theme-frame-header" layout="row" flex="none" md-whiteframe="2">
+
+                                <button class="controls-text-button" ng-class="{ 'active' : ActiveTab == 'portfolio', 'inactive' : ActiveTab != 'portfolio' }" ng-click="ActiveTab='portfolio'">
+                                    <span>Portfolio</span>
+                                </button>
+
+                                <button class="controls-text-button" ng-class="{ 'active' : ActiveTab == 'cv', 'inactive' : ActiveTab != 'cv' }" ng-click="ActiveTab='cv'">
+                                    <span>CV</span>
+                                </button>
+
+                                <span flex></span>
+
+                                <button class="controls-icon-button" ng-click="">
+                                    <img src="images/profile/mail.svg">
+                                    <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="left" md-delay="500">Przesyłanie CV</md-tooltip>
+                                </button>
+
+                                <button class="controls-icon-button" ng-click="">
+                                    <img src="images/profile/settings.svg">
+                                    <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="left" md-delay="500">Ustawienia konta</md-tooltip>
+                                </button>
+
+                            </div>
+
+                            <md-tabs md-no-bar flex="100">
+
+                                <md-tab label="portfolio" md-active="ActiveTab=='portfolio'">
+
+                                    <div class="sections" layout="column" flex layout-fill>
+
+                                        <div class="section" layout="column" flex="35">
+
+                                            <div class="section-header theme-section-header" flex="none" md-whiteframe="1">
+
+                                                Informacje osobiste
+
+                                            </div>
+
+                                            <div class="about" layout="column" flex>
+
+                                                {{ Portfolio.about }}
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="section" layout="column" flex="35">
+
+                                            <div class="section-header theme-section-header" flex="none" md-whiteframe="1">
+
+                                                Umiejętości
+
+                                            </div>
+
+                                            <div class="skills" layout="row" flex>
+
+                                                <div flex="33">
+
+                                                    <div class="skill" ng-repeat="skill in Portfolio.skills" ng-if="$index%3==0" layout="row" md-whiteframe="1">
+
+                                                        <div class="title" flex>{{ skill.title }}</div>
+
+                                                        <div class="level">
+
+                                                            <img ng-src="images/profile/rate-{{ skill.level >= n ? 'enabled' : 'disabled' }}.svg" ng-repeat="n in [1,2,3]">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div flex="33">
+
+                                                    <div class="skill" ng-repeat="skill in Portfolio.skills" ng-if="$index%3==1" layout="row" md-whiteframe="1">
+
+                                                        <div class="title" flex>{{ skill.title }}</div>
+
+                                                        <div class="level">
+
+                                                            <img ng-src="images/profile/rate-{{ skill.level >= n ? 'enabled' : 'disabled' }}.svg" ng-repeat="n in [1,2,3]">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div flex="33">
+
+                                                    <div class="skill" ng-repeat="skill in Portfolio.skills" ng-if="$index%3==2" layout="row" md-whiteframe="1">
+
+                                                        <div class="title" flex>{{ skill.title }}</div>
+
+                                                        <div class="level">
+
+                                                            <img ng-src="images/profile/rate-{{ skill.level >= n ? 'enabled' : 'disabled' }}.svg" ng-repeat="n in [1,2,3]">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="section" layout="column" flex="none">
+
+                                            <div class="section-header theme-section-header" flex="none" md-whiteframe="1">
+
+                                                Projekty & Zadania
+
+                                            </div>
+
+                                            <div class="projects theme-cards" flex>
+
+                                                <div class="controls-cards">
+
+                                                    <a ng-href="project?hash={{project.hash}}" target="_self" ng-repeat="project in Portfolio.projects">
+
+                                                        <div class="controls-card" md-whiteframe="1">
+
+                                                            <div class="image">
+
+                                                                <img ng-src="{{project.image}}">
+
+                                                            </div>
+
+                                                            <div class="rating">
+
+                                                                {{ project.finished ? ( project.success ? 'Zakończony sukcesem' : 'Zakończony porażką' ) : 'W trakcie realizacji' }}
+
+                                                            </div>
+
+                                                            <div class="title-bar" md-whiteframe="1">
+
+                                                                {{ project.title }}
+
+                                                            </div>
+
+                                                            <div class="depiction">
+
+                                                                {{ project.depiction }}
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </a>
+
+                                                    <div class="margin"></div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="section" layout="column" flex="30">
+
+                                            <div class="section-header theme-section-header" flex="none" md-whiteframe="1">
+
+                                                Załączniki
+
+                                            </div>
+
+                                            <div class="attachments" layout="row" flex>
+
+                                                <div flex="50">
+
+                                                    <div class="attachment" ng-repeat="attachment in Portfolio.attachments" ng-if="$index%2==0" layout="row" md-whiteframe="1">
+
+                                                        <div class="title" flex>{{ attachment.title }} ({{ DateToShortText(attachment.date) }})</div>
+
+                                                        <div class="link">
+
+                                                            <button class="controls-icon-button" ng-click="LaunchAttachment(attachment)">
+                                                                <img src="images/profile/attachment.svg">
+                                                                <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="left" md-delay="500">Otwórz załącznik</md-tooltip>
+                                                            </button>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div flex="50">
+
+                                                    <div class="attachment" ng-repeat="attachment in Portfolio.attachments" ng-if="$index%2==1" layout="row" md-whiteframe="1">
+
+                                                        <div class="title" flex>{{ attachment.title }} ({{ DateToShortText(attachment.date) }})</div>
+
+                                                        <div class="link">
+
+                                                            <button class="controls-icon-button" ng-click="LaunchAttachment(attachment)">
+
+                                                                <img src="images/profile/attachment.svg">
+                                                                <md-tooltip ng-style="{ display: ( $mdMedia('gt-sm') ? 'initial' : 'none' ) }" md-direction="left" md-delay="500">Otwórz załącznik</md-tooltip>
+
+                                                            </button>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </md-tab>
+
+                                <md-tab label="cv" md-active="ActiveTab=='cv'">
+
+                                    <!-- TODO -->
+
+                                </md-tab>
+
+                            </md-tabs>
+
+                        </div>
+
+                        <div id="ThirdFrame" layout="column" flex="20" md-whiteframe="4">
+
+                            <div class="frame-header theme-frame-header" flex="none" md-whiteframe="2">
+
+                                Powiadomienia
+
+                            </div>
+
+                            <div class="notifications" flex>
+
+                                <md-list style="padding:0;">
+
+                                    <md-list-item md-no-ink class="md-3-line" ng-repeat="notification in LatestNotifications" ng-click="LaunchNotification(notification)">
+                                        <img ng-src="images/notifications/{{notification.icon}}" ng-style="{ 'opacity' : ( notification.seen ? '0.56' : '1.00' ) }" class="md-avatar" />
+                                        <div class="md-list-item-text">
+                                            <h3 style="margin-top:4px;margin-bottom:4px;line-height:16px;white-space:normal;">{{ notification.title }}</h3>
+                                            <p style="margin-bottom:8px;line-height:16px;">{{ notification.description }}</p>
+                                        </div>
+                                        <md-divider></md-divider>
+                                    </md-list-item>
+
+                                </md-list>
+
+                            </div>
+
+                            <div class="expand-bar theme-expand-bar" flex="none">
+
+                                <button class="controls-text-button" ng-click="">
+                                    <span>Wszystkie powiadomienia</span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </md-content>
+
+                </md-content>
+
+                <md-sidenav class="md-sidenav-right" md-component-id="navigation" layout="column" md-whiteframe="5">
+
+                    <md-toolbar class="md-accent">
+
+                        <div class="md-toolbar-tools">
+
+                            <h2 style="white-space:nowrap;text-overflow:ellipsis;overflow:hidden;" flex>Nawigacja</h2>
+
+                        </div>
+
+                    </md-toolbar>
+
+                    <md-menu-content width="4" flex="100">
+
+                        <md-menu-item ng-repeat="NavItem in Navigation">
+                            <md-button aria-label="{{NavItem.text}}" ng-href="{{NavItem.link}}" target="_self">
+                                <md-icon md-svg-icon="images/navigation/{{NavItem.icon}}"></md-icon>
+                                {{ NavItem.text }}
+                            </md-button>
+                        </md-menu-item>
+
+                    </md-menu-content>
+
+                </md-sidenav>
+
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+
+        <script src="scripts/invity.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/profile.js"></script>
+
+    </body>
+
+</html>

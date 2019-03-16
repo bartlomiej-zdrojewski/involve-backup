@@ -1,0 +1,211 @@
+﻿﻿/* Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ */
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 200;
+    
+    src: local( Roboto Thin ), url( "../fonts/roboto/Roboto-Thin.eot" );
+    src: url( "../fonts/roboto/Roboto-Thin.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Thin.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Thin.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Thin.ttf" ) format( "truetype" ); }
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 300;
+
+    src: local( Roboto Light ), url( "../fonts/roboto/Roboto-Light.eot" );
+    src: url( "../fonts/roboto/Roboto-Light.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Light.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Light.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Light.ttf" ) format( "truetype" ); }
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 400;
+
+    src: local( Roboto Regular ), url( "../fonts/roboto/Roboto-Regular.eot" );
+    src: url( "../fonts/roboto/Roboto-Regular.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Regular.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Regular.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Regular.ttf" ) format( "truetype" ); }
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 500;
+    
+    src: url( "../fonts/roboto/Roboto-Medium.eot" );
+    src: url( "../fonts/roboto/Roboto-Medium.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Medium.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Medium.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Medium.ttf" ) format( "truetype" ); }
+
+@font-face {
+    
+    font-family: "Roboto";
+    font-weight: 700;
+    
+    src: url("../fonts/roboto/Roboto-Bold.eot");
+    src: url( "../fonts/roboto/Roboto-Bold.eot?#iefix" ) format( "embedded-opentype" ), url( "../fonts/roboto/Roboto-Bold.woff2" ) format( "woff2" ), url( "../fonts/roboto/Roboto-Bold.woff" ) format( "woff" ), url( "../fonts/roboto/Roboto-Bold.ttf" ) format( "truetype" ); }
+
+.involve-primary {
+
+    background-color: #707070 !important;
+
+    }
+
+.involve-primary.lighten-1 {
+
+    background-color: #D4D4D4 !important;
+
+    }
+
+.involve-primary.lighten-2 {
+
+    background-color: #E1E1E1 !important;
+
+    }
+
+.involve-primary.lighten-3 {
+
+    background-color: #EEEEEE !important;
+
+    }
+
+.involve-primary.lighten-4 {
+
+    background-color: #FBFBFB !important;
+
+    }
+
+.involve-primary.lighten-5 {
+
+    background-color: #FFFFFF !important;
+
+    }
+
+.involve-primary.darken-1 {
+
+    background-color: #707070 !important;
+
+    }
+
+.involve-primary.darken-2 {
+
+    background-color: #707070 !important;
+
+    }
+
+.involve-primary.darken-3 {
+
+    background-color: #02B35D !important;
+
+    }
+
+.involve-primary.darken-4 {
+
+    background-color: #019A50 !important;
+
+    }
+
+.involve-primary.darken-5 {
+
+    background-color: #018143 !important;
+
+    }
+
+.involve-secondary {
+
+    background-color: #B0B0B0 !important;
+
+    }
+
+.involve-secondary.lighten-1 {
+
+    background-color: #2BBBAD !important;
+
+    }
+
+.involve-secondary.lighten-2 {
+
+    background-color: #4BA3C7 !important;
+
+    }
+
+.involve-secondary.lighten-3 {
+
+    background-color: #44D4C7 !important;
+
+    }
+
+.involve-secondary.lighten-4 {
+
+    background-color: #59D9CD !important;
+
+    }
+
+.involve-secondary.lighten-5 {
+
+    background-color: #6EdED3 !important;
+
+    }
+
+.involve-secondary.darken-1 {
+
+    background-color: #219187 !important;
+
+    }
+
+.involve-secondary.darken-2 {
+
+    background-color: #1D7C73 !important;
+
+    }
+
+.involve-secondary.darken-3 {
+
+    background-color: #186860 !important;
+
+    }
+
+.involve-secondary.darken-4 {
+
+    background-color: #13534D !important;
+
+    }
+
+.involve-secondary.darken-5 {
+
+    background-color: #0E3E3A !important;
+
+    }
+
+.z-depth-0 {
+    
+    box-shadow: none !important; }
+
+.z-depth-1 {
+    
+    box-shadow: 0px 2px 5px 0 rgba( 0, 0, 0, 0.16 ), 0px 2px 10px 0px rgba( 0, 0, 0, 0.12 ); }
+
+.z-depth-2 {
+    
+    box-shadow: 0px 8px 17px 0px rgba( 0, 0, 0, 0.2 ), 0px 6px 20px 0px rgba( 0, 0, 0, 0.19 ); }
+
+.z-depth-3 {
+    
+    box-shadow: 0px 12px 15px 0 rgba( 0, 0, 0, 0.24 ), 0px 17px 50px 0px rgba( 0, 0, 0, 0.19 ); }
+
+.z-depth-4 {
+    
+    box-shadow: 0px 16px 28px 0 rgba( 0, 0, 0, 0.22 ), 0px 25px 55px 0px rgba( 0, 0, 0, 0.21 ); }
+
+.z-depth-5 {
+    
+    box-shadow: 0px 27px 24px 0 rgba( 0, 0, 0, 0.2 ), 0px 40px 77px 0px rgba( 0, 0, 0, 0.22 ); }
+
+html {
+    
+    color: rgba( 0, 0, 0, 0.87 );
+    line-height: 1.5;
+    
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    
+    }

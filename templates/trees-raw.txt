@@ -1,0 +1,124 @@
+﻿WIEDZA TEORETYCZNA
+* Ekonomia
+   * Ekonomia 
+   * Bankowość
+   * Giełda
+      * Forex
+      * Giełda
+* Sztuka
+   * Historia sztuki
+* Matematyka
+   * Matematyka
+   * Analiza matematyczna
+      * Całkowanie
+      * Różniczkowanie
+   * Algebra Liniowa
+   * Statystyka
+   * Algorytmika
+* Nauki przyrodnicze
+   * Chemia
+   * Biologia
+   * Fizyka
+      * Klasyczna
+      * Kwantowa
+   * Astronomia
+   * Neuronauki
+* Języki
+   * Angielski
+   * Niemiecki
+   * Hiszpański
+
+SZTUKA
+* Literackie
+   * Skład
+   * Redagowanie
+   * Journalalism
+   * Latex
+* Gry
+   * Design
+   * Programowanie/tworzenie
+* Video
+   * Content marketing
+   * YouTube
+   * Technika
+* Fotografia
+   * Obróbka
+      * Gimp
+      * Lightroom
+      * Photoshop
+   * Dziennikarstwo
+   * Artystyczne
+   * Technika
+* Animacja
+   * 2D
+   * 3D
+* Rysunek i malarstwo
+   * Malarstwo
+   * Komiksy
+   * Concept Arty
+* Film
+   * Gear
+   * Efekty specjalne
+   * Montaż
+   * Operowanie kamerą
+* Muzyka
+   * Produkcja
+      * FL Studio
+      * Ableton
+   * Przemysł
+   * Teoria muzyki
+* Moda
+   * Tworzenie ubrań
+   * Rynek
+   * Streetwear
+
+TECHNIKA
+* Mechanika
+   * Astrodynamika
+   * Silniki
+   * Radio
+* Programowanie
+   * Analiza danych
+      * R
+      * Python
+   * PC
+      * Python
+      * C++
+      * C#
+   * WEB
+      * Front
+      * Back
+   * Mobile
+      * Android
+      * iOS
+* Robotyka
+   * Lutowanie
+   * IoT
+   * Układy elektroniczne
+   * Programowanie hardware
+      * AVR
+      * Arduino
+* Tworzenie dokumentów
+   * Pages
+   * Word
+* Design
+   * Interfejs
+   * User Experience
+   * Logo
+   * Materiały promocyjne
+
+BIZNES
+* Marketing
+   * Content Marketing (social media)
+   * Pisanie strategii promocyjnych
+   * Pitching
+   * Copywriting
+* Zarządzanie
+   * Biznesplany
+   * Modele Biznesowe
+   * Zarządzanie projektami
+* Fundraising
+   * Pisanie podań
+   * Źródła finansowania
+* Prawo
+   * Zakładanie osobowości prawnej

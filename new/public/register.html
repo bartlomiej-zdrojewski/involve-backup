@@ -1,0 +1,362 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+                <h2>Rejestracja</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="images/dialog-close.svg" aria-label="Zamknij okno rejestracji"></md-icon>
+                </md-button>
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content>
+
+            <md-tabs md-dynamic-height md-no-bar>
+
+                <md-tab md-active="ActiveTab==1" label="ExternalRegister">
+
+                    <div style="width:calc(50px*10);"></div>
+
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-input-container style="margin-bottom:5px;">
+
+                            <md-button class="md-primary md-raised" style="background-color:#4267b2;" ng-href="{{api}}/facebook" target="_self">&nbsp&nbsp&nbspZarejestruj się za pomocą facebooka&nbsp&nbsp&nbsp</md-button>
+
+                        </md-input-container>
+
+                        <span flex></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-input-container style="margin-top:5px;">
+                            <md-button class="md-primary md-raised" ng-click="ActiveTab=2">&nbsp&nbsp&nbspZarejestruj się za pomocą adresu e-mail&nbsp&nbsp&nbsp</md-button>
+                        </md-input-container>
+
+                        <span flex></span>
+
+                    </div>
+
+                </md-tab>
+
+                <md-tab md-active="ActiveTab==2" label="InternalRegister">
+
+                    <div style="width:750px;"></div>
+
+                    <p class="md-headline" style="font-size:20px;text-align:center;">Wprowadź dane do rejestracji</p>
+
+                    <div layout="row">
+
+                        <span flex="5"></span>
+
+                        <md-input-container flex="40">
+                            <label>Imię</label>
+                            <input ng-model="user.name" name="name" maxlength="256" required>
+                            <div ng-messages="DialogForm.name.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">Twoje imię lub imiona są konieczne do rejestracji.</div>
+                                <div ng-message="pattern" class="my-message">Ten wpis nie przypomina imienia.</div>
+                            </div>
+                        </md-input-container>
+
+                        <span flex="10"></span>
+
+                        <md-input-container flex="40">
+                            <label>Nazwisko</label>
+                            <input ng-model="user.surname" name="surname" maxlength="256" required>
+                            <div ng-messages="DialogForm.surname.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">Twoje nazwisko jest konieczne do rejestracji.</div>
+                                <div ng-message="pattern" class="my-message">Ten wpis nie przypomina nazwiska.</div>
+                            </div>
+                        </md-input-container>
+
+                        <span flex="5"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex="5"></span>
+
+                        <md-input-container flex="90">
+                            <label>Adres e-mail</label>
+                            <input ng-model="user.email" name="email" type="email" maxlength="1024" required>
+                            <div ng-messages="DialogForm.email.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">Twój adres e-mail jest konieczny do rejestracji.</div>
+                                <div ng-message="email" class="my-message">Ten wpis nie przypomina adresu e-mail.</div>
+                            </div>
+                        </md-input-container>
+
+                        <span flex="5"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex="5"></span>
+
+                        <md-input-container flex="40">
+                            <label>Hasło</label>
+                            <input ng-model="user.password" ng-pattern="/.{6,}/" name="password" type="password" maxlength="256" required>
+                            <div ng-messages="DialogForm.password.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">Twoje hasło jest konieczne do rejestracji.</div>
+                                <div ng-message="pattern" class="my-message">Twoje hasło powinno zawierać co najmniej 6 znaków.</div>
+                            </div>
+                        </md-input-container>
+
+                        <span flex="10"></span>
+
+                        <md-input-container flex="40">
+                            <label>Powtórz hasło</label>
+                            <input ng-model="user.passwordrepeat" name="passwordrepeat" ng-pattern="{{user.password}}" type="password" maxlength="256" required>
+                            <div ng-messages="DialogForm.passwordrepeat.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">Powtórzenie hasła jest konieczne do rejestracji.</div>
+                                <div ng-message="pattern" class="my-message">Twoje hasło zostało powtórzone niepoprawnie.</div>
+                            </div>
+                        </md-input-container>
+
+                        <span flex="5"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex="5"></span>
+
+                        <md-input-container flex="90" style="text-align:center;">
+                            <md-checkbox ng-model="AcceptPolicy" class="md-primary" style="margin-bottom:0px;" aria-label="Akceptuj regulamin platformy">
+                                Akceptuję <a class="md-accent" href="policy.html" target="_blank">regulamin platformy</a>
+                            </md-checkbox>
+                        </md-input-container>
+
+                        <span flex="5"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-input-container style="margin-top:0px;">
+                            <md-button class="md-primary md-raised" ng-disabled="DialogForm.$invalid || !AcceptPolicy" ng-click="ActiveTab=3">&nbsp&nbsp&nbspKontynuuj&nbsp&nbsp&nbsp</md-button>
+                        </md-input-container>
+
+                        <span flex></span>
+
+                    </div>
+
+                </md-tab>
+
+                <md-tab md-active="ActiveTab==3" label="InternalRegister">
+
+                    <div style="width:750px;"></div>
+
+                    <p class="md-headline" style="margin-bottom:32px;font-size:20px;text-align:center;">Wprowadź swoją datę urodzenia</p>
+
+                    <div layout="row" style="height:240px;margin-bottom:30px;">
+
+                        <span flex></span>
+
+                        <datetimepicker class="involve-primary lighten-4" ng-model="user.birthdate" ng-change="VerifyAge()" datetimepicker-config="{ startView:'year', minView:'day' }" data-before-render="FilterDates($dates)" name="birthdate" required flex></datetimepicker>
+
+                        <span flex></span>
+
+                    </div>
+                    <!--
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <div layout="row" style="width:400px;margin-bottom:18px;">
+
+                            <div class="involve-secondary" style="width:50px;height:50px;border-radius:50%;display:flex;">
+                                <md-icon md-svg-src="{{local}}images/register-disclaimer.svg" style="width:36px;height:36px;"></md-icon>
+                            </div>
+
+                            <div style="margin-left:15px;" flex>
+                                <span style="font-size:18px;">Dlaczego jest nam to potrzebne?</span>
+                                <p style="margin-top:10px;margin-bottom:10px;">
+
+                                    Musisz ukończyć 13 rok życia, aby móc aktywnie korzystać z platformy.
+
+                                </p>
+                                <p style="margin-top:10px;margin-bottom:10px;">
+
+                                    Ponadto, jeżeli nie ukończyłeś 18 roku życia, będziesz potrzebował zgody prawnego opiekuna.
+
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <span flex></span>
+
+                    </div>
+                    -->
+                    <div layout="row">
+
+                        <span flex="5"></span>
+
+                        <md-input-container flex="90" style="text-align:center;">
+                            <md-checkbox ng-model="AcceptUnderage" class="md-primary" style="margin-bottom:0px;" aria-label="Potwierdź posiadanie zgody prawnego opiekuna na użytkowanie platformy" ng-disabled="!Underage || !Legal">
+                                Posiadam zgodę prawnego opiekuna na użytkowanie platformy
+                            </md-checkbox>
+                        </md-input-container>
+
+                        <span flex="5"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-input-container style="margin-top:0px;">
+                            <md-button class="md-primary md-raised" ng-disabled="DialogForm.$invalid || !AcceptUnderage || !Legal" ng-click="ActiveTab=4">&nbsp&nbsp&nbspKontynuuj&nbsp&nbsp&nbsp</md-button>
+                        </md-input-container>
+
+                        <span flex></span>
+
+                    </div>
+
+                </md-tab>
+
+                <md-tab md-active="ActiveTab==4" label="PersonalData">
+
+                    <div style="width:750px;"></div>
+
+                    <p class="md-headline" style="font-size:20px;text-align:center;">Uzupełnij dane osobowe</p>
+
+                    <div layout="row">
+
+                        <span flex="5"></span>
+
+                        <md-input-container flex="40">
+                            <label>Nazwa szkoły / uczelni</label>
+                            <input ng-model="user.schoolname">
+                        </md-input-container>
+
+                        <span flex="10"></span>
+
+                        <md-input-container flex="40">
+                            <label>Wykształcenie</label>
+                            <md-select ng-model="user.education">
+                                <md-option value="Uczeń gimnazjum">Uczeń gimnazjum</md-option>
+                                <md-option value="Uczeń liceum">Uczeń liceum</md-option>
+                                <md-option value="Ukończone liceum">Ukończone liceum</md-option>
+                                <md-option value="Uczeń technikum">Uczeń technikum</md-option>
+                                <md-option value="Ukończone technikum">Ukończone technikum</md-option>
+                                <md-option value="Uczeń zawodówki">Uczeń zawodówki</md-option>
+                                <md-option value="Ukończona zawodówka">Ukończona zawodówka</md-option>
+                                <md-option value="Student">Student</md-option>
+                                <md-option value="Ukończone studia">Ukończone studia</md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <span flex="5"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex="5"></span>
+
+                        <md-input-container flex="40">
+                            <label>Miejscowość</label>
+                            <input ng-model="user.city">
+                        </md-input-container>
+
+                        <span flex="10"></span>
+
+                        <md-input-container flex="40">
+                            <label>Płeć</label>
+                            <md-select ng-model="user.sex">
+                                <md-option value="Mężczyzna">Mężczyzna</md-option>
+                                <md-option value="Kobieta">Kobieta</md-option>
+                                <md-option value="Inna">Inna</md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <span flex="5"></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-input-container style="margin-top:0px;margin-bottom:16px;">
+
+                            <div layout="row" style="width:400px;">
+
+                                <div class="involve-secondary" style="width:50px;height:50px;border-radius:50%;display:flex;">
+                                    <md-icon md-svg-src="images/register-disclaimer.svg" style="width:36px;height:36px;"></md-icon>
+                                </div>
+
+                                <div style="margin-left:15px;" flex>
+
+                                    <span style="font-size:18px;">Dlaczego zbieramy dane osobowe?</span>
+
+                                    <p style="margin-top:10px;margin-bottom:10px;">
+
+                                        W oparciu o twoje dane wybieramy projekty, które mogą cię zainteresować. Uwzględniamy przy tym twoją lokalizację. Nie wykorzystamy tych danych poza platformą bez twojej zgody
+                                        <a class="md-accent" href="policy.html" target="_blank">Czytaj więcej</a>
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </md-input-container>
+
+                        <span flex></span>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-input-container style="margin-top: 0px;">
+
+                            <md-button class="md-primary md-raised" ng-click="user.personaldata=false;Respond(user);">&nbsp&nbsp&nbsp&nbspNie teraz&nbsp&nbsp&nbsp&nbsp</md-button>
+                        </md-input-container>
+
+                        <span style="width:50px;"></span>
+
+                        <md-input-container style="margin-top: 0px;">
+
+                            <md-button class="md-primary md-raised" ng-click="user.personaldata=true;Respond(user);">&nbsp&nbsp&nbspUzupełnij&nbsp&nbsp&nbsp</md-button>
+                        </md-input-container>
+
+                        <span flex></span>
+
+                    </div>
+
+                </md-tab>
+
+            </md-tabs>
+
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

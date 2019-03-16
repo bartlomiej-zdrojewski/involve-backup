@@ -1,0 +1,2808 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Invity",
+    "description": "Volvo API.",
+    "version": "0.1"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/x-www-form-urlencoded",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/browser": {
+      "get": {
+        "summary": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "projects": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "depiction": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "roles": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "image": {
+                              "type": "string",
+                              "format": "path"
+                            }
+                          }
+                        }
+                      },
+                      "favourite": {
+                        "type": "boolean",
+                        "description": "is user's favourite project"
+                      },
+                      "recruitment": {
+                        "type": "boolean",
+                        "description": "is recruitment for this project open"
+                      },
+                      "image": {
+                        "type": "string",
+                        "format": "path"
+                      },
+                      "hash": {
+                        "type": "string",
+                        "format": "hash"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/case": {
+      "get": {
+        "summary": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "case": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "case"
+        ]
+      }
+    },
+    "/case/assign_project": {
+      "post": {
+        "summary": "assign project to case",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /case/assign_project",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "case": {
+                  "type": "string"
+                },
+                "project": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "case"
+        ]
+      }
+    },
+    "/cases": {
+      "get": {
+        "summary": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cases": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "case"
+        ]
+      }
+    },
+    "/chat": {
+      "get": {
+        "summary": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "leader": {
+                  "type": "boolean",
+                  "description": "is member a leader of the project"
+                },
+                "members": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "user_id"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "surname": {
+                        "type": "string"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "format": "path"
+                      },
+                      "available": {
+                        "type": "boolean",
+                        "description": "is member currently using chat"
+                      }
+                    }
+                  }
+                },
+                "chat": {
+                  "description": "full history of chat sorted by date",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "member id",
+                        "format": "user_id"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "surname": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "date of sending a first message"
+                      },
+                      "messages": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "text": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/chat/emit:join": {
+      "post": {
+        "summary": "set user as available; send 'joined' event to all available project members",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /chat/emit:join",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hash": {
+                  "type": "string",
+                  "format": "hash"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "SocketIO"
+        ]
+      }
+    },
+    "/chat/emit:leave": {
+      "post": {
+        "summary": "set user as unavailable; send 'left' event to all available project members",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /chat/emit:leave",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hash": {
+                  "type": "string",
+                  "format": "hash"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "SocketIO"
+        ]
+      }
+    },
+    "/chat/emit:message": {
+      "post": {
+        "summary": "save message in chat history; send 'message' event to all available project members",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /chat/emit:message",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hash": {
+                  "type": "string",
+                  "format": "hash"
+                },
+                "msg": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "SocketIO"
+        ]
+      }
+    },
+    "/chat/on:joined": {
+      "post": {
+        "summary": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /chat/on:joined",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "SocketIO"
+        ]
+      }
+    },
+    "/chat/on:left": {
+      "post": {
+        "summary": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /chat/on:left",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "SocketIO"
+        ]
+      }
+    },
+    "/chat/on:message": {
+      "post": {
+        "summary": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /chat/on:message",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "from": {
+                  "type": "object",
+                  "description": "data of emmber who sent the message",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "user_id"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "type": "string",
+                  "description": "actual message"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "SocketIO"
+        ]
+      }
+    },
+    "/change_password": {
+      "post": {
+        "summary": "change password to given account",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /change_password",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/cockpit": {
+      "get": {
+        "summary": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "projects": {
+                  "type": "object",
+                  "properties": {
+                    "assigned": {
+                      "type": "array",
+                      "description": "user's projects",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "depiction": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string",
+                            "format": "path"
+                          },
+                          "leader": {
+                            "type": "boolean"
+                          },
+                          "finished": {
+                            "type": "boolean"
+                          },
+                          "success": {
+                            "type": "boolean"
+                          },
+                          "hash": {
+                            "type": "string",
+                            "format": "hash"
+                          }
+                        }
+                      }
+                    },
+                    "suggested": {
+                      "type": "array",
+                      "description": "suggested projects must not belong to user nor be finished and the recruitment must be open",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "depiction": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string",
+                            "format": "path"
+                          },
+                          "hash": {
+                            "type": "string",
+                            "format": "hash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "cases": {
+                  "type": "object",
+                  "properties": {
+                    "assigned": {
+                      "type": "array",
+                      "description": "cases to which ongoing user projects are assigned",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "depiction": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string",
+                            "format": "path"
+                          },
+                          "hash": {
+                            "type": "string",
+                            "format": "hash"
+                          }
+                        }
+                      }
+                    },
+                    "suggested": {
+                      "type": "array",
+                      "description": "suggested casses must not belong to any ongoing user projects",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "depiction": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string",
+                            "format": "path"
+                          },
+                          "hash": {
+                            "type": "string",
+                            "format": "hash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "partners": {
+                  "type": "object",
+                  "properties": {
+                    "all": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "image": {
+                            "type": "string",
+                            "format": "path"
+                          },
+                          "link": {
+                            "type": "string",
+                            "format": "path"
+                          }
+                        }
+                      }
+                    },
+                    "sugested": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "image": {
+                            "type": "string",
+                            "format": "path"
+                          },
+                          "link": {
+                            "type": "string",
+                            "format": "path"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/contact": {
+      "post": {
+        "summary": "send message to involve mailbox",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /contact",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        }
+      }
+    },
+    "/create_project": {
+      "post": {
+        "summary": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /create_project",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "depiction": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hash": {
+                  "type": "string",
+                  "format": "hash"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/expertise": {
+      "get": {
+        "summary": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        }
+      }
+    },
+    "/favourite": {
+      "get": {
+        "summary": "set project as favourite if value is true; undo setting project as favourite if value is false",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          },
+          {
+            "in": "query",
+            "name": "value",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "NEW! Log in the user",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /login",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/logout": {
+      "get": {
+        "summary": "log out the user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/notification": {
+      "get": {
+        "summary": "NEW! Set notification as seen",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "summary": "NEW!",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "required": [
+                "details"
+              ],
+              "properties": {
+                "tutorial": {
+                  "type": "boolean"
+                },
+                "details": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    },
+                    "sex": {
+                      "type": "string",
+                      "enum": [
+                        "Mężczyzna",
+                        "Kobieta",
+                        "Inna"
+                      ]
+                    },
+                    "birthdate": {
+                      "type": "integer",
+                      "description": "date"
+                    },
+                    "avatar": {
+                      "type": "string",
+                      "description": "path"
+                    },
+                    "bio": {
+                      "type": "string"
+                    },
+                    "education": {
+                      "type": "string"
+                    },
+                    "school": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "portfolio": {
+                  "type": "object",
+                  "properties": {
+                    "about": {
+                      "type": "string"
+                    },
+                    "skills": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "level": {
+                            "type": "integer",
+                            "enum": [
+                              0,
+                              1,
+                              2,
+                              3
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "projects": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "depiction": {
+                            "type": "string",
+                            "description": "aka short description"
+                          },
+                          "leader": {
+                            "type": "boolean",
+                            "description": "Is user a leader of the project?"
+                          },
+                          "finished": {
+                            "type": "boolean",
+                            "description": "Is project finished?"
+                          },
+                          "success": {
+                            "type": "boolean",
+                            "description": "If project is finished, was it successful?"
+                          },
+                          "hash": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "attachments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "date": {
+                            "type": "string",
+                            "description": "date"
+                          },
+                          "link": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "cv": {
+                  "type": "object"
+                },
+                "notifications": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "icon": {
+                        "type": "string",
+                        "description": "path, 'images/notifications/PATH'"
+                      },
+                      "seen": {
+                        "type": "boolean"
+                      },
+                      "date": {
+                        "type": "string",
+                        "description": "date"
+                      },
+                      "link": {
+                        "type": "string",
+                        "description": "path"
+                      },
+                      "hash": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/personal_data": {
+      "post": {
+        "summary": "update user personal data",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /profile/personal_data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sex": {
+                  "type": "string"
+                },
+                "schoolname": {
+                  "type": "string"
+                },
+                "education": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      }
+    },
+    "/profile/description": {
+      "post": {
+        "summary": "update user description",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /profile/description",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      }
+    },
+    "/project": {
+      "get": {
+        "summary": "remove last response",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mentor": {
+                  "type": "boolean",
+                  "description": "is user a mentor of the project"
+                },
+                "leader": {
+                  "type": "boolean",
+                  "description": "is user a leader of the project"
+                },
+                "member": {
+                  "type": "boolean",
+                  "description": "is user a member of the project"
+                },
+                "favourite": {
+                  "type": "boolean",
+                  "description": "is user's favourite project"
+                },
+                "recruitment": {
+                  "type": "boolean",
+                  "description": "is recruitment open"
+                },
+                "invited": {
+                  "type": "boolean",
+                  "description": "has been user invited to the project"
+                },
+                "applied": {
+                  "type": "boolean",
+                  "description": "has user applied to the project"
+                },
+                "project": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "depiction": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string",
+                      "format": "path"
+                    }
+                  }
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "skill": {
+                        "type": "string",
+                        "description": "title of skill connected with role"
+                      },
+                      "members": {
+                        "type": "array",
+                        "description": "all project members involved in role",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "avatar": {
+                              "type": "string",
+                              "format": "path"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "media": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "icon": {
+                        "type": "string",
+                        "format": "path"
+                      },
+                      "link": {
+                        "type": "string",
+                        "format": "url"
+                      }
+                    }
+                  }
+                },
+                "closure": {
+                  "type": "object",
+                  "properties": {
+                    "closed": {
+                      "type": "boolean",
+                      "description": "is project closed"
+                    },
+                    "state": {
+                      "type": "boolean",
+                      "description": "was closure request sent by the leader"
+                    },
+                    "explanation": {
+                      "type": "string",
+                      "description": "the reason why the leader want to close the project"
+                    }
+                  }
+                },
+                "response": {
+                  "type": "object",
+                  "description": "message thet will be shown when user opens a project page; often reffered as 'send message'",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/portfolio": {
+      "get": {
+        "summary": "",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "skills": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "level": {
+                        "type": "integer",
+                        "enum": [
+                          0,
+                          1,
+                          2,
+                          3
+                        ]
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "hash": {
+                        "type": "string",
+                        "format": "skill_code"
+                      }
+                    }
+                  }
+                },
+                "projects": {
+                  "type": "array",
+                  "description": "User's projects",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "depiction": {
+                        "type": "string",
+                        "description": "aka short description"
+                      },
+                      "leader": {
+                        "type": "boolean",
+                        "description": "is user a leader of the project"
+                      },
+                      "finished": {
+                        "type": "boolean",
+                        "description": "is project finished"
+                      },
+                      "success": {
+                        "type": "boolean",
+                        "description": "was project successfully"
+                      },
+                      "hash": {
+                        "type": "string",
+                        "format": "hash"
+                      },
+                      "image": {
+                        "type": "string",
+                        "format": "path"
+                      }
+                    }
+                  }
+                },
+                "cases": {
+                  "type": "array",
+                  "description": "Cases to which any user's project belongs",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "depiction": {
+                        "type": "string",
+                        "description": "aka short description"
+                      },
+                      "leader": {
+                        "type": "boolean",
+                        "description": "is user a leader of the project"
+                      },
+                      "finished": {
+                        "type": "boolean",
+                        "description": "is project finished"
+                      },
+                      "success": {
+                        "type": "boolean",
+                        "description": "was project successfully"
+                      },
+                      "hash": {
+                        "type": "string",
+                        "format": "hash"
+                      }
+                    }
+                  }
+                },
+                "attachments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "link": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/close": {
+      "post": {
+        "summary": "set up a proper notification; close project",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /project/close?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "agreement": {
+                  "type": "string"
+                },
+                "success": {
+                  "type": "string"
+                },
+                "summary": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/project/closure_request": {
+      "post": {
+        "summary": "set up a proper notification; send closing request to the mentor",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /project/closure_request?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "explanation": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/project/report": {
+      "post": {
+        "summary": "report project",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /project/report?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "explanation": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/project/description": {
+      "post": {
+        "summary": "update project description",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /project/description?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/project/media": {
+      "post": {
+        "summary": "update project media",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /project/media?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "media": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/recovery": {
+      "get": {
+        "summary": "send recovery link to given email address",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/recruitment": {
+      "get": {
+        "summary": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "skill": {
+                        "type": "string",
+                        "format": "skill_code"
+                      },
+                      "recruitment": {
+                        "type": "boolean",
+                        "description": "is recruitment open"
+                      },
+                      "recommended": {
+                        "type": "integer",
+                        "description": "how meny users have seen this role in theirs recomendations"
+                      },
+                      "icon": {
+                        "type": "string",
+                        "format": "path"
+                      }
+                    }
+                  }
+                },
+                "applications": {
+                  "type": "array",
+                  "description": "all applications for the project",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "surname": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string",
+                        "format": "user_id"
+                      },
+                      "member": {
+                        "type": "boolean",
+                        "description": "is user a member of the project"
+                      },
+                      "roles": {
+                        "type": "array",
+                        "description": "titles of roles they applied",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "accepted": {
+                        "type": "array",
+                        "description": "was user accepted for the according role",
+                        "items": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                "skills": {
+                  "type": "array",
+                  "description": "all available skills",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "role_title": {
+                        "type": "string",
+                        "description": "default title of the role (based on the skill title)"
+                      },
+                      "role_description": {
+                        "type": "string",
+                        "description": "default description of the role (based on the skill title)"
+                      },
+                      "icon": {
+                        "type": "string",
+                        "format": "path"
+                      },
+                      "hash": {
+                        "type": "string",
+                        "format": "skill_code"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/recruitment/change": {
+      "get": {
+        "summary": "open recruitment for given role if value is true; close recruitment for given role if value if false; if recruitment for any role is open then recruitment for project is open, otherwise it is closed",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          },
+          {
+            "in": "query",
+            "name": "role",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "value",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/recruitment/create_role": {
+      "post": {
+        "summary": "create role; check if role title is unique, it must be",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /recruitment/create_role?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "skill": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/recruitment/edit_role": {
+      "post": {
+        "summary": "edit role; check if role title is unique, it must be",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /recruitment/edit_role?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "newTitle": {
+                  "type": "string"
+                },
+                "oldTitle": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/recruitment/delete_role": {
+      "post": {
+        "summary": "delete role; check if nobody is applying for the role, all applications must be dismissed before deleting the role",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /recruitment/delete_role?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/recruitment/accept_role": {
+      "post": {
+        "summary": "set up a proper notification; add role to user roles; set role in user application as accepted; if user is not a project member, make him a member and send him a welcome message",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /recruitment/accept_role?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "response": {
+                  "type": "object",
+                  "description": "optional welcome message",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/recruitment/dismiss_role": {
+      "post": {
+        "summary": "remove role from user application",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /recruitment/dismiss_role?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/recruitment/dismiss_application": {
+      "post": {
+        "summary": "set up a proper notification; remove whole application and send user a rejection message",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /recruitment/dismiss_application",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                },
+                "response": {
+                  "type": "object",
+                  "description": "reject message",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/recruitment/involve_member": {
+      "post": {
+        "summary": "set up a proper notification; add role to member roles; add role to member application; set role in member application as accepted",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /recruitment/involve_member?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/recruitment/exempt_role": {
+      "post": {
+        "summary": "set up a proper notification; undo setting member role as accepted",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /recruitment/exempt_role?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/recruitment"
+        ]
+      }
+    },
+    "/register": {
+      "post": {
+        "summary": "create an account from given data; log in user but do not redirect him",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /register",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "surname": {
+                  "type": "string"
+                },
+                "sex": {
+                  "type": "string"
+                },
+                "birthdate": {
+                  "type": "string"
+                },
+                "schoolname": {
+                  "type": "string"
+                },
+                "education": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/register/complete": {
+      "post": {
+        "summary": "complete registration and fill the missing account data",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /register/complete",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "sex": {
+                  "type": "string"
+                },
+                "birthdate": {
+                  "type": "string"
+                },
+                "schoolname": {
+                  "type": "string"
+                },
+                "education": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/register/status": {
+      "get": {
+        "summary": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "registered": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/reports": {
+      "get": {
+        "summary": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mentor": {
+                  "type": "boolean"
+                },
+                "leader": {
+                  "type": "boolean"
+                },
+                "closed": {
+                  "type": "boolean"
+                },
+                "reports": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "project reports",
+                    "properties": {
+                      "date": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "answers": {
+                        "type": "array",
+                        "description": "answers to 4 questions in report form",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "description": "responses from mentor",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "project",
+          "project/reports"
+        ]
+      }
+    },
+    "/reports/link": {
+      "post": {
+        "summary": "send link to mentor's email address; note user name (security purpose)",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /reports/link?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/reports"
+        ]
+      }
+    },
+    "/reports/send": {
+      "post": {
+        "summary": "send report to mentor",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /reports/send?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "string"
+                },
+                "answers": {
+                  "type": "array",
+                  "description": "answers to 4 questions in report form",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/reports"
+        ]
+      }
+    },
+    "/reports/update": {
+      "post": {
+        "summary": "update project reports",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /reports/update?hash=HASH",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "reports": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/reports"
+        ]
+      }
+    },
+    "/node/level": {
+      "post": {
+        "summary": "change user's level of knowledge",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /node/level",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "level": {
+                  "type": "string"
+                },
+                "hash": {
+                  "type": "string",
+                  "format": "hash"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        }
+      }
+    },
+    "/nodes": {
+      "get": {
+        "summary": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "skills": {
+                  "type": "array",
+                  "description": "all available skills",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "level": {
+                        "type": "integer",
+                        "enum": [
+                          0,
+                          1,
+                          2,
+                          3
+                        ],
+                        "description": "user's level of the skill (less worse)"
+                      },
+                      "role_title": {
+                        "type": "string",
+                        "description": "default title of a role based on the skill"
+                      },
+                      "role_description": {
+                        "type": "string",
+                        "description": "default description of a role based on the skill"
+                      }
+                    }
+                  }
+                },
+                "projects": {
+                  "description": "projects in which user parcitipate",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "Mentor zespołu",
+                          "Lider zespołu",
+                          "Członek zespołu"
+                        ]
+                      },
+                      "leader": {
+                        "type": "boolean",
+                        "description": "is user the mentor of the project"
+                      },
+                      "image": {
+                        "type": "string",
+                        "format": "path"
+                      },
+                      "hash": {
+                        "type": "string",
+                        "format": "hash"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/team": {
+      "get": {
+        "summary": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hash",
+            "type": "string",
+            "format": "hash"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mentor": {
+                  "type": "boolean"
+                },
+                "leader": {
+                  "type": "boolean"
+                },
+                "recruitment": {
+                  "type": "boolean"
+                },
+                "members": {
+                  "type": "array",
+                  "items": {
+                    "description": "all project members",
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "surname": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "aka bio"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "format": "path"
+                      },
+                      "id": {
+                        "type": "string",
+                        "format": "user_id"
+                      },
+                      "roles": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "appreciated": {
+                              "type": "boolean",
+                              "description": "was the member appreciated - has level 3 oh the skill"
+                            },
+                            "image": {
+                              "type": "string",
+                              "format": "path"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "invitations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "user name or email address"
+                      },
+                      "surname": {
+                        "type": "string",
+                        "description": "surname or empty string"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "date of the invitation sending"
+                      },
+                      "image": {
+                        "type": "string",
+                        "format": "path"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "project",
+          "project/team"
+        ]
+      }
+    },
+    "/team/appreciate": {
+      "post": {
+        "summary": "set 3-rd level of knowledge for role skill",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /team/appreciate",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                },
+                "project": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/team"
+        ]
+      }
+    },
+    "/team/report": {
+      "post": {
+        "summary": "report member",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /team/report",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                },
+                "project": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/team"
+        ]
+      }
+    },
+    "/team/delete": {
+      "post": {
+        "summary": "set up a proper notification; remove member from project; send user a message with explanation why he was removed from the project",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /team/delete",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "user_id"
+                },
+                "project": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/team"
+        ]
+      }
+    },
+    "/team/invite": {
+      "post": {
+        "summary": "set up a proper notification; invite person to the project, see project->invited; if person is not an involve user, send him an invitation email; limit a maximum number of invitations per day for security reasons",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /team/invite",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "project": {
+                  "type": "string"
+                },
+                "contact": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/team"
+        ]
+      }
+    },
+    "/team/uninvite": {
+      "post": {
+        "summary": "set up a proper notification; undo inviting a person to the project, see project->invited; if person is not an involve user, do nothing",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /team/uninvite",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "project": {
+                  "type": "string"
+                },
+                "contact": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        },
+        "tags": [
+          "project",
+          "project/team"
+        ]
+      }
+    },
+    "/tutorial": {
+      "get": {
+        "summary": "enter tutorial mode if value is true; leave tutorial mode if value is false",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "value",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        }
+      }
+    },
+    "/validate_token": {
+      "post": {
+        "summary": "check if token is valid, send error status if not",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "[no name] : /validate_token?token=TOKEN",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}

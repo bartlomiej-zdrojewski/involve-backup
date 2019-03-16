@@ -1,0 +1,128 @@
+{
+
+  "details": {
+
+    "name": "Bartłomiej",
+    "surname": "Zdrojewski",
+    "sex": "Mężczyzna",
+    "birthdate": 907588800000,
+
+    "avatar": "storage/demo/users/default.jpg",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.",
+
+    "education": "Student",
+    "school": "Poliechnika Warszawska",
+    "city": "Warszawa"
+
+    },
+
+  "portfolio": {
+
+    "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam viverra nisi, in interdum massa nibh nec erat.",
+
+    "skills": [
+
+      {
+        "title": "JavaScript",
+        "level": 2
+      },
+
+      {
+        "title": "AngularJS",
+        "level": 3
+      },
+
+      {
+        "title": "Metaprogramowanie",
+        "level": 1
+      },
+
+      {
+        "title": "C++",
+        "level": 2
+      },
+
+      {
+        "title": "AVR",
+        "level": 1
+      }
+
+      ],
+
+    "projects": [
+
+      {
+        "title": "Invity",
+        "depiction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a.",
+        "image": "storage/demo/projects/default.jpg",
+
+        "leader": false,
+        "finished": false,
+        "success": false,
+
+        "hash": "6c3"
+      },
+
+      {
+        "title": "CanSat",
+        "depiction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a.",
+        "image": "storage/demo/projects/default.jpg",
+
+        "leader": false,
+        "finished": true,
+        "success": false,
+
+        "hash": "5dc"
+      }
+
+      ],
+
+    "attachments": [
+
+      {
+        "title": "List motywacyjny",
+        "date": 1500465600000,
+        "link": "http://www.google.com/"
+      },
+
+      {
+        "title": "Certyfikat CISCO",
+        "date": 1500984000000,
+        "link": "http://www.google.com/"
+      }
+
+      ]
+
+    },
+
+  "notifications": [
+
+    {
+      "title": "Zostałeś przyjęty do projektu 'Invity'!",
+      "description": "Twoja aplikacja została rozpatrzona pozytywnie i zostałeś przydzielony do roli 'Programista Front-End'.",
+      "icon": "default.svg",
+      "seen": true,
+
+      "date": 1500465600000,
+      "link": "http://www.google.com/",
+
+      "hash": "b5f"
+    },
+
+    {
+      "title": "Mentor opowiedział na raport",
+      "description": "Mentor projektu 'Invity' odpowiedział na wasz ostatni raport.",
+      "icon": "default.svg",
+      "seen": false,
+
+      "date": 1500984000000,
+      "link": "http://www.google.com/",
+
+      "hash": "ac3"
+    }
+
+    ],
+
+  "tutorial": false
+
+}

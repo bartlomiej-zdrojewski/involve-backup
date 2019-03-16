@@ -1,0 +1,403 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<html lang="en">
+
+    <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" />
+        
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/scrollbar.css" />
+        <link rel="stylesheet" href="styles/involve.css" />
+        <link rel="stylesheet" href="styles/animations.css" />
+        <link rel="stylesheet" href="styles/skills.css" />
+
+        <title>Involve - Umiejętności</title>
+
+    </head>
+
+    <body ng-app="Involve">
+
+        <div ng-controller="SkillsController" ng-init="Setup()" class="involve-primary lighten-4">
+
+            <div id="Tutorial" ng-class="{ 'animation' : ( TutorialState == 1 ) }" ng-show="TutorialState && TutorialState <= TutorialLength" ng-cloak>
+
+                <div class="content z-depth-1" ng-style="{ 'width' : Tutorial.width, 'height' : Tutorial.height, 'top' : Tutorial.top, 'left' : Tutorial.left }">
+
+                    <div class="title">{{Tutorial.title}}</div>
+                    <div class="text" ng-bind-html="Tutorial.text"></div>
+                    <div class="line"></div>
+
+                    <div class="actions" layout="column">
+
+                        <md-button class="md-raised md-primary" aria-label="Następny krok" ng-click="ContinueTutorial()">
+                            {{ TutorialState < TutorialLength && 'Następny krok' || 'Ukryj samouczek' }}
+                        </md-button>
+
+                        <md-button class="md-raised md-primary" aria-label="Następny krok" ng-click="LeaveTutorial()">
+                            Zakończ samouczek
+                        </md-button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="Navigation" class="involve-primary z-depth-1" ng-cloak>
+
+                <a ng-href="{{local}}cockpit.html" target="_self"><img ng-src="{{local}}images/about/logo-monochrome.svg" /></a>
+
+                <a ng-href="logout.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Wylogowywanie" aria-label="Wyloguj się">
+                        <md-icon md-svg-src="{{local}}images/navigation-logout.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <md-button class="md-fab md-mini md-primary" title="Samouczek" aria-label="Otwórz samouczek" ng-click="EnterTutorial()">
+                    <md-icon md-svg-src="{{local}}images/navigation-tutorial.svg"></md-icon>
+                </md-button>
+
+                <a ng-href="expertise.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Kompetencje" aria-label="Pokaż kompetencje">
+                        <md-icon md-svg-src="{{local}}images/navigation-expertise.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <a ng-href="cockpit.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Kokpit" aria-label="Pokaż kokpit">
+                        <md-icon md-svg-src="{{local}}images/navigation-cockpit.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <a ng-href="profile.html" target="_self">
+                    <md-button class="md-fab md-mini md-primary" title="Profil użytkownika" aria-label="Pokaż profil użytkownika">
+                        <md-icon md-svg-src="{{local}}images/navigation-profile.svg"></md-icon>
+                    </md-button>
+                </a>
+
+                <md-button ng-class="[ 'md-fab', 'md-mini', 'md-primary', { 'md-hue-3' : ( NotificationsState == 4 ) } ]" ng-style="{ 'transition-duration' : ( NotificationsState == 3 || NotificationsState == 4 ) && '1.75s' || '0.3' }" title="Powiadomienia" aria-label="Pokaż powiadomienia" ng-click="ToggleNotifications()">
+                    <md-icon md-svg-src="{{local}}images/navigation-notifications.svg"></md-icon>
+                </md-button>
+
+            </div>
+
+            <div id="Content" class="involve-primary lighten-4" ng-cloak>
+
+                <div id="Notifications" class="involve-primary lighten-5 z-depth-1" ng-style="{ 'width' : ( ( NotificationsState == 1 || NotificationsState == 2 ) && '300px' || '0px' ), 'height' : ( ( NotificationsState == 1 || NotificationsState == 2 ) && '350px' || '0px' ) }">
+
+                    <div class="content" ng-style="{ 'opacity' : ( ( NotificationsState == 2 ) && '1.00' || '0.00' ) }">
+
+                        <div style="height:72px;">
+
+                            <md-list>
+
+                                <md-list-item md-ink-ripple class="md-2-line" ng-style="{ 'opacity' : !notification.seen && '1.00' || '0.60' }" ng-repeat="notification in notifications" ng-click="LaunchNotification(notification)">
+                                    <img ng-src="{{local}}images/{{notification.icon}}" class="md-avatar" />
+                                    <div class="md-list-item-text">
+                                        <h3 style="margin-top:10px;margin-bottom:5px;white-space:normal;">{{notification.title}}</h3>
+                                        <p style="margin-bottom:10px;">{{notification.description}}</p>
+                                    </div>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+
+                            </md-list>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="NotificationsBackground" ng-style="{ 'display' : ( ( NotificationsState == 2 ) && 'initial' || 'none' ) }" ng-click="NotificationsState=0;"></div>
+
+                <div id="Categories" class="involve-primary lighten-5 z-depth-1">
+
+                    <div class="pause"></div>
+
+                    <div md-ink-ripple class="category z-depth-1" ng-style="GetTheme(category)" ng-repeat="category in Categories" ng-click="Filter(category)" ng-mouseenter="ToggleCategoryHover(category.hash)" ng-mouseleave="ToggleCategoryHover('')">
+
+                        <div class="image">
+
+                            <img ng-src="{{local}}images/nodes/{{category.icon}}">
+
+                        </div>
+
+                        {{category.title}}
+
+                        <div class="mask"></div>
+
+                    </div>
+
+                </div>
+
+                <div id="Skills" >
+
+                    <!--
+
+                    <div ng-class="{ 'ready' : !Category.length }" ng-show="!Category.length">
+
+                        <img ng-src="{{local}}images/empty-category.svg" />
+
+                    </div>
+
+                    <div class="empty" ng-show="Category.length && !Skills.length">
+
+                        <img ng-src="{{local}}images/empty-skills.svg" />
+
+                    </div>
+
+                    -->
+
+                    <div style="top:calc(50% - 50px);left:calc(50% - 50px);position:absolute;" ng-show="!SkillsReady && Category.length">
+
+                        <md-progress-circular class="md-primary" md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+
+                    </div>
+
+                    <div ng-show="SkillsReady && Category.length">
+
+                        <div class="search involve-primary lighten-5 z-depth-1">
+
+                            <md-icon md-svg-src="{{local}}images/skills-search.svg"></md-icon>
+                            <input id="SearchInput" ng-model="SearchPhrase" ng-change="Filter()" type="text" autofocus flex>
+
+                        </div>
+
+                        <div style="top:calc(50% - 15px);left:calc(50% - 40px);position:absolute;" ng-show="SkillsReady==1">
+
+                            <md-progress-circular class="md-primary" md-mode="indeterminate" md-diameter="80"></md-progress-circular>
+
+                        </div>
+
+                        <div ng-show="SkillsReady==2">
+
+                            <div class="skill" ng-class="{ 'short' : ( SkillHover != skill.hash ) }" ng-repeat="skill in Skills" ng-if="skill.visible" ng-mouseenter="ToggleSkillHover(skill.hash)" ng-mouseleave="ToggleSkillHover('')">
+
+                                <div class="details" ng-class="{ 'short' : ( SkillHover != skill.hash ) }" ng-style="{ 'background-color' : skill.theme }">
+
+                                    <div style="width:calc( 100% - 165px - 30px );height:148px;position:absolute;z-index:11;transition:opacity 0.2s ease-in-out;" ng-style="{ 'opacity' : ( SkillHover == skill.hash && '1.00' || '0.00' ) }">
+
+                                        <div class="image">
+
+                                            <img ng-src="{{local}}images/nodes/{{skill.icon}}">
+
+                                        </div>
+
+                                        <div class="title" ng-style="{ 'color' : skill.font }">
+
+                                            {{skill.title}}
+
+                                        </div>
+
+                                        <div class="description" ng-style="{ 'color' : skill.font, 'border-bottom-color' : skill.font }">
+
+                                            {{skill.description}}
+
+                                        </div>
+
+                                        <div class="actions">
+
+                                            <md-button ng-style="{ 'color' : skill.font }" ng-hide="skill.hash.substr(0,3)=='IST'" ng-click="AssignRole(skill)">Dodaj do projektu</md-button>
+                                            <md-button ng-style="{ 'color' : skill.font, 'margin-right' : '0px' }" ng-href="skill.html?skill={{skill.hash}}">Zobacz pełny opis</md-button>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div style="width:calc( 100% - 165px - 30px );height:48px;position:absolute;z-index:10;transition:opacity 0.2s ease-in-out;" ng-style="{ 'opacity' : ( SkillHover != skill.hash && '1.00' || '0.00' ) }">
+
+                                        <div style="margin-left:10px;line-height:48px;font-size:18px;" ng-style="{ 'color' : skill.font }">
+
+                                            {{skill.title}}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="familiarity" ng-class="{ 'short' : ( SkillHover != skill.hash ) }" ng-style="{ 'color' : skill.font, 'background-color' : skill.theme, 'border-bottom-color' : skill.font }">
+
+                                    <div style="width:150px;height:148px;position:absolute;z-index:11;transition:opacity 0.2s ease-in-out;" ng-style="{ 'opacity' : ( SkillHover == skill.hash && '1.00' || '0.00' ) }">
+
+                                        <div class="image" style="line-height:100px;text-align:center;font-size:40px;font-weight:500;">
+
+                                            {{ skill.level }}
+
+                                        </div>
+
+                                        <!--
+
+                                        <div class="image" ng-if="skill.level==0"><img ng-src="{{local}}images/skills-not-intrested.svg"></div>
+                                        <div class="image" ng-if="skill.level==1"><img ng-src="{{local}}images/skills-intrested.svg"></div>
+                                        <div class="image" ng-if="skill.level==2"><img ng-src="{{local}}images/skills-qualified.svg"></div>
+                                        <div class="image" ng-if="skill.level==3"><img ng-src="{{local}}images/skills-professional.svg"></div>
+
+                                        -->
+
+                                        <div class="title" ng-if="skill.hash.substr(0,3)!='IST' && skill.shownlevel==0">Niezainteresowany</div>
+                                        <div class="title" ng-if="skill.hash.substr(0,3)!='IST' && skill.shownlevel==1">Zainteresowany</div>
+                                        <div class="title" ng-if="skill.hash.substr(0,3)!='IST' && skill.shownlevel==2">Kompetentny</div>
+                                        <div class="title" ng-if="skill.hash.substr(0,3)!='IST' && skill.shownlevel==3">Profesjonalny</div>
+
+                                        <div class="title" ng-if="skill.hash.substr(0,3)=='IST' && skill.shownlevel==0">Nieprzeczytany</div>
+                                        <div class="title" ng-if="skill.hash.substr(0,3)=='IST' && skill.shownlevel==1">Przeczytany</div>
+
+                                        <div class="level" ng-init="skill.shownlevel=skill.level">
+
+                                            <div style="margin-top:18px;margin-left:5px;" ng-if="skill.hash.substr(0,3)!='IST' && skill.level!=3">
+
+                                                <div style="margin-left:52px;margin-right:52px;float:left;">
+
+                                                    <div class="rate" ng-click="SetKnowledgeLevel(skill.hash,0)" ng-mouseenter="skill.shownlevel=0" ng-mouseleave="skill.shownlevel=skill.level">
+
+                                                        <img ng-src="{{local}}images/skills-level-reset.svg">
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div style="margin-left:17px;float:left;">
+
+                                                    <div class="rate" ng-click="SetKnowledgeLevel(skill.hash,1)" ng-mouseenter="skill.shownlevel=1" ng-mouseleave="skill.shownlevel=skill.level">
+
+                                                        <img ng-src="{{local}}images/skills-level{{ ( skill.shownlevel > 0 ) && '-filled' || '' }}.svg">
+
+                                                    </div>
+
+                                                    <div class="rate" ng-click="SetKnowledgeLevel(skill.hash,2)" ng-mouseenter="skill.shownlevel=2" ng-mouseleave="skill.shownlevel=skill.level">
+
+                                                        <img ng-src="{{local}}images/skills-level{{ ( skill.shownlevel > 1 ) && '-filled' || '' }}.svg">
+
+                                                    </div>
+
+                                                    <div class="rate" ng-mouseenter="skill.shownlevel=2" ng-mouseleave="skill.shownlevel=skill.level">
+
+                                                        <img ng-src="{{local}}images/skills-level-disabled.svg">
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div style="margin-top:37px;margin-left:5px;" ng-if="skill.hash.substr(0,3)!='IST' && skill.level==3">
+
+                                                <div style="margin-left:17px;float:left;">
+
+                                                    <div class="rate">
+
+                                                        <img ng-src="{{local}}images/skills-level-filled.svg">
+
+                                                    </div>
+
+                                                    <div class="rate">
+
+                                                        <img ng-src="{{local}}images/skills-level-filled.svg">
+
+                                                    </div>
+
+                                                    <div class="rate">
+
+                                                        <img ng-src="{{local}}images/skills-level-filled.svg">
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div style="width:150px;height:48px;position:absolute;z-index:10;transition:opacity 0.2s ease-in-out;" ng-style="{ 'opacity' : ( SkillHover != skill.hash && '1.00' || '0.00' ) }">
+
+                                        <div style="line-height:48px;text-align:center;font-size:15px;" ng-style="{ 'color' : skill.font }">
+
+                                            <div ng-if="skill.hash.substr(0,3)!='IST' && skill.shownlevel==0">Niezainteresowany</div>
+                                            <div ng-if="skill.hash.substr(0,3)!='IST' && skill.shownlevel==1">Zainteresowany</div>
+                                            <div ng-if="skill.hash.substr(0,3)!='IST' && skill.shownlevel==2">Kompetentny</div>
+                                            <div ng-if="skill.hash.substr(0,3)!='IST' && skill.shownlevel==3">Profesjonalny</div>
+
+                                            <div ng-if="skill.hash.substr(0,3)=='IST' && skill.shownlevel==0">Nieprzeczytany</div>
+                                            <div ng-if="skill.hash.substr(0,3)=='IST' && skill.shownlevel==1">Przeczytany</div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+<!--
+                <div id="Filters" class="involve-primary lighten-5 z-depth-1">
+
+                    <div class="title involve-primary darken-2 z-depth-1">
+
+                        <p class="md-title">Poradnik</p>
+
+                    </div>
+
+                    <div class="guide">
+
+
+                        Poradnik zostanie dodany wkrótce.
+
+                    </div>
+
+                    <div class="title involve-primary darken-2 z-depth-1">
+
+                        <p class="md-title">Filtry</p>
+
+                    </div>
+
+                    <div class="content">
+
+
+                        Filtry zostaną dodane wkrótce.
+
+                        <div class="filter" ng-repeat="filter in Filters" ng-click="Filter()">
+
+                            <md-switch ng-model="filter.state" class="md-primary" aria-label="Filtr - {{filter.title}}">
+                                {{filter.title}}
+                            </md-switch>
+
+                        </div>
+
+                    </div>
+
+                </div>
+-->
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+        <script src="scripts/involve.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/skills.js"></script>
+
+    </body>
+
+</html>

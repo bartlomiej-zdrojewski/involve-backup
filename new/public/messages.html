@@ -1,0 +1,115 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <[EMAIL]>, July 2017
+ -->
+
+<!DOCTYPE html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="author" content="Bartłomiej Zdrojewski">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="images/commons/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" />
+
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/animations.css" />
+        <link rel="stylesheet" href="styles/scrollbar.css" />
+        <link rel="stylesheet" href="styles/navigation.css" />
+        <link rel="stylesheet" href="styles/controls.css" />
+        <link rel="stylesheet" href="styles/tutorial.css" />
+        <link rel="stylesheet" href="styles/messages.css" />
+
+        <title>Invity - Wiadomości</title>
+
+    </head>
+
+    <body ng-app="Invity">
+
+        <div ng-controller="MessagesController" ng-init="Setup()" layout="column" layout-fill>
+
+            <div ng-include="'commons.html'"></div>
+
+            <div layout="row" flex ng-cloak>
+
+                <md-content layout="column" flex>
+
+                    <md-toolbar class="md-accent" md-whiteframe="1">
+
+                        <div class="md-toolbar-tools" flex>
+
+                            <img ng-src="images/navigation/logo.svg" class="navigation-logo" ng-click="Redirect('cockpit.html')">
+
+                            <h2 style="white-space:nowrap;text-overflow:ellipsis;overflow:hidden;" flex>
+
+                                | default
+
+                            </h2>
+
+                            <button class="navigation-button" ng-class="{ 'active' : NavItem.active, 'inactive' : !NavItem.active }" ng-repeat="NavItem in Navigation" ng-show="$mdMedia('gt-sm')" ng-click="Redirect(NavItem.link)">
+                                <span>{{NavItem.text}}</span>
+                            </button>
+
+                            <md-button class="md-icon-button" aria-label="Nawigacja" ng-hide="$mdMedia('gt-sm')" ng-click="OpenNavigation()">
+                                <md-icon md-svg-icon="images/navigation/navigation.svg"></md-icon>
+                            </md-button>
+
+                        </div>
+
+                    </md-toolbar>
+
+                    <md-content style="height:100%;" layout="row">
+
+                        <!-- CODE -->
+
+                    </md-content>
+
+                </md-content>
+
+                <md-sidenav class="md-sidenav-right" md-component-id="navigation" layout="column" md-whiteframe="5">
+
+                    <md-toolbar class="md-accent">
+
+                        <div class="md-toolbar-tools">
+
+                            <h2 style="white-space:nowrap;text-overflow:ellipsis;overflow:hidden;" flex>Nawigacja</h2>
+
+                        </div>
+
+                    </md-toolbar>
+
+                    <md-menu-content width="4" flex="100">
+
+                        <md-menu-item ng-repeat="NavItem in Navigation">
+                            <md-button aria-label="{{NavItem.text}}" ng-href="{{NavItem.link}}" target="_self">
+                                <md-icon md-svg-icon="images/navigation/{{NavItem.icon}}"></md-icon>
+                                {{ NavItem.text }}
+                            </md-button>
+                        </md-menu-item>
+
+                    </md-menu-content>
+
+                </md-sidenav>
+
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+
+        <script src="scripts/invity.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/messages.js"></script>
+
+    </body>
+
+</html>

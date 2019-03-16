@@ -1,0 +1,49 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<md-dialog style="max-height:90%;" aria-label="Okno dialogowe">
+
+    <form name="DialogForm" style="margin:0;" ng-cloak>
+
+        <md-toolbar>
+
+            <div class="md-toolbar-tools">
+                
+                <h2>{{Response.title}}</h2>
+                
+                <span flex></span>
+
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="{{local}}images/dialog-close.svg" aria-label="Zamknij okno odpowiedzi"></md-icon>
+                </md-button>
+
+            </div>
+
+        </md-toolbar>
+
+        <md-dialog-content style="width:calc(50px*10);overflow-y:auto;">
+
+            <div class="md-dialog-content">
+
+                <p style="margin:0px;text-align:left;white-space:pre-line;">{{Response.text}}</p>
+
+            </div>
+
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            
+            <span flex></span>
+            <md-button md-autofocus ng-disabled="DialogForm.$invalid" ng-click="hide()">
+                Rozumiem
+            </md-button>
+
+        </md-dialog-actions>
+
+    </form>
+
+</md-dialog>

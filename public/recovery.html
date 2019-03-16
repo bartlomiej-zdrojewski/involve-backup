@@ -1,0 +1,87 @@
+﻿<!--
+---- Copyright (C) Bartłomiej Zdrojewski - All Rights Reserved
+---- Unauthorized copying of this file, via any medium is strictly prohibited
+---- Proprietary and confidential
+---- Written by Bartłomiej Zdrojewski <bartlomiej.zdrojewski@invity.space>, July 2017
+ -->
+
+<html lang="en">
+
+    <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" />
+        
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/scrollbar.css" />
+        <link rel="stylesheet" href="styles/involve.css" />
+        <link rel="stylesheet" href="styles/recovery.css" />
+
+        <title>Involve - Odzyskiwanie konta</title>
+
+    </head>
+
+    <body ng-app="Involve">
+
+        <div ng-controller="RecoveryController" class="involve-primary lighten-3">
+            
+            <div id="Navigation" class="involve-primary">
+
+                <a ng-href="{{local}}cockpit.html" target="_self"><img ng-src="{{local}}images/about/logo-monochrome.svg" /></a>
+
+                <md-button class="md-fab md-mini md-primary" title="Zamknij okno" aria-label="Zamknij okno" ng-click="Close()">
+                    <md-icon md-svg-src="{{local}}images/navigation-exit.svg"></md-icon>
+                </md-button>
+
+            </div>
+
+            <div id="Content" class="involve-primary lighten-3">
+
+                <div id="Recovery" class="involve-primary lighten-5">
+
+                    <img ng-src="{{local}}images/recovery-decoration.svg" style="opacity:0.1;" />
+
+                    <form name="RecoveryForm" style="margin:0px;" ng-cloak>
+
+                        <div layout="row" style="width:500px;height:100px;top:300px;left:50px;position:absolute;">
+
+                            <md-input-container flex="66">
+                                <label>Adres e-mail</label>
+                                <input ng-model="Email" name="email" type="email" maxlength="256" required>
+                                <div ng-messages="RecoveryForm.email.$error" role="alert" multiple>
+                                    <div ng-message="required" class="my-message">Twój adres e-mail jest konieczny do odzyskania konta.</div>
+                                    <div ng-message="email" class="my-message">Ten wpis nie przypomina adresu e-mail.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container style="top:-10px;text-align:center;" flex="33">
+
+                                <md-button class="md-primary md-raised" ng-disabled="RecoveryForm.$invalid" ng-click="Recover()">Odzyskaj konto</md-button>
+
+                            </md-input-container>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+        <script src="scripts/involve.js"></script>
+        <script src="scripts/theme.js"></script>
+        <script src="scripts/recovery.js"></script>
+
+    </body>
+
+</html>
